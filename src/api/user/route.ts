@@ -1,8 +1,8 @@
 'use server'
 
+import { IUser } from "@/app/component/users/model/user-model";
 import client from "@/lib/db";
 import { NextResponse } from "next/server";
-import { IUsertype } from "./model/user-model";
 
 export async function SingleUser(id: number) {
     const response = await client.users.findFirst({
@@ -19,7 +19,7 @@ export async function ExistUser(username: string) {
     return response
 }
 
-export async function LoginUser(user: IUsertype) {
+export async function LoginUser(user: IUser) {
     console.log("LoginUserAPI : "+user.id);
     const {id, username, password } = user;
     const response = await client.users.update({
@@ -49,7 +49,7 @@ export async function LogoutUser(id: number) {
     return response
 }
 
-export async function AuthUser(user: IUsertype) {
+export async function JoinUser(user: IUser) {
     const { username, password, phone, name, age, email, address, asset, mbti, investment_propensity } = user;
     const response = await client.users.create({
         data: {

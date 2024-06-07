@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchAllArticles } from './article.service';
+import { fetchAllArticles, fetchDeleteArticle, fetchFindSingleArticle, fetchMyArticleList, fetchSaveArticle, fetchUpdateAricle } from './article.service';
 import { IArticle } from "../model/article.model";
 
 const status = {
@@ -30,13 +30,11 @@ export const articleSlice = createSlice({
 
         builder
             .addCase(fetchAllArticles.fulfilled, (state: any, { payload }: any) => { state.array = payload })
-            // .addCase(fetchMylistArticles.fulfilled, (state: any, { payload }: any) => { state.array = payload })
-            // .addCase(findArticleById.fulfilled, (state: any, { payload }: any) => { state.json = payload })
-            // .addCase(findCountArticle.fulfilled, (state: any, { payload }: any) => { state.count = payload })
-            // .addCase(modifyArticleById.fulfilled, (state: any, { payload }: any) => { state.array = payload })
-            // .addCase(deleteArticleById.fulfilled, (state: any, { payload }: any) => { state.json = payload }) 
-            // .addCase(saveArticle.fulfilled, (state: any, { payload }: any) => { state.message = payload }) 
-            // .addCase(findByBoard.fulfilled, (state: any, { payload }: any) => { state.array = payload }) 
+            .addCase(fetchMyArticleList.fulfilled, (state: any, { payload }: any) => { state.array = payload })
+            .addCase(fetchDeleteArticle.fulfilled, (state: any, { payload }: any) => { state.json = payload })
+            .addCase(fetchFindSingleArticle.fulfilled, (state: any, { payload }: any) => { state.json = payload })
+            .addCase(fetchSaveArticle.fulfilled, (state: any, { payload }: any) => { state.json = payload })
+            .addCase(fetchUpdateAricle.fulfilled, (state: any, { payload }: any) => { state.json = payload }) 
     }
 })
 

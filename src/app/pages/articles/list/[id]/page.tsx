@@ -8,10 +8,9 @@ import { NextPage } from "next";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState  } from "react";
 import PinkButton from "@/app/atoms/button/PinkButton";
-import { AllArticleList } from "@/api/article/route";
 import { getAllArticles } from "@/app/component/articles/service/article.slice";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllArticles } from "@/app/component/articles/service/article.service";
+import { fetchAllArticles, fetchMyArticleList } from "@/app/component/articles/service/article.service";
 import { IArticle } from "@/app/component/articles/model/article.model";
 
 
@@ -30,22 +29,11 @@ const MylistArticlesPage: NextPage = ({ params }: any) => {
 
     const router = useRouter();
 
-    const [articleList, setArticleList] = useState<IArticle[]>([])
-
     const dispatch = useDispatch()
     const allArticles: IArticle[] = useSelector(getAllArticles)
 
-    if (allArticles !== undefined) {
-        console.log('length is ' + allArticles.length)
-        for (let i = 0; i < allArticles.length; i++) {
-            console.log(JSON.stringify(allArticles[i]))
-        }
-    } else {
-        console.log('allArticles is undefined')
-    }
-
     useEffect(() => {
-        dispatch(fetchAllArticles())
+        dispatch(fetchMyArticleList())
     }, [])
 
 

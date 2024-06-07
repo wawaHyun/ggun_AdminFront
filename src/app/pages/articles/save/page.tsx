@@ -16,16 +16,7 @@ export default function ArticleSavePrisma() {
   const { register, handleSubmit, formState: { errors }, } = useForm();
   const [boardlist, setBoardList] = useState([])
 
-  const allBoardlist = async () => {
-    // try {
-    //   const response: IBoardtype[] = await AllBoardList();
-    //   setBoardList(response)
-    // }
-    // catch (error) {
-    //   console.log(error)
-    // }
-  }
-
+  const allBoardlist = async () => {}
 
   const onSubmit = async (data: any) => {
     // console.log(JSON.stringify(data))

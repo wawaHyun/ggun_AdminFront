@@ -1,10 +1,10 @@
 'use server'
 
+import { IBoard } from "@/app/component/boards/model/board-model";
 import client from "@/lib/db";
-import { IBoardtype } from "./model/board-model";
 
-export async function AllBoardList() {
-    const response: IBoardtype[] = await client.boards.findMany({})
+export async function AllBoards() {
+    const response: IBoard[] = await client.boards.findMany({})
     return response
 }
 
@@ -22,7 +22,7 @@ export async function FindSingleBoard(id: number) {
     }
 }
 
-export async function UpdateBoard(data: IBoardtype) {
+export async function UpdateBoard(data: IBoard) {
     const { id, title, description } = data
     console.log(id)
     const response = await client.boards.update({
@@ -38,7 +38,7 @@ export async function UpdateBoard(data: IBoardtype) {
     return response
 }
 
-export async function SaveBoard(data: IBoardtype) {
+export async function SaveBoard(data: IBoard) {
     const { id, title, description } = data
     try {
         const response = await client.boards.create({

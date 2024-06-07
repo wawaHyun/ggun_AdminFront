@@ -1,26 +1,34 @@
 'use client';
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { PG } from "@/app/component/common/enums/PG";
+import { useDispatch, useSelector } from "react-redux";
+import { getSingleUser } from "@/app/component/users/service/user.slice";
+import { IUser } from "@/app/component/users/model/user-model";
+import { fetchJoinUser } from "@/app/component/users/service/user.service";
 
 
 export default function Join() {
 
 
   const router = useRouter();
-  const [user, setUser] = useState({
-  username: '',
-  password: '',
-  name: '',
-  age: '',
-  email: '',
-  address: '',
-  phone: '',
-  asset: '',
-  mbti: '',
-  investment_propensity: ''})
+  // const [user, setUser] = useState({
+  // username: '',
+  // password: '',
+  // name: '',
+  // age: '',
+  // email: '',
+  // address: '',
+  // phone: '',
+  // asset: '',
+  // mbti: '',
+  // investment_propensity: ''})
+
+  const dispatch = useDispatch();
+  const join = useSelector(getSingleUser);
+  const [user, setUser] = useState({} as IUser)
 
 
   const handleUserInfo = (e: any) => {
@@ -30,18 +38,19 @@ export default function Join() {
     setUser(dto => ({ ...dto, [name]: value }));
   }
 
-  const authUser = async () => {
-    // console.log("insert Info : " + JSON.stringify(user))
-    // try {
-    //   const response = await AuthUser(user)
-    //   console.log("Auth Info : " + JSON.stringify(response))
-    // } catch (error) {
-    //   console.log("Auth Prisma fail : " + error)
-    // }
-    // finally{
-    //   router.push(`${PG.USER}/joinrisma`)
-    // }
+  const handleSubmit = () => {
+    console.log(user)
+    dispatch(fetchJoinUser(user))
   }
+
+
+  useEffect(() => {
+    if (join === 'SUCCESS') {
+      router.push(`${PG.JUSIK}chart`)
+    }
+  }, [])
+
+  
 
   return (
     <div className="h-screen items-center flex justify-center px-5 lg:px-0 ">
@@ -118,7 +127,7 @@ export default function Join() {
                 />
 
                 <button className="mt-5 tracking-wide font-semibold bg-indigo-950 text-gray-100 w-full py-4 rounded-lg hover:bg-pink-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
-                  onClick={() => authUser()}>
+                  onClick={() => handleSubmit()}>
                   <span className="ml-3">Sign Up</span>
                 </button>
                 <p className="mt-6 text-xs text-gray-600 text-center">

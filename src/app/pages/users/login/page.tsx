@@ -7,6 +7,9 @@ import { PG } from "@/app/component/common/enums/PG";
 import { NextPage } from "next"
 import React from "react";
 import MoveBotton from "@/app/atoms/button/MoveButton";
+import { useDispatch } from "react-redux";
+import { fetchExistUser, fetchLoginUser } from "@/app/component/users/service/user.service";
+import { IUser } from "@/app/component/users/model/user-model";
 
 const Login: NextPage = () => {
     const [userinfo, setUserinfo] = useState({ username: '', password: '', id: 0 })
@@ -19,6 +22,9 @@ const Login: NextPage = () => {
 
     const formRef = useRef<HTMLInputElement>(null)
     const router = useRouter()
+
+    const dispatch = useDispatch();
+    const [user, setUser] = useState({ username: '' } as IUser)
 
 
     const handleUsername = (e: any) => {
@@ -45,63 +51,39 @@ const Login: NextPage = () => {
         setLen(false)
     }
 
-    const userExistt = async () => {
-        // try {
-        //     const response = await ExistUser(userinfo.username + '')
-        //     // console.log("userExistt : " + JSON.stringify(response))
-        //     return response
-        // } catch (error) {
-        //     console.log("userExistt error : " + error)
-        // }
-    }
-
-
-    const userLoginn = async () => {
-        // console.log("userLoginn : " + JSON.stringify(userinfo))
-        // try {
-        //     const response = await LoginUser(userinfo)
-        //     console.log("userLoginn : " + JSON.stringify(response))
-        //     return response
-        // } catch (error) {
-        //     console.log("userLoginn error : " + error)
-        // }
-    }
 
     const handleSubmit = () => {
-        console.log('login page 입력받은 내용 ' + JSON.stringify(userinfo))
-        // setLen(true)
-        // userExistt()
-        //     .then((res: any) => {
-        //         setUserinfo(res)
-        //         console.log('내용 업뎃 완 ' + JSON.stringify(userinfo))
-        //         if (res.id != undefined) {
-        //             setMsg("* 있는 아이디입니다.")
-        //             console.log('여기까지 옴 ')
-        //             userLoginn()
-        //                 .then((resp: any) => {
-        //                     alert("로그인성공")
-        //                     router.push(`${PG.BOARD}/listPrisma`)
-        //                 })
-        //         } else {
-        //             setMsg('* 회원가입을 진행해주세요.')
-        //         }
-        //     })
-        //     .catch((err) => {
-        //         console.log("handleSubmit error: " + err)
-        //     })
-
+        console.log('login page 입력받은 내용 ' + JSON.stringify(user))
+        setLen(true)
+        dispatch(fetchExistUser(user.username))
+            .then((res: any) => {
+                if (res.payload == true) {
+                    setMsg("* 있는 아이디입니다.")
+                    dispatch(fetchLoginUser(user))
+                        .then((resp: any) => {
+                            // setCookie({}, 'message', resp.payload.message, { httpOnly: false, path: '/' })
+                            // setCookie({}, 'accessToken', resp.payload.accessToken, { httpOnly: false, path: '/' })
+                            // console.log("서버에서 넘어온 message " + parseCookies().message)
+                            // console.log("서버에서 넘어온 token " + parseCookies().accessToken)
+                            // console.log("token decoding 내용 " + jwtDecode<any>(parseCookies().accessToken).username)
+                            router.push(`${PG.BOARD}/list`)
+                            router.refresh()
+                        })
+                        .catch((err: any) => {
+                            alert("Wrong password. 시도하세요")
+                        })
+                } else {
+                    setMsg('* 회원가입을 진행해주세요.')
+                }
+            })
+            .catch((err: any) => {
+                console.log("fetchExistUser error : "+err)
+            })
 
         if (formRef.current) {
             formRef.current.value = "";
         }
     }
-
-    useEffect(() => {
-        if (userinfo !== null) {
-            console.log("onsubmit article : " + JSON.stringify(userinfo));
-        }
-    }, [userinfo])
-
 
     return (
         <div className="flex justify-center content-center w-screen items-center h-screen ">
@@ -166,7 +148,7 @@ const Login: NextPage = () => {
 
                     <div className="flex flex-col mt-5">
                         <div className="w-full h-[40px] ">
-                        <MoveBotton text="Login" path={() => handleSubmit()} />
+                            <MoveBotton text="Login" path={() => handleSubmit()} />
                         </div>
                         <a href="#"
                             className=" flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100">
