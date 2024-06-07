@@ -52,7 +52,7 @@ const MylistArticlesPage: NextPage = ({ params }: any) => {
                 {cards.map((data, index) => {
                     return (
                         <section className="flex-shrink-0 w-full snap-center justify-center items-center" key={index}>
-                            <img src={data} alt="Images to scroll horizontal2" width={800} height={800} className="w-full h-[500px]" />
+                            <Image src={data} alt="Images to scroll horizontal2" width={800} height={800} className="w-full h-[500px]" />
                         </section>
                     );
                 })}
