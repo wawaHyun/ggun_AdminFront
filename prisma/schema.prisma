@@ -19,6 +19,8 @@ model users {
   email                 String?
   investment_propensity String?
   mbti                  String?
+  mod_date              String?
+  reg_date              String?
   id                    Int     @id @default(autoincrement())
   token                 String?
 }
@@ -26,12 +28,16 @@ model users {
 model boards {
   title       String?
   description String?
+  mod_date    String?
+  reg_date    String?
   id          Int     @id @default(autoincrement())
 }
 
 model articles {
   title     String?
   content   String?
+  mod_date  String?
+  reg_date  String?
   board_id  String?
   writer_id String?
   id        Int     @id @default(autoincrement())

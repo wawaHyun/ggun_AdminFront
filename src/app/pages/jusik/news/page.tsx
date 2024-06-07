@@ -69,7 +69,7 @@ export default function NewsPage() {
               <div key={elem.id} onClick={() => { elem.ref }} className="bg-gray-200 text-center text-black hover:text-gray-500">
                 <ul className="flex">
                   <li>
-                    <Image src={elem.img} height={250} width={500} alt={elem.title} />
+                    <img src={elem.img} height={250} width={500} alt={elem.title} />
                   </li>
                   <li className="w-[50%] ml-[15px] text-center content-center">
                     <ul>
@@ -90,7 +90,7 @@ export default function NewsPage() {
               elem.main === false && elem.id <= 4 ?
                 <ul key={elem.id} className="w-1/3 text-center text-black hover:text-gray-500 hover:shadow-lg hover:border rounded-lg">
                   <li className="flex justify-center">
-                    <Image src={elem.img} height={150} width={350} alt={elem.title} />
+                    <img src={elem.img} height={150} width={350} alt={elem.title} />
                   </li>
                   <li className="ml-[40px]">{elem.title}</li>
                   <li className="ml-[20px] text-left text-gray-400">{elem.id}분 전</li>
@@ -111,7 +111,7 @@ export default function NewsPage() {
                     <li className="ml-[15px] text-bold text-[16px]">{elem.paper}</li>
                   </ul>
                 </li>
-                <Image src={elem.img} height={150} width={350} alt={elem.title} />
+                <img src={elem.img} height={150} width={350} alt={elem.title} />
               </ul>
             ))}
           </ul>
