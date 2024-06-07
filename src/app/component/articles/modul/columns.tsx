@@ -4,22 +4,21 @@ import { GridColDef } from '@mui/x-data-grid'
 import { MyTypography } from '../../common/style/cell';
 import { PG } from '../../common/enums/PG';
 import PinkButton from '@/app/atoms/button/PinkButton';
-import { DeleteArticle } from '@/app/api/article/route';
-import { IArticletype } from '@/app/api/article/model/articel-model';
+
 
 export default function ArticleColumns(): GridColDef[] {
 
     interface CellType {
-        row: IArticletype;
+        row: any;
     }
 
     const deletee = async(id:number) => {
-            try {
-                await DeleteArticle(id);
-            }
-            catch (error) {
-                console.log(error)
-            }
+            // try {
+            //     await DeleteArticle(id);
+            // }
+            // catch (error) {
+            //     console.log(error)
+            // }
     }
 
     return [

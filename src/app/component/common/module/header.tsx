@@ -5,7 +5,6 @@ import { destroyCookie, parseCookies } from 'nookies';
 import { CallIcon, ChartIcon, HomeIcon, ListIcon, MailIcon, NewsIcon } from '@/app/atoms/icons/icons';
 import { PG } from '../enums/PG';
 import { useState } from "react";
-import { LogoutUser } from "@/app/api/user/route";
 
 
 function Header() {
@@ -58,26 +57,26 @@ function Header() {
 
 
   const logoutHandler = () => {
-    console.log('로그아웃 적용 전 : ' + parseCookies().accessToken)
-    logout()
-      .then((res: any) => {
-        destroyCookie(null, 'accessToken')
-        setShowProfile(false)
-        router.push('/')
-      })
-      .catch((err: any) => {
-        console.log('logout 실행에서 에러가 발생함' + err)
-      })
+    // console.log('로그아웃 적용 전 : ' + parseCookies().accessToken)
+    // logout()
+    //   .then((res: any) => {
+    //     destroyCookie(null, 'accessToken')
+    //     setShowProfile(false)
+    //     router.push('/')
+    //   })
+    //   .catch((err: any) => {
+    //     console.log('logout 실행에서 에러가 발생함' + err)
+    //   })
   }
 
   const logout = async () => {
-    try {
-      const response = await LogoutUser(5);
-      return response
-    }
-    catch (error) {
-      console.log(error)
-    }
+    // try {
+    //   const response = await LogoutUser(5);
+    //   return response
+    // }
+    // catch (error) {
+    //   console.log(error)
+    // }
   }
 
 

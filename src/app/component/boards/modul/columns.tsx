@@ -4,13 +4,12 @@ import { GridColDef } from '@mui/x-data-grid'
 import Link from 'next/link';
 import { PG } from '@/app/component/common/enums/PG';
 import { MyTypography } from '../../common/style/cell';
-import { IBoardtype } from '@/app/api/board/model/board-model';
 
 
 export default function boardColumns(): GridColDef[] {
 
     interface CellType {
-        row: IBoardtype;
+        row: any;
     }
 
 

@@ -6,11 +6,8 @@ import { DataGrid } from "@mui/x-data-grid";
 import Image from 'next/image';
 import { NextPage } from "next";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { IArticletype } from "@/app/api/article/model/articel-model";
-import { MyArticleList } from "@/app/api/article/route";
+import { useCallback, useEffect, useState } from "react";
 import PinkButton from "@/app/atoms/button/PinkButton";
-
 
 
 const cards = [
@@ -28,22 +25,22 @@ const MylistArticlesPage: NextPage = ({ params }: any) => {
 
     const router = useRouter();
 
-    const [articleList, setArticleList] = useState<IArticletype[]>([])
+    const [articleList, setArticleList] = useState([])
 
-    const AllAriclelist = async () => {
-        try {
-            const response = await MyArticleList(params.id);
-            setArticleList(response)
-        }
-        catch (error) {
-            console.log(error)
-        }
-    }
+    const AllAriclelist = useCallback(async () => {
+        // try {
+        //     const response = await MyArticleList(params.id);
+        //     setArticleList(response)
+        // }
+        // catch (error) {
+        //     console.log(error)
+        // }
+    },[])
 
 
-    useEffect(() => {
-        AllAriclelist()
-    }, [AllAriclelist])
+    // useEffect(() => {
+    //     AllAriclelist()
+    // }, [AllAriclelist])
 
 
     return (<>

@@ -5,10 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { PG } from '@/app/component/common/enums/PG';
-import { AllBoardList, SaveBoard } from '@/app/api/board/route';
-import { IBoardtype } from '@/app/api/board/model/board-model';
 import PinkButton from '@/app/atoms/button/PinkButton';
-import { SaveArticle } from '@/app/api/article/route';
 
 
 
@@ -19,16 +16,16 @@ export default function BoardSavePrisma() {
   const { register, handleSubmit, formState: { errors }, } = useForm();
 
   const onSubmit = async (data: any) => {
-    console.log(JSON.stringify(data))
-    try {
-      await SaveBoard(data);
-    }
-    catch (error) {
-      console.log('board page onSubmit error : {}', error)
-    }
-    finally{
-      router.push(`${PG.BOARD}/list/${data.board}`)
-    }
+    // console.log(JSON.stringify(data))
+    // try {
+    //   await SaveBoard(data);
+    // }
+    // catch (error) {
+    //   console.log('board page onSubmit error : {}', error)
+    // }
+    // finally{
+    //   router.push(`${PG.BOARD}/list/${data.board}`)
+    // }
 
   }
 

@@ -5,13 +5,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { PG } from "@/app/component/common/enums/PG";
 import { NextPage } from "next"
-import { ExistUser, LoginUser } from "@/app/api/user/route";
-import { IUsertype } from "@/app/api/user/model/user-model";
 import React from "react";
 import MoveBotton from "@/app/atoms/button/MoveButton";
 
 const Login: NextPage = () => {
-    const [userinfo, setUserinfo] = useState<IUsertype>({ username: '', password: '', id: 0 })
+    const [userinfo, setUserinfo] = useState({ username: '', password: '', id: 0 })
 
     const [isWrongId, setIsWrongId] = useState('');
     const [isWrongPw, setIsWrongPw] = useState('');
@@ -48,49 +46,49 @@ const Login: NextPage = () => {
     }
 
     const userExistt = async () => {
-        try {
-            const response = await ExistUser(userinfo.username + '')
-            // console.log("userExistt : " + JSON.stringify(response))
-            return response
-        } catch (error) {
-            console.log("userExistt error : " + error)
-        }
+        // try {
+        //     const response = await ExistUser(userinfo.username + '')
+        //     // console.log("userExistt : " + JSON.stringify(response))
+        //     return response
+        // } catch (error) {
+        //     console.log("userExistt error : " + error)
+        // }
     }
 
 
     const userLoginn = async () => {
-        console.log("userLoginn : " + JSON.stringify(userinfo))
-        try {
-            const response = await LoginUser(userinfo)
-            console.log("userLoginn : " + JSON.stringify(response))
-            return response
-        } catch (error) {
-            console.log("userLoginn error : " + error)
-        }
+        // console.log("userLoginn : " + JSON.stringify(userinfo))
+        // try {
+        //     const response = await LoginUser(userinfo)
+        //     console.log("userLoginn : " + JSON.stringify(response))
+        //     return response
+        // } catch (error) {
+        //     console.log("userLoginn error : " + error)
+        // }
     }
 
     const handleSubmit = () => {
         console.log('login page 입력받은 내용 ' + JSON.stringify(userinfo))
-        setLen(true)
-        userExistt()
-            .then((res: any) => {
-                setUserinfo(res)
-                console.log('내용 업뎃 완 ' + JSON.stringify(userinfo))
-                if (res.id != undefined) {
-                    setMsg("* 있는 아이디입니다.")
-                    console.log('여기까지 옴 ')
-                    userLoginn()
-                        .then((resp: any) => {
-                            alert("로그인성공")
-                            router.push(`${PG.BOARD}/listPrisma`)
-                        })
-                } else {
-                    setMsg('* 회원가입을 진행해주세요.')
-                }
-            })
-            .catch((err) => {
-                console.log("handleSubmit error: " + err)
-            })
+        // setLen(true)
+        // userExistt()
+        //     .then((res: any) => {
+        //         setUserinfo(res)
+        //         console.log('내용 업뎃 완 ' + JSON.stringify(userinfo))
+        //         if (res.id != undefined) {
+        //             setMsg("* 있는 아이디입니다.")
+        //             console.log('여기까지 옴 ')
+        //             userLoginn()
+        //                 .then((resp: any) => {
+        //                     alert("로그인성공")
+        //                     router.push(`${PG.BOARD}/listPrisma`)
+        //                 })
+        //         } else {
+        //             setMsg('* 회원가입을 진행해주세요.')
+        //         }
+        //     })
+        //     .catch((err) => {
+        //         console.log("handleSubmit error: " + err)
+        //     })
 
 
         if (formRef.current) {

@@ -5,10 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { PG } from '@/app/component/common/enums/PG';
-import { AllBoardList } from '@/app/api/board/route';
-import { IBoardtype } from '@/app/api/board/model/board-model';
 import PinkButton from '@/app/atoms/button/PinkButton';
-import { SaveArticle } from '@/app/api/article/route';
 
 
 
@@ -17,36 +14,36 @@ export default function ArticleSavePrisma() {
   const router = useRouter();
 
   const { register, handleSubmit, formState: { errors }, } = useForm();
-  const [boardlist, setBoardList] = useState<IBoardtype[]>([])
+  const [boardlist, setBoardList] = useState([])
 
   const allBoardlist = async () => {
-    try {
-      const response: IBoardtype[] = await AllBoardList();
-      setBoardList(response)
-    }
-    catch (error) {
-      console.log(error)
-    }
+    // try {
+    //   const response: IBoardtype[] = await AllBoardList();
+    //   setBoardList(response)
+    // }
+    // catch (error) {
+    //   console.log(error)
+    // }
   }
 
 
   const onSubmit = async (data: any) => {
-    console.log(JSON.stringify(data))
-    try {
-      await SaveArticle(data);
-    }
-    catch (error) {
-      console.log('article page onSubmit error : {}', error)
-    }
-    finally{
-      router.push(`${PG.BOARD}/list/${data.board}`)
-    }
+    // console.log(JSON.stringify(data))
+    // try {
+    //   await SaveArticle(data);
+    // }
+    // catch (error) {
+    //   console.log('article page onSubmit error : {}', error)
+    // }
+    // finally{
+    //   router.push(`${PG.BOARD}/list/${data.board}`)
+    // }
 
   }
 
 
   useEffect(() => {
-    allBoardlist()
+    // allBoardlist()
   }, [])
 
 
@@ -57,7 +54,7 @@ export default function ArticleSavePrisma() {
         <select defaultValue={""} {...register('board', { required: true })}
           className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-          {boardlist.map((i: IBoardtype) =>
+          {boardlist.map((i: any) =>
             <option key={i.id} value={i.id}>{i.title}</option>
           )}
 

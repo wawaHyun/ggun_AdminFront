@@ -1,7 +1,5 @@
 'use client'
 
-import { IBoardtype } from "@/app/api/board/model/board-model";
-import { AllBoardList, UpdateBoard } from "@/app/api/board/route";
 import CardButton from "@/app/atoms/button/CardButton"
 import PinkButton from "@/app/atoms/button/PinkButton";
 import {  ListIcon } from "@/app/atoms/icons/icons";
@@ -13,8 +11,8 @@ import { useEffect, useState } from "react";
 
 export default function Boardcards() {
 
-    const [inputValue, setInputValue] = useState<IBoardtype>({ id: 0, title: '', description: '' });
-    const [boardlist, setBoardList] = useState<IBoardtype[]>([])
+    const [inputValue, setInputValue] = useState({ id: 0, title: '', description: '' });
+    const [boardlist, setBoardList] = useState([])
     const router = useRouter();
 
 
@@ -28,33 +26,33 @@ export default function Boardcards() {
 
 
     const AllBoardlist = async () => {
-        try {
-            const response: IBoardtype[] = await AllBoardList();
-            setBoardList(response)
-        }
-        catch (error) {
-            console.log(error)
-        }
+        // try {
+        //     const response: IBoardtype[] = await AllBoardList();
+        //     setBoardList(response)
+        // }
+        // catch (error) {
+        //     console.log(error)
+        // }
     }
 
     const update = async () => {
-        try {
-            const response: IBoardtype = await UpdateBoard(inputValue);
-            console.log("handleUpdate : " + response)
-        }
-        catch (error) {
-            console.log("handleUpdate : " + error)
-        }
+        // try {
+        //     const response: IBoardtype = await UpdateBoard(inputValue);
+        //     console.log("handleUpdate : " + response)
+        // }
+        // catch (error) {
+        //     console.log("handleUpdate : " + error)
+        // }
     }
 
-    const handleUpdate = (data: IBoardtype) => {
+    const handleUpdate = (data: any) => {
         console.log("update 진입 : " + JSON.stringify(data));
         update()
         router.refresh()
     }
 
     useEffect(() => {
-        AllBoardlist()
+        // AllBoardlist()
     }, [])
 
 
@@ -74,7 +72,7 @@ export default function Boardcards() {
         </div>
 
         <div className="flex flex-row ml-5 gap-5 items-center justify-center text-center mb-5 ">
-            {boardlist && boardlist.map((elem: IBoardtype, i:number) => (
+            {boardlist && boardlist.map((elem: any, i:number) => (
                 <div key={elem.id} className="w-screen text-center mb-5">
                     <CardButton id={elem.id} title={elem.title||undefined} 
                         description={elem.description||undefined} img={<ListIcon />} />

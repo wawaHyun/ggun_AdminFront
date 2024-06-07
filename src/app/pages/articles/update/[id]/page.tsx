@@ -2,21 +2,17 @@
 
 import { AttachFile, FmdGood, ThumbUpAlt } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { PG } from '@/app/component/common/enums/PG';
-import { FindSingleArticle, UpdateAricle } from '@/app/api/article/route';
 import PinkButton from '@/app/atoms/button/PinkButton';
-import { IBoardtype } from '@/app/api/board/model/board-model';
-import { AllBoardList } from '@/app/api/board/route';
-import { IArticletype } from '@/app/api/article/model/articel-model';
 
 
 
 export default function ArticleUpdate({ params }: any) {
 
   const router = useRouter();
-  const [boardlist, setBoardList] = useState<IBoardtype[]>([])
-  const [article, setArticle] = useState<IArticletype>({ id: params.id })
+  const [boardlist, setBoardList] = useState([])
+  const [article, setArticle] = useState({ id: params.id , title:"", content:""})
 
 
   const handleArticleInfo = (e: any) => {
@@ -27,56 +23,48 @@ export default function ArticleUpdate({ params }: any) {
     // console.log(article)
   }
 
-  const sigleArti = async () => {
-    const id = parseInt(params.id)
-    try {
-      const response = await FindSingleArticle(id);
-      return response
-    }
-    catch (error) {
-      console.log(error)
-    }
-  }
+  // const singleArti = useCallback(async () => {
+    // const id = parseInt(params.id);
+    // try {
+    //   const response = await FindSingleArticle(article.id);
+    //   return response;
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  // }, []);
 
-  const allBoardlist = async () => {
-    try {
-      const response: IBoardtype[] = await AllBoardList();
-      setBoardList(response)
-    }
-    catch (error) {
-      console.log(error)
-    }
-  }
+  // const allBoardlist = useCallback(async () => {
+    // try {
+    //   const response: IBoardtype[] = await AllBoardList();
+    //   setBoardList(response)
+    // }
+    // catch (error) {
+    //   console.log(error)
+    // }
+  // },[])
 
   const onSubmit = async () => {
-    console.log("onsubmit : " + JSON.stringify(article));
-    try {
-      const response = await UpdateAricle(article)
-      alert("board1 : ")
-      router.push(`${PG.ARTICLE}/mylist/${response.board_id}`);
-    }
-    catch (error) {
-      console.log('article page onSubmit error : {}', error)
-      alert("board3 : "+article.board)
-    }
-    finally{
-
-    }
+    // console.log("onsubmit : " + JSON.stringify(article));
+    // try {
+    //   const response = await UpdateAricle(article)
+    //   alert("board1 : ")
+    //   router.push(`${PG.ARTICLE}/mylist/${response.board_id}`);
+    // }
+    // catch (error) {
+    //   console.log('article page onSubmit error : {}', error)
+    //   alert("board3 : "+article.board)
+    // }
+    // finally{
+    // }
   }
 
-  useEffect(() => {
-    sigleArti()
-      .then((res: any) => {
-        const respon = res != undefined ? res : null
-        setArticle(respon)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-
-    allBoardlist()
-  }, [sigleArti,allBoardlist])
-
+  // useEffect(() => {
+    // singleArti()
+    //   .then((res) => {
+    //     const respon:any = res !== undefined ? res : null;
+    //     setArticle(respon); })
+    //     allBoardlist();
+  // }, [singleArti, allBoardlist]);
 
 
   return (
@@ -86,7 +74,7 @@ export default function ArticleUpdate({ params }: any) {
         <select defaultValue={params.id} onChange={handleArticleInfo} name="id"
           className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-          {boardlist.map((i: IBoardtype) =>
+          {boardlist.map((i: any) =>
             <option key={i.id} value={i.id}>{i.title}</option>
           )}
 

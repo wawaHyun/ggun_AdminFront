@@ -4,14 +4,13 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { PG } from "@/app/component/common/enums/PG";
-import { IUsertype } from "@/app/api/user/model/user-model";
-import { AuthUser,  } from "@/app/api/user/route";
+
 
 export default function Join() {
 
 
   const router = useRouter();
-  const [user, setUser] = useState<IUsertype>({
+  const [user, setUser] = useState({
   username: '',
   password: '',
   name: '',
@@ -32,16 +31,16 @@ export default function Join() {
   }
 
   const authUser = async () => {
-    console.log("insert Info : " + JSON.stringify(user))
-    try {
-      const response = await AuthUser(user)
-      console.log("Auth Info : " + JSON.stringify(response))
-    } catch (error) {
-      console.log("Auth Prisma fail : " + error)
-    }
-    finally{
-      router.push(`${PG.USER}/joinrisma`)
-    }
+    // console.log("insert Info : " + JSON.stringify(user))
+    // try {
+    //   const response = await AuthUser(user)
+    //   console.log("Auth Info : " + JSON.stringify(response))
+    // } catch (error) {
+    //   console.log("Auth Prisma fail : " + error)
+    // }
+    // finally{
+    //   router.push(`${PG.USER}/joinrisma`)
+    // }
   }
 
   return (
