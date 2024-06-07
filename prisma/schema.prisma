@@ -1,0 +1,46 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["extendedWhereUnique"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  username              String?
+  password              String?
+  name                  String?
+  phone                 String?
+  address               String?
+  age                   String?
+  asset                 String?
+  email                 String?
+  investment_propensity String?
+  mbti                  String?
+  id                    Int     @id @default(autoincrement())
+  token                 String?
+}
+
+model boards {
+  title       String?
+  description String?
+  id          Int     @id @default(autoincrement())
+}
+
+model articles {
+  title     String?
+  content   String?
+  board_id  String?
+  writer_id String?
+  id        Int     @id @default(autoincrement())
+}
+
+model npsStat {
+  id        Int     @id @default(autoincrement())
+  stock     String?
+  valuation String?
+  perAsset  String?
+  perAll    String?
+}
