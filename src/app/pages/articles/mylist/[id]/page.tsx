@@ -3,6 +3,7 @@
 import ArticleColumns from "@/app/component/articles/modul/columns";
 import { PG } from "@/app/component/common/enums/PG";
 import { DataGrid } from "@mui/x-data-grid";
+import Image from 'next/image';
 import { NextPage } from "next";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -42,7 +43,7 @@ const MylistArticlesPage: NextPage = ({ params }: any) => {
 
     useEffect(() => {
         AllAriclelist()
-    }, [])
+    }, [AllAriclelist])
 
 
     return (<>

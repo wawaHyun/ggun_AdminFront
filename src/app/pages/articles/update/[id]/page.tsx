@@ -75,7 +75,7 @@ export default function ArticleUpdate({ params }: any) {
       })
 
     allBoardlist()
-  }, [])
+  }, [sigleArti,allBoardlist])
 
 
 
