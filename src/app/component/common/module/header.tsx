@@ -36,7 +36,7 @@ function Header() {
     { id: 3, title: "chart", icon: <ChartIcon />, address: () => router.push(`${PG.JUSIK}/chart`) },
     { id: 4, title: "login", icon: <MailIcon />, address: () => router.push(`${PG.USER}/loginPrisma`) },
     { id: 5, title: "board", icon: <ListIcon />, address: () => router.push(`${PG.BOARD}/listPrisma`) },
-    { id: 6, title: "QnA", icon: <CallIcon />, address: () => router.push(`${PG.BOARD}/listPrisma`) },
+    { id: 6, title: "Article", icon: <CallIcon />, address: () => router.push(`${PG.ARTICLE}/mylist/1`) },
   ]
 
 

@@ -6,8 +6,13 @@ import { DataGrid } from "@mui/x-data-grid";
 import Image from 'next/image';
 import { NextPage } from "next";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState  } from "react";
 import PinkButton from "@/app/atoms/button/PinkButton";
+import { AllArticleList } from "@/api/article/route";
+import { getAllArticles } from "@/app/component/articles/service/article.slice";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllArticles } from "@/app/component/articles/service/article.service";
+import { IArticle } from "@/app/component/articles/model/article.model";
 
 
 const cards = [
@@ -25,35 +30,36 @@ const MylistArticlesPage: NextPage = ({ params }: any) => {
 
     const router = useRouter();
 
-    const [articleList, setArticleList] = useState([])
+    const [articleList, setArticleList] = useState<IArticle[]>([])
 
-    const AllAriclelist = useCallback(async () => {
-        // try {
-        //     const response = await MyArticleList(params.id);
-        //     setArticleList(response)
-        // }
-        // catch (error) {
-        //     console.log(error)
-        // }
-    },[])
+    const dispatch = useDispatch()
+    const allArticles: IArticle[] = useSelector(getAllArticles)
 
+    if (allArticles !== undefined) {
+        console.log('length is ' + allArticles.length)
+        for (let i = 0; i < allArticles.length; i++) {
+            console.log(JSON.stringify(allArticles[i]))
+        }
+    } else {
+        console.log('allArticles is undefined')
+    }
 
-    // useEffect(() => {
-    //     AllAriclelist()
-    // }, [AllAriclelist])
+    useEffect(() => {
+        dispatch(fetchAllArticles())
+    }, [])
 
 
     return (<>
 
         <div className="flex flex-col items-center justify-center w-full bg-300">
             <div className="flex overflow-x-scroll snap-x snap-mandatory max-w-6xl no-scrollbar">
-                {cards.map((data, index) => {
+                {/* {cards.map((data, index) => {
                     return (
                         <section className="flex-shrink-0 w-full snap-center justify-center items-center" key={index}>
                             <Image src={data} alt="Images to scroll horizontal2" width={800} height={800} className="w-full h-[500px]" />
                         </section>
                     );
-                })}
+                })} */}
             </div>
         </div>
 
@@ -63,8 +69,8 @@ const MylistArticlesPage: NextPage = ({ params }: any) => {
         </div>
 
         <div style={{ height: "100%", width: "100%", fontSize: 50 }}>
-            {articleList && <DataGrid // 🔥 4
-                rows={articleList}
+            {allArticles && <DataGrid // 🔥 4
+                rows={allArticles}
                 columns={ArticleColumns()}
                 initialState={{
                     pagination: {
