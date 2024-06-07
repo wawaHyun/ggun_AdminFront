@@ -3,58 +3,25 @@
 import CardButton from "@/app/atoms/button/CardButton"
 import PinkButton from "@/app/atoms/button/PinkButton";
 import {  ListIcon } from "@/app/atoms/icons/icons";
+import { IBoard } from "@/app/component/boards/model/board.model";
+import { fetchAllBoards } from "@/app/component/boards/service/board.service";
+import { getAllBoards } from "@/app/component/boards/service/board.slice";
 import { PG } from "@/app/component/common/enums/PG";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 
 
 export default function Boardcards() {
 
-    const [inputValue, setInputValue] = useState({ id: 0, title: '', description: '' });
-    const [boardlist, setBoardList] = useState([])
     const router = useRouter();
-
-
-    const handleInput = (e: any) => {
-        const {
-            target: { value, name }
-        } = e;
-        setInputValue(dto => ({ ...dto, [name]: value }));
-        console.log(inputValue)
-    };
-
-
-    const AllBoardlist = async () => {
-        // try {
-        //     const response: IBoardtype[] = await AllBoardList();
-        //     setBoardList(response)
-        // }
-        // catch (error) {
-        //     console.log(error)
-        // }
-    }
-
-    const update = async () => {
-        // try {
-        //     const response: IBoardtype = await UpdateBoard(inputValue);
-        //     console.log("handleUpdate : " + response)
-        // }
-        // catch (error) {
-        //     console.log("handleUpdate : " + error)
-        // }
-    }
-
-    const handleUpdate = (data: any) => {
-        console.log("update 진입 : " + JSON.stringify(data));
-        update()
-        router.refresh()
-    }
+    const dispatch = useDispatch()
+    const boards: IBoard[] = useSelector(getAllBoards)
 
     useEffect(() => {
-        // AllBoardlist()
+        dispatch(fetchAllBoards())
     }, [])
-
 
     return (<>
         <div className="w-screen h-[20%] mb-5">
@@ -68,11 +35,11 @@ export default function Boardcards() {
         </div>
         \
         <div className="w-screen text-center content-center  mb-5">
-            <PinkButton text="게시판 관리" path={() => router.push(`${PG.BOARD}/savePrisma`)} />
+            <PinkButton text="게시판 추가" path={() => router.push(`${PG.BOARD}/save`)} />
         </div>
 
         <div className="flex flex-row ml-5 gap-5 items-center justify-center text-center mb-5 ">
-            {boardlist && boardlist.map((elem: any, i:number) => (
+            {boards && boards.map((elem:IBoard, i:number) => (
                 <div key={elem.id} className="w-screen text-center mb-5">
                     <CardButton id={elem.id} title={elem.title||undefined} 
                         description={elem.description||undefined} img={<ListIcon />} />

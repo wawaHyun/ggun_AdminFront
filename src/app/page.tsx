@@ -20,7 +20,7 @@ const Home: NextPage = () => {
           </div>
 
           <div className="mt-[15%]">
-            <button className="w-44 h-16 bg-pink-700 rounded-lg hover:bg-gray-950" onClick={() => router.push(PG.USER + "/loginPrisma")}>
+            <button className="w-44 h-16 bg-pink-700 rounded-lg hover:bg-gray-950" onClick={() => router.push(PG.USER + "/login")}>
               <div className="text-white font-bold">start </div>
             </button>
           </div>

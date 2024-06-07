@@ -4,8 +4,8 @@ export const initialState: IArticle = {
     id: 0,
     title: '',
     content: '',
-    writer_id : '',
-    board_id : '',
+    writer : '',
+    board : 0
     // modDate: '',
     // regDate: ''
 }

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { IUser } from "../model/user-model"
 import { fetchExistUser, fetchJoinUser, fetchLoginUser, fetchLogoutUser, fetchSingleUser } from "./user.service"
+import { IUser } from "../model/user.model"
 
 const status = {
     pending: 'pending',
@@ -8,22 +8,15 @@ const status = {
     rejected: 'rejected'
 }
 
-interface IAuth{
-    status? : number,
-    message? : string,
-    Token? : string
-}
 
 interface userState {
     json? : IUser,
     array? : Array<IUser>,
-    auth? : IAuth
 }
 
 export const initialState:userState = {
     json : {} as IUser,
     array : [],
-    auth : {} as IAuth
 }
 
 
@@ -36,7 +29,7 @@ export const userSlice = createSlice({
         const { pending, rejected } = status;
         builder
             .addCase(fetchSingleUser.fulfilled, (state: any, { payload }: any) => { state.json = payload })
-            .addCase(fetchExistUser.fulfilled, (state: any, { payload }: any) => { state.json = payload })
+            .addCase(fetchExistUser.fulfilled, (state: any, { payload }: any) => { state.text = payload })
             .addCase(fetchLoginUser.fulfilled, (state: any, { payload }: any) => { state.json = payload })
             .addCase(fetchLogoutUser.fulfilled, (state: any, { payload }: any) => { state.json  = payload })
             .addCase(fetchJoinUser.fulfilled, (state: any, { payload }: any) => { state.json = payload })

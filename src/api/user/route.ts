@@ -1,7 +1,8 @@
 'use server'
 
-import { IUser } from "@/app/component/users/model/user-model";
+import { IUser } from "@/app/component/users/model/user.model";
 import client from "@/lib/db";
+import { CommentsDisabledOutlined } from "@mui/icons-material";
 import { NextResponse } from "next/server";
 
 export async function SingleUser(id: number) {
@@ -13,18 +14,27 @@ export async function SingleUser(id: number) {
 
 export async function ExistUser(username: string) {
     console.log("ExistUserAPI : " + username);
-    const response = await client.users.findFirst({
-        where: { username: username },
-    })
-    return response
+    try {
+        const response = await client.users.findFirst({
+            where: { username: username },
+        })
+        .then((res:any)=>{
+            const result = (res != true) ? 'SUCCESS' : 'FAIL'
+            console.log("ExistUserAPI result : " + result);
+            return result
+        })
+    } catch (error) {
+        console.log("ExistUser err : " + error
+        )
+    }
 }
 
 export async function LoginUser(user: IUser) {
-    console.log("LoginUserAPI : "+user.id);
-    const {id, username, password } = user;
+    console.log("LoginUserAPI : " + user.id);
+    const { id, username, password } = user;
     const response = await client.users.update({
         where: {
-            id : id,
+            id: id,
             username: username,
             password: password,
         },
@@ -32,20 +42,20 @@ export async function LoginUser(user: IUser) {
             token: "login token add"
         }
     });
-    console.log("LoginUserAPI : "+response)
+    console.log("LoginUserAPI : " + response)
     return response
 }
 
 export async function LogoutUser(id: number) {
     const response = await client.users.update({
         where: {
-            id : id,
+            id: id,
         },
         data: {
             token: ""
         }
     });
-    console.log("LoginUserAPI : "+response)
+    console.log("LoginUserAPI : " + response)
     return response
 }
 
@@ -55,7 +65,7 @@ export async function JoinUser(user: IUser) {
         data: {
             username: username,
             password: password,
-            name:name,
+            name: name,
             phone: phone,
             age: age,
             email: email,

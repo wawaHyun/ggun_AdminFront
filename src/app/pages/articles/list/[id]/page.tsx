@@ -6,11 +6,11 @@ import { DataGrid } from "@mui/x-data-grid";
 import Image from 'next/image';
 import { NextPage } from "next";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState  } from "react";
+import { useEffect  } from "react";
 import PinkButton from "@/app/atoms/button/PinkButton";
 import { getAllArticles } from "@/app/component/articles/service/article.slice";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllArticles, fetchMyArticleList } from "@/app/component/articles/service/article.service";
+import { fetchMyArticleList } from "@/app/component/articles/service/article.service";
 import { IArticle } from "@/app/component/articles/model/article.model";
 
 
@@ -28,12 +28,12 @@ const cards = [
 const MylistArticlesPage: NextPage = ({ params }: any) => {
 
     const router = useRouter();
-
     const dispatch = useDispatch()
     const allArticles: IArticle[] = useSelector(getAllArticles)
 
     useEffect(() => {
-        dispatch(fetchMyArticleList())
+        const id = parseInt(params.id);
+        dispatch(fetchMyArticleList(id))
     }, [])
 
 
@@ -53,7 +53,7 @@ const MylistArticlesPage: NextPage = ({ params }: any) => {
 
         <br />
         <div className="w-screen text-center mb-5 h-[50px] broder">
-            <PinkButton text="글쓰러가기" path={()=>router.push(`${PG.ARTICLE}/savePrisma`)}/>
+            <PinkButton text="글쓰러가기" path={()=>router.push(`${PG.ARTICLE}/save`)}/>
         </div>
 
         <div style={{ height: "100%", width: "100%", fontSize: 50 }}>

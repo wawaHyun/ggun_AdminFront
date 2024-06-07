@@ -1,6 +1,6 @@
 'use server'
 
-import { IBoard } from "../model/board-model"
+import { IBoard } from "../model/board.model"
 import { AllBoards, FindSingleBoard, SaveBoard, UpdateBoard } from "@/api/board/route"
 
 

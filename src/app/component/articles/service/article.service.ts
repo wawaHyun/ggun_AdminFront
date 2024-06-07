@@ -10,7 +10,7 @@ export const fetchAllArticles: any = createAsyncThunk(
 
 export const fetchMyArticleList: any = createAsyncThunk(
     'articles/fetchMyArticleList',
-    async (id:number) =>  await MyArticleListAPI(id)
+    async (board:number) =>  await MyArticleListAPI(board)
 )
 
 export const fetchDeleteArticle : any = createAsyncThunk(

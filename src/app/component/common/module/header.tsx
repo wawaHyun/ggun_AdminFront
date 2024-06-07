@@ -34,9 +34,9 @@ function Header() {
     { id: 1, title: "home", icon: <HomeIcon />, address: () => router.push(`/`) },
     { id: 2, title: "news", icon: <NewsIcon />, address: () => router.push(`${PG.JUSIK}/news`) },
     { id: 3, title: "chart", icon: <ChartIcon />, address: () => router.push(`${PG.JUSIK}/chart`) },
-    { id: 4, title: "login", icon: <MailIcon />, address: () => router.push(`${PG.USER}/loginPrisma`) },
-    { id: 5, title: "board", icon: <ListIcon />, address: () => router.push(`${PG.BOARD}/listPrisma`) },
-    { id: 6, title: "Article", icon: <CallIcon />, address: () => router.push(`${PG.ARTICLE}/mylist/1`) },
+    { id: 4, title: "login", icon: <MailIcon />, address: () => router.push(`${PG.USER}/login`) },
+    { id: 5, title: "board", icon: <ListIcon />, address: () => router.push(`${PG.BOARD}/list`) },
+    { id: 6, title: "Article", icon: <CallIcon />, address: () => router.push(`${PG.ARTICLE}/list/1`) },
   ]
 
 
@@ -105,9 +105,9 @@ function Header() {
           {showProfile && showProfile ?
             <li>
               <div className="flex px-4 py-3 float-end">
-                <span className="block text-sm text-gray-900 dark:text-white">User</span>
-                <span className="block text-sm  text-gray-500 truncate dark:text-gray-400 mx-5" >마이페이지</span>
-                <span className="block text-sm  text-gray-500 truncate dark:text-gray-400" onClick={logoutHandler}><a href='#'></a> Logout </span>
+                <span className="block text-sm text-gray-900">User</span>
+                <span className="block text-sm  text-gray-500 truncate  mx-5" >마이페이지</span>
+                <span className="block text-sm  text-gray-500 truncate " onClick={logoutHandler}><a href='#'></a> Logout </span>
               </div>
             </li> : <li></li>
 

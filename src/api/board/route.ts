@@ -1,6 +1,6 @@
 'use server'
 
-import { IBoard } from "@/app/component/boards/model/board-model";
+import { IBoard } from "@/app/component/boards/model/board.model";
 import client from "@/lib/db";
 
 export async function AllBoards() {

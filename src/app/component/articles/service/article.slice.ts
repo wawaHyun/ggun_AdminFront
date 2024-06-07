@@ -42,7 +42,7 @@ export const articleSlice = createSlice({
 export const getAllArticles = (state: any) => state.article.array;
 export const getSingleArticle = (state: any) => state.article.json;
 export const getCountArticle = (state:any) => state.article.count;
-export const getSaveArticle = (state:any) => state.article.message;
+export const getMsgArticle = (state:any) => state.article.message;
 
 export const { } = articleSlice.actions
 

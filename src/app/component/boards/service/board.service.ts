@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AllBoardsAPI, FindSingleBoardAPI, SaveBoardAPI, UpdateBoardAPI } from "./board.api";
 import { idID } from "@mui/material/locale";
-import { IBoard } from "../model/board-model";
+import { IBoard } from "../model/board.model";
 
 export const fetchAllBoards: any = createAsyncThunk(
     'articles/fetchAllBoards',

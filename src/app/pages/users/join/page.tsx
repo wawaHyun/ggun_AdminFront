@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { PG } from "@/app/component/common/enums/PG";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleUser } from "@/app/component/users/service/user.slice";
-import { IUser } from "@/app/component/users/model/user-model";
+import { IUser } from "@/app/component/users/model/user.model";
 import { fetchJoinUser } from "@/app/component/users/service/user.service";
 
 
@@ -27,7 +27,6 @@ export default function Join() {
   // investment_propensity: ''})
 
   const dispatch = useDispatch();
-  const join = useSelector(getSingleUser);
   const [user, setUser] = useState({} as IUser)
 
 
@@ -41,16 +40,15 @@ export default function Join() {
   const handleSubmit = () => {
     console.log(user)
     dispatch(fetchJoinUser(user))
+    .then((res:any)=>{
+        router.push(`${PG.BOARD}/list`)
+    })
+    .catch((error:any) => {
+      console.log("fetchJoinUser err "+ error)
+    })
   }
 
 
-  useEffect(() => {
-    if (join === 'SUCCESS') {
-      router.push(`${PG.JUSIK}chart`)
-    }
-  }, [])
-
-  
 
   return (
     <div className="h-screen items-center flex justify-center px-5 lg:px-0 ">

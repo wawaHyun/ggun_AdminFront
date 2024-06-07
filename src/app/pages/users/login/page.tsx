@@ -9,10 +9,11 @@ import React from "react";
 import MoveBotton from "@/app/atoms/button/MoveButton";
 import { useDispatch } from "react-redux";
 import { fetchExistUser, fetchLoginUser } from "@/app/component/users/service/user.service";
-import { IUser } from "@/app/component/users/model/user-model";
+import { IUser } from "@/app/component/users/model/user.model";
+import { gridColumnLookupSelector } from "@mui/x-data-grid";
 
 const Login: NextPage = () => {
-    const [userinfo, setUserinfo] = useState({ username: '', password: '', id: 0 })
+    // const [userinfo, setUserinfo] = useState({ username: '', password: '', id: 0 })
 
     const [isWrongId, setIsWrongId] = useState('');
     const [isWrongPw, setIsWrongPw] = useState('');
@@ -24,19 +25,17 @@ const Login: NextPage = () => {
     const router = useRouter()
 
     const dispatch = useDispatch();
-    const [user, setUser] = useState({ username: '' } as IUser)
+    const [userinfo, setUserinfo] = useState({ username: '' } as IUser)
 
 
     const handleUsername = (e: any) => {
-        // 정규표현식 : 영어 대소문자로 시작하는 6~20자의 영어소문자 또는 숫자
-        // 한글 : ㄱ-힣,  /g 전역
-        // const ID_CHECK = /^[a-zA-Z0-9]+[a-zA-Z0-9]{5,19}$/g
         const ID_CHECK = /^[a-zA-Z][a-zA-Z0-9]{5,11}$/g;
         ID_CHECK.test(userinfo.username + "") ? setIsWrongId('false') : setIsWrongId('true');
         setUserinfo({
             ...userinfo,
             username: e.target.value
         })
+        console.log('username : ' + JSON.stringify(userinfo))
         setLen(false)
     }
 
@@ -53,13 +52,13 @@ const Login: NextPage = () => {
 
 
     const handleSubmit = () => {
-        console.log('login page 입력받은 내용 ' + JSON.stringify(user))
+        console.log('login page 입력받은 내용 ' + JSON.stringify(userinfo))
         setLen(true)
-        dispatch(fetchExistUser(user.username))
+        dispatch(fetchExistUser(userinfo.username))
             .then((res: any) => {
-                if (res.payload == true) {
+                if (res != undefined) {
                     setMsg("* 있는 아이디입니다.")
-                    dispatch(fetchLoginUser(user))
+                    dispatch(fetchLoginUser(userinfo))
                         .then((resp: any) => {
                             // setCookie({}, 'message', resp.payload.message, { httpOnly: false, path: '/' })
                             // setCookie({}, 'accessToken', resp.payload.accessToken, { httpOnly: false, path: '/' })
@@ -73,6 +72,7 @@ const Login: NextPage = () => {
                             alert("Wrong password. 시도하세요")
                         })
                 } else {
+                    console.log("fetchExistUser : "+ JSON.stringify(res))
                     setMsg('* 회원가입을 진행해주세요.')
                 }
             })
@@ -191,7 +191,7 @@ const Login: NextPage = () => {
 
                     <div className="mt-4 flex items-center w-full text-center">
                         <Link
-                            href={`${PG.USER}/joinPrisma`}
+                            href={`${PG.USER}/join`}
                             className="text-xs text-gray-500 capitalize text-center w-full">
                             Dont have any account yet?
                             <span className="text-blue-700 text-sm"> Sign Up</span>

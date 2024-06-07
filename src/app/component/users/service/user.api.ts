@@ -2,12 +2,12 @@
 
 import { ExistUser, JoinUser, LoginUser, LogoutUser, SingleUser } from "@/api/user/route"
 import { instance } from "../../common/config/axios-config"
-import { IUser } from "../model/user-model"
+import { IUser } from "../model/user.model"
 
 
 export const SingleUserAPI = async (id:number) => {
     try {
-        const response:IUser[] = await SingleUser (id)
+        const response = await SingleUser (id)
         console.log("SingleUserAPI : "+ response)
         return response
     } catch (error) {

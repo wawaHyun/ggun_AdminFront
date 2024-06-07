@@ -4,18 +4,20 @@ import { IArticle } from "@/app/component/articles/model/article.model";
 import client from "@/lib/db";
 
 export async function AllArticleList() {
-    const response: IArticle[] = await client.articles.findMany({})
+    const response = await client.articles.findMany({})
     return response
 }
 
-export async function MyArticleList(id: number) {
-
-    const response: IArticle[] = await client.articles.findMany({
-        // where: {
-        //     board_id: id,
-        // },
+export async function MyArticleList(board: number) {
+    // const { board } = board
+    // const board = parseInt(id);
+    console.log("MyArticleList route : "+board)
+    const response = await client.articles.findMany({
+        where: {
+            board: board
+        },
     })
-    console.log(JSON.stringify(response))
+    // console.log(JSON.stringify(response))
     return response
 }
 
@@ -39,14 +41,13 @@ export async function FindSingleArticle(id: number) {
 }
 
 export async function SaveArticle(aricle: IArticle) {
-    const { title, content, board_id,writer_id } = aricle || {}
-
+    const { title, content, board,writer } = aricle || {}
     const response = await client.articles.create({
         data: {
-            board_id: board_id,
+            board: board,
             title: title,
             content: content,
-            writer_id: writer_id
+            writer: writer
         },
     })
     // console.log(JSON.stringify(response))
@@ -54,7 +55,7 @@ export async function SaveArticle(aricle: IArticle) {
 }
 
 export async function UpdateAricle(aricle: IArticle) {
-    const { id, title, content, board_id, writer_id } = aricle || {}
+    const { id, title, content, board, writer} = aricle || {}
     console.log("UpdateAricleAPI : "+JSON.stringify(aricle))
     const response = await client.articles.update({
         where: {
@@ -62,10 +63,10 @@ export async function UpdateAricle(aricle: IArticle) {
         },
         data: {
             id:id,
-            board_id: board_id,
+            board: board,
             title: title,
             content: content,
-            writer_id: writer_id
+            writer: writer
         },
     })
     // console.log(JSON.stringify(response))

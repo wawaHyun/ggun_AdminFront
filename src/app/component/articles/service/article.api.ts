@@ -7,8 +7,9 @@ import { IArticle } from "../model/article.model"
 
 export const AllArticlesAPI = async () => {
     try {
-        const response:IArticle[] = await AllArticleList ()
-        console.log("AllArticlesAPI : "+ response)
+        const response = await AllArticleList ()
+        // console.log("AllArticlesAPI : "+ response)
+        return response
         return response
     } catch (error) {
         console.log("AllArticlesAPI EERR!!!"+ error)
@@ -16,15 +17,11 @@ export const AllArticlesAPI = async () => {
     }
 }
 
-export const MyArticleListAPI = async (id:number) => {
-    try {
-        const response:IArticle[] = await MyArticleList(id)
-        console.log("MyArticleListAPI : "+ response)
+export const MyArticleListAPI = async (board:number) => {
+    console.log("MyArticleListAPI : "+ board)
+        const response = await MyArticleList(board)
+        // console.log("MyArticleListAPI : "+ response)
         return response
-    } catch (error) {
-        console.log("MyArticleListAPI EERR!!!"+ error)
-        return error
-    }
 }
 
 export const DeleteArticleAPI = async (id:number) => {
@@ -51,7 +48,7 @@ export const FindSingleArticleAPI = async (id:number) => {
 
 export const SaveArticleAPI = async (aricle: IArticle) => {
     try {
-        const response:IArticle = await SaveArticle(aricle)
+        const response = await SaveArticle(aricle)
         console.log("SaveArticleAPI : "+ response)
         return response
     } catch (error) {
@@ -62,7 +59,7 @@ export const SaveArticleAPI = async (aricle: IArticle) => {
 
 export const UpdateAricleAPI = async (aricle: IArticle) => {
     try {
-        const response:any = await UpdateAricle(aricle)
+        const response = await UpdateAricle(aricle)
         console.log("UpdateAricleAPI : "+ response)
         return response
     } catch (error) {

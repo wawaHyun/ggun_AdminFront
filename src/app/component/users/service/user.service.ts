@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ExistUserAPI, JoinUserAPI, LoginUserAPI, LogoutUserAPI, SingleUserAPI } from "./user.api";
-import { IUser } from "../model/user-model";
+import { IUser } from "../model/user.model";
 
 export const fetchSingleUser: any = createAsyncThunk(
     'articles/fetchSingleUser',

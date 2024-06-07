@@ -2,50 +2,60 @@
 
 import { AttachFile, FmdGood, ThumbUpAlt } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { PG } from '@/app/component/common/enums/PG';
 import PinkButton from '@/app/atoms/button/PinkButton';
+import { IBoard } from '@/app/component/boards/model/board.model';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllBoards } from '@/app/component/boards/service/board.slice';
+import { fetchSaveArticle } from '@/app/component/articles/service/article.service';
+import { fetchAllBoards } from '@/app/component/boards/service/board.service';
+import { IArticle } from '@/app/component/articles/model/article.model';
+import { getSingleArticle } from '@/app/component/articles/service/article.slice';
 
 
 
-export default function ArticleSavePrisma() {
+export default function ArticleSave() {
 
   const router = useRouter();
+  const dispatch = useDispatch();
 
-  const { register, handleSubmit, formState: { errors }, } = useForm();
-  const [boardlist, setBoardList] = useState([])
+  const { register, handleSubmit, formState: { errors }, } = useForm<IArticle>({
+    defaultValues: {
+      board: 0,
+      title: '',
+      content: ''
+    }
+  })
+  const boards: [] = useSelector(getAllBoards);
+  const SaveArticle = useSelector(getSingleArticle);
 
-  const allBoardlist = async () => {}
-
-  const onSubmit = async (data: any) => {
-    // console.log(JSON.stringify(data))
-    // try {
-    //   await SaveArticle(data);
-    // }
-    // catch (error) {
-    //   console.log('article page onSubmit error : {}', error)
-    // }
-    // finally{
-    //   router.push(`${PG.BOARD}/list/${data.board}`)
-    // }
-
-  }
-
+  const onSubmit = (data: any) => {
+    console.log(JSON.stringify(data))
+    dispatch(fetchSaveArticle(data))
+    .then((res:any)=>{
+      alert("res : "+ JSON.stringify(res) + ", data: " + JSON.stringify(data) + ", data.board: "+ data.board)
+      alert("SaveArticle: "+JSON.stringify(SaveArticle))
+      router.push(`${PG.ARTICLE}/list/${data.board}`)
+    })
+    .catch((error:any)=>{
+      console.log('article page onSubmit error : {}',error)
+    })
+  } 
 
   useEffect(() => {
-    // allBoardlist()
-  }, [])
-
+    dispatch(fetchAllBoards())
+  }, [dispatch])
 
   return (
     <form className="max-w mx-auto" onSubmit={handleSubmit(onSubmit)}>
       <div className="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
-        <label htmlFor="countries" className=" block mb-2 text-lg text-center font-medium text-gray-900 dark:text-white">게시글 작성</label>
-        <select defaultValue={""} {...register('board', { required: true })}
-          className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <label htmlFor="countries" className=" block mb-2 text-lg text-center font-medium text-gray-900 ">게시글 작성</label>
+        <select {...register('board', { required: true })}
+          className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
 
-          {boardlist.map((i: any) =>
+          {boards.map((i: IBoard) =>
             <option key={i.id} value={i.id}>{i.title}</option>
           )}
 

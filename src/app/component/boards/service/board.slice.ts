@@ -1,6 +1,6 @@
 
 import { createSlice } from "@reduxjs/toolkit";
-import { IBoard } from "../model/board-model";
+import { IBoard } from "../model/board.model";
 import { fetchAllBoards, fetchFindSingleBoard, fetchSaveBoard, fetchUpdateBoard } from "./board.service";
 
 const status = {
@@ -9,13 +9,14 @@ const status = {
     rejected: 'rejected'
 }
 
-
 interface BoardState {
+    message? : string,
     json?: IBoard,
     array?: Array<IBoard>
 }
 
 export const initialState: BoardState = {
+    message : '',
     json: {} as IBoard,
     array: []
 }
@@ -28,9 +29,8 @@ export const boardSlice = createSlice({
     extraReducers: builder => {
         const { pending, rejected } = status;
 
-        console.log('------------------ conclusion ---------------')
         builder
-            .addCase(fetchAllBoards.fulfilled, (state: any, { payload }: any) => { state.array = payload }) //all list
+            .addCase(fetchAllBoards.fulfilled, (state: any, { payload }: any) => { state.array = payload }) 
             .addCase(fetchFindSingleBoard.fulfilled, (state: any, { payload }: any) => { state.json = payload })
             .addCase(fetchUpdateBoard.fulfilled, (state: any, { payload }: any) => { state.json = payload })
             .addCase(fetchSaveBoard.fulfilled, (state: any, { payload }: any) => { state.json = payload })

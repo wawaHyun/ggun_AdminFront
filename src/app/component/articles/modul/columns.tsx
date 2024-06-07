@@ -4,21 +4,17 @@ import { GridColDef } from '@mui/x-data-grid'
 import { MyTypography } from '../../common/style/cell';
 import { PG } from '../../common/enums/PG';
 import PinkButton from '@/app/atoms/button/PinkButton';
+import { IArticle } from '../model/article.model';
+import { useDispatch } from 'react-redux';
+import { fetchDeleteArticle } from '../service/article.service';
 
 
 export default function ArticleColumns(): GridColDef[] {
 
-    interface CellType {
-        row: any;
-    }
+    const dispatch = useDispatch()
 
-    const deletee = async(id:number) => {
-            // try {
-            //     await DeleteArticle(id);
-            // }
-            // catch (error) {
-            //     console.log(error)
-            // }
+    interface CellType {
+        row: IArticle;
     }
 
     return [
@@ -74,7 +70,7 @@ export default function ArticleColumns(): GridColDef[] {
                         let flag = confirm(id + "번째 article을 삭제하시겠습니까?")
                         if (flag) {
                             console.log("delete article id : {}", id)
-                            deletee(id)
+                            dispatch(fetchDeleteArticle(id))
                             location.reload();
                         } else {
                             alert("article 삭제가 취소되었습니다.")

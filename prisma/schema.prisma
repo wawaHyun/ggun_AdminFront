@@ -1,6 +1,6 @@
 generator client {
-  provider        = "prisma-client-js"
-  output          = "../node_modules/.prisma/client"
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
 }
 
 datasource db {
@@ -34,13 +34,13 @@ model boards {
 }
 
 model articles {
-  title     String?
-  content   String?
-  mod_date  String?
-  reg_date  String?
-  board_id  String?
-  writer_id String?
-  id        Int     @id @default(autoincrement())
+  title    String?
+  content  String?
+  mod_date String?
+  reg_date String?
+  board    Int?
+  writer   String?
+  id       Int     @id @default(autoincrement())
 }
 
 model npsStat {
