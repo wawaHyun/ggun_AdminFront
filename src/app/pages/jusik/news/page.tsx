@@ -33,7 +33,6 @@ export default function NewsPage() {
     { id: 5, main: false, img: 'https://wimg.mk.co.kr/svc/desking/1000/index/202406/A11031969_29_20240603142422.png', title: '올해도 금사과?... 농식품부 장관 "사과 생샨량 평년 수준 될듯"', paper: '송미령 농림축산식품부 장관은 3일 “지금까지 기상, 생육상황을 고려하면 올해 사과 생산량은 평년 수준(49만t)이 될 것으로 전망한다”고 말했다.송 장관은 이날 사과 주산지인 충남 예산군 사과 농가와 농업기술센터를 찾아 사과 생육을 살피고 재해 예방시설 현황을 점검했다.', ref: '#' },
     { id: 6, main: false, img: 'https://wimg.mk.co.kr/svc/desking/1000/index/202406/A11032065_29_20240603145532.png', title: '"인뱅금리도 못 믿겠네"... 젋은 직장인들, 이젠 3년 6.9% "청년도약계좌"에 몰린다', paper: '인터넷은행과 저축은행들이 예·적금 금리를 줄줄이 내리면서 목돈 마련이 쉽지않은 가운데 ‘청년도약계좌’가 다시 주목받고 있다. 3일 은행연합회 공시에 따르면 이날 카카오뱅크와 케이뱅크의 정기예금 금리(1년)는 각각 3.3%, 3.5%로 한국은행의 기준금리 3.5%에도 못 미치는 수준이다. 카카오뱅크는 지난달 평균금리(3.4%)보다 0.1% 포인트 인하됐다. 케이뱅크도 기존보다 0.05% 포인트 내렸다.', ref: '#' },
     { id: 7, main: false, img: 'https://wimg.mk.co.kr/svc/desking/1000/index/202406/A11031969_29_20240603142422.png', title: '올해도 금사과?... 농식품부 장관 "사과 생샨량 평년 수준 될듯"', paper: '송미령 농림축산식품부 장관은 3일 “지금까지 기상, 생육상황을 고려하면 올해 사과 생산량은 평년 수준(49만t)이 될 것으로 전망한다”고 말했다.송 장관은 이날 사과 주산지인 충남 예산군 사과 농가와 농업기술센터를 찾아 사과 생육을 살피고 재해 예방시설 현황을 점검했다.', ref: '#' },
-
   ]
 
   const newsMenu = [
@@ -52,9 +51,9 @@ export default function NewsPage() {
 
   return (
     <div className="h-screen w-screen flex justify-center">
-      <div className="h-[80%] w-[90%] mt-5 ">
-        <div className="grid grid-cols-12 text-center w-full h-[10%] cursor-pointer shadow-lg rounded-lg mb-5 content-center borderç">
-          <div className="text-bold text-[16px] text-black hover:text-gray-300 " onClick={() => router.push(`${PG.JUSIK}/`)}>News Home</div>
+      <div className="h-[80%] w-full mt-5 ">
+        <div className="grid grid-cols-12 text-center w-full h-[10%] cursor-pointer border shadow-lg rounded-lg mb-5 content-center borderç">
+          <div className="text-bold text-[16px] text-black hover:text-gray-300" onClick={() => router.push(`${PG.JUSIK}/`)}>News Home</div>
           {newsMenu.map((elem: NewsMenuProps, i: number) => {
             return (
               <div key={elem.id} onClick={() => { elem.ref }} className="text-center text-black hover:text-gray-300">
@@ -70,7 +69,7 @@ export default function NewsPage() {
               <div key={elem.id} onClick={() => { elem.ref }} className="bg-gray-200 text-center text-black hover:text-gray-500">
                 <ul className="flex">
                   <li>
-                    <Image src={elem.img} height={250} width={500} alt={elem.title} />
+                    <Image unoptimized src={elem.img} height={250} width={500} alt={elem.title} />
                   </li>
                   <li className="w-[50%] ml-[15px] text-center content-center">
                     <ul>
@@ -91,7 +90,7 @@ export default function NewsPage() {
               elem.main === false && elem.id <= 4 ?
                 <ul key={elem.id} className="w-1/3 text-center text-black hover:text-gray-500 hover:shadow-lg hover:border rounded-lg">
                   <li className="flex justify-center">
-                    <Image src={elem.img} height={150} width={350} alt={elem.title} />
+                    <Image unoptimized src={elem.img} height={150} width={350} alt={elem.title} />
                   </li>
                   <li className="ml-[40px]">{elem.title}</li>
                   <li className="ml-[20px] text-left text-gray-400">{elem.id}분 전</li>
@@ -112,7 +111,7 @@ export default function NewsPage() {
                     <li className="ml-[15px] text-bold text-[16px]">{elem.paper}</li>
                   </ul>
                 </li>
-                <Image src={elem.img} height={150} width={350} alt={elem.title} />
+                <Image unoptimized src={elem.img} height={150} width={350} alt={elem.title} />
               </ul>
             ))}
           </ul>

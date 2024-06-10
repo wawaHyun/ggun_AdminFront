@@ -24,13 +24,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="w-screen h-screen">
+        <div className="flex w-screen h-screen">
           <ReduxProvider>
-            <div className=" absolute h-full z-10 hover:z-50">
+            <div className="w-[110px] h-screen">
               {/* <Header /> */}
               <Sidebar />
             </div>
-            <div className="relative z-0 w-screen h-screen">
+            <div className="w-[90%] h-screen">
               {children}
             </div>
             {/* <Footer /> */}

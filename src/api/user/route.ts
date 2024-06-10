@@ -2,11 +2,22 @@
 
 import { IUser } from "@/app/component/users/model/user.model";
 import client from "@/lib/db";
-import { CommentsDisabledOutlined } from "@mui/icons-material";
 import { NextResponse } from "next/server";
+
+export async function Allusers() {
+    const response = await client.users.findMany({})
+    return response
+}
 
 export async function SingleUser(id: number) {
     const response = await client.users.findFirst({
+        where: { id: id },
+    })
+    return response
+}
+
+export async function DeleteUser(id: number) {
+    const response = await client.users.delete({
         where: { id: id },
     })
     return response

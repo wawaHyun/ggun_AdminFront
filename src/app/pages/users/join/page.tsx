@@ -1,13 +1,13 @@
 'use client';
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { PG } from "@/app/component/common/enums/PG";
-import { useDispatch, useSelector } from "react-redux";
-import { getSingleUser } from "@/app/component/users/service/user.slice";
+import { useDispatch } from "react-redux";
 import { IUser } from "@/app/component/users/model/user.model";
 import { fetchJoinUser } from "@/app/component/users/service/user.service";
+import MoveButton from "@/app/atoms/button/MoveButton";
 
 
 export default function Join() {
@@ -123,11 +123,7 @@ export default function Join() {
                   type="text"
                   placeholder="Enter your investment_propensity" name="investment_propensity" onChange={handleUserInfo}
                 />
-
-                <button className="mt-5 tracking-wide font-semibold bg-indigo-950 text-gray-100 w-full py-4 rounded-lg hover:bg-pink-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
-                  onClick={() => handleSubmit()}>
-                  <span className="ml-3">Sign Up</span>
-                </button>
+                <MoveButton text="Sign Up" path={() => handleSubmit()}/>
                 <p className="mt-6 text-xs text-gray-600 text-center">
                   Already have an account?{" "}
                   <Link href={`/`}>

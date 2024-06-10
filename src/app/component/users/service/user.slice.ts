@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { fetchExistUser, fetchJoinUser, fetchLoginUser, fetchLogoutUser, fetchSingleUser } from "./user.service"
+import { fetchAllUsers, fetchExistUser, fetchJoinUser, fetchLoginUser, fetchLogoutUser, fetchSingleUser } from "./user.service"
 import { IUser } from "../model/user.model"
 
 const status = {
@@ -29,6 +29,7 @@ export const userSlice = createSlice({
         const { pending, rejected } = status;
         builder
             .addCase(fetchSingleUser.fulfilled, (state: any, { payload }: any) => { state.json = payload })
+            .addCase(fetchAllUsers.fulfilled, (state: any, { payload }: any) => { state.json = payload })
             .addCase(fetchExistUser.fulfilled, (state: any, { payload }: any) => { state.text = payload })
             .addCase(fetchLoginUser.fulfilled, (state: any, { payload }: any) => { state.json = payload })
             .addCase(fetchLogoutUser.fulfilled, (state: any, { payload }: any) => { state.json  = payload })

@@ -1,9 +1,18 @@
 'use server'
 
-import { ExistUser, JoinUser, LoginUser, LogoutUser, SingleUser } from "@/api/user/route"
+import { DeleteUser, ExistUser, JoinUser, LoginUser, LogoutUser, SingleUser } from "@/api/user/route"
 import { instance } from "../../common/config/axios-config"
 import { IUser } from "../model/user.model"
 
+export const AllUsersAPI = async () => {
+    try {
+        const response = await AllUsers ()
+        return response
+    } catch (error) {
+        console.log("AllUsersAPI EERR!!!"+ error)
+        return error
+    }
+}
 
 export const SingleUserAPI = async (id:number) => {
     try {
@@ -12,6 +21,17 @@ export const SingleUserAPI = async (id:number) => {
         return response
     } catch (error) {
         console.log("SingleUserAPI EERR!!!"+ error)
+        return error
+    }
+}
+
+export const DeleteUserAPI = async (id:number) => {
+    try {
+        const response = await DeleteUser (id)
+        console.log("DeleteUserAPI : "+ response)
+        return response
+    } catch (error) {
+        console.log("DeleteUserAPI EERR!!!"+ error)
         return error
     }
 }
@@ -59,3 +79,7 @@ export const JoinUserAPI = async (user: IUser) => {
         return error
     }
 }
+function AllUsers() {
+    throw new Error("Function not implemented.")
+}
+

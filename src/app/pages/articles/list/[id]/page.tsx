@@ -25,7 +25,7 @@ const cards = [
 ];
 
 
-const MylistArticlesPage: NextPage = ({ params }: any) => {
+const ArticlesList: NextPage = ({ params }: any) => {
 
     const router = useRouter();
     const dispatch = useDispatch()
@@ -57,7 +57,7 @@ const MylistArticlesPage: NextPage = ({ params }: any) => {
         </div>
 
         <div style={{ height: "100%", width: "100%", fontSize: 50 }}>
-            {allArticles && <DataGrid // 🔥 4
+            {allArticles && <DataGrid
                 rows={allArticles}
                 columns={ArticleColumns()}
                 initialState={{
@@ -68,11 +68,11 @@ const MylistArticlesPage: NextPage = ({ params }: any) => {
                     },
                 
                 }}
-                pageSizeOptions={[10, 20, 50]} // 4-1
+                pageSizeOptions={[10, 20, 50]}
                 checkboxSelection
             />}
         </div>
     </>)
 }
 
-export default MylistArticlesPage
+export default ArticlesList
