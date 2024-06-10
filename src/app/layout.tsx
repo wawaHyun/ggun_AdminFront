@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import Header from "./component/common/module/header";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import Sidebar from "./component/common/module/sidebar";
 
 const ReduxProvider = dynamic(() => import("@/redux/redux-provider"), {
   ssr: false
@@ -25,12 +26,13 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="w-screen h-screen">
           <ReduxProvider>
-        <div className="relative h-[80px] z-0 hover:z-50">
-          <Header />
-        </div>
-        <div className="absolute z-0 w-screen h-screen">
-            {children}
-        </div>
+            <div className=" absolute h-full z-10 hover:z-50">
+              {/* <Header /> */}
+              <Sidebar />
+            </div>
+            <div className="relative z-0 w-screen h-screen">
+              {children}
+            </div>
             {/* <Footer /> */}
           </ReduxProvider>
         </div>

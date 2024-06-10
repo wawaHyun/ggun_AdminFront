@@ -82,7 +82,6 @@ function Header() {
 
   return (
     <div className="w-screen h-[300px] justify-center">
-
       <div>
         <ul key={1} role="list" className="w-screen grid grid-cols-7 justify-center gap-5">
           {memus.map((i) => (
