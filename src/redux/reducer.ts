@@ -4,6 +4,7 @@ import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 import articleReducer from "@/app/component/articles/service/article.slice";
 import userReducer from "@/app/component/users/service/user.slice";
 import boardReducer from "@/app/component/boards/service/board.slice";
+import npsReducer from "@/app/component/jusik/service/jusik.slice";
 
 
 const createNoopStorage = () => {
@@ -41,15 +42,23 @@ const boardPersistConfig = {
   storage,
   whitelist: ["boardState"],
 };
+const npsPersistConfig = {
+  key: "nps",
+  storage,
+  whitelist: ["npsState"],
+};
+
 
 
 
 const persistedArticleReducer = persistReducer(articlePersistConfig, articleReducer);
 const persistedUserReducer = persistReducer(userPersistConfig, userReducer);
 const persistedBoardReducer = persistReducer(boardPersistConfig, boardReducer);
+const persistedNpsReducer = persistReducer(npsPersistConfig, npsReducer);
 
 export const rootReducer = combineReducers({
   article: persistedArticleReducer,
   user: persistedUserReducer,
-  board: persistedBoardReducer
+  board: persistedBoardReducer,
+  nps: persistedNpsReducer
 });

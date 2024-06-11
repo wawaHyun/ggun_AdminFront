@@ -30,8 +30,8 @@ function Sidebar() {
     ]
 
     const jusikSub: ISubmenu[] = [
-        { id: 1, title: "종목상세", icon: <ChartIcon />, address: () => router.push(`${PG.JUSIK}/news`)},
-        { id: 2, title: "chart", icon: <ChartIcon />, address: () => router.push(`${PG.JUSIK}/news`) },
+        { id: 1, title: "demochart", icon: <ChartIcon />, address: () => router.push(`${PG.JUSIK}/demo`)},
+        { id: 2, title: "chart", icon: <ChartIcon />, address: () => router.push(`${PG.JUSIK}/chart`) },
         { id: 3, title: "board", icon: <ChartIcon />, address: () => router.push(`${PG.BOARD}/list`) },
         { id: 4, title: "article", icon: <ChartIcon />, address: () => router.push(`${PG.ARTICLE}/list/1`) },
     ]
@@ -98,7 +98,7 @@ function Sidebar() {
 
                 <li className=" group/item content-center hover:bg-slate-100 h-[50px] w-[90px] text-sm ">
                     <button onClick={() => showSubMenu(2)} className="flex items-center justify-center w-[90px]">
-                        <ChartIcon />board
+                        <ChartIcon />jusik
                     </button>
                 </li>
                 {show == 2 ?

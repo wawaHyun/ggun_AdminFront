@@ -1,7 +1,7 @@
 'use server'
 
 import { IBoard } from "@/app/component/boards/model/board.model";
-import client from "@/lib/db";
+import client from "@/lib/prisma/db";
 
 export async function AllBoards() {
     const response: IBoard[] = await client.boards.findMany({})

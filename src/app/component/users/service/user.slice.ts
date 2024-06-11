@@ -19,8 +19,6 @@ export const initialState: userState = {
     array: [],
 }
 
-
-
 export const userSlice = createSlice({
     name: "users",
     initialState,
@@ -41,7 +39,7 @@ export const getAllUsers = (state: any) => state.user.array;
 export const getSingleUser = (state: any) => state.user.json;
 export const getCountUser = (state: any) => state.user.count;
 export const getAuth = (state: any) => state.user.auth;
-export const getflag = (state: any) => state.user.text;
+export const getMsgUser = (state: any) => state.user.text;
 
 export const { } = userSlice.actions
 
