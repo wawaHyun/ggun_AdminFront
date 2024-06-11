@@ -4,8 +4,13 @@ import { IUser } from "@/app/component/users/model/user.model";
 import client from "@/lib/db";
 import { NextResponse } from "next/server";
 
-export async function Allusers() {
+export async function AllUsers() {
     const response = await client.users.findMany({})
+    return response
+}
+
+export async function Colsuser() {
+    const response = await client.users.findFirst({})
     return response
 }
 

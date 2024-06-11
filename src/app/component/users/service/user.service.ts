@@ -3,41 +3,36 @@ import { AllUsersAPI, DeleteUserAPI, ExistUserAPI, JoinUserAPI, LoginUserAPI, Lo
 import { IUser } from "../model/user.model";
 
 export const fetchAllUsers: any = createAsyncThunk(
-    'articles/fetchAllUsers',
+    'users/fetchAllUsers',
     async () =>  await AllUsersAPI()
 )
 
 export const fetchSingleUser: any = createAsyncThunk(
-    'articles/fetchSingleUser',
+    'users/fetchSingleUser',
     async (id:number) =>  await SingleUserAPI(id)
 )
 
 export const fetchDeleteUser: any = createAsyncThunk(
-    'articles/fetchDeleteUser',
+    'users/fetchDeleteUser',
     async (id:number) =>  await DeleteUserAPI(id)
 )
 
-
 export const fetchExistUser: any = createAsyncThunk(
-    'articles/fetchExistUser',
+    'users/fetchExistUser',
     async (username: string) =>  await ExistUserAPI(username)
 )
 
 export const fetchLoginUser: any = createAsyncThunk(
-    'articles/fetchLoginUser',
+    'users/fetchLoginUser',
     async (user: IUser) =>  await LoginUserAPI(user)
 )
 
 export const fetchLogoutUser: any = createAsyncThunk(
-    'articles/fetchLogoutUser',
+    'users/fetchLogoutUser',
     async (id:number) =>  await LogoutUserAPI(id)
 )
 
 export const fetchJoinUser: any = createAsyncThunk(
-    'articles/fetchJoinUser',
+    'users/fetchJoinUser',
     async (user: IUser) =>  await JoinUserAPI(user)
 )
-function AllUserAPI(): any {
-    throw new Error("Function not implemented.");
-}
-

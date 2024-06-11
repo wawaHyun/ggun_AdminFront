@@ -1,17 +1,11 @@
 'use server'
 
-import { DeleteUser, ExistUser, JoinUser, LoginUser, LogoutUser, SingleUser } from "@/api/user/route"
-import { instance } from "../../common/config/axios-config"
+import { AllUsers, DeleteUser, ExistUser, JoinUser, LoginUser, LogoutUser, SingleUser } from "@/api/user/route"
 import { IUser } from "../model/user.model"
 
 export const AllUsersAPI = async () => {
-    try {
         const response = await AllUsers ()
         return response
-    } catch (error) {
-        console.log("AllUsersAPI EERR!!!"+ error)
-        return error
-    }
 }
 
 export const SingleUserAPI = async (id:number) => {
@@ -79,7 +73,3 @@ export const JoinUserAPI = async (user: IUser) => {
         return error
     }
 }
-function AllUsers() {
-    throw new Error("Function not implemented.")
-}
-

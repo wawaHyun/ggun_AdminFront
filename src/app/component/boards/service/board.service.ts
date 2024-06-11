@@ -4,21 +4,21 @@ import { idID } from "@mui/material/locale";
 import { IBoard } from "../model/board.model";
 
 export const fetchAllBoards: any = createAsyncThunk(
-    'articles/fetchAllBoards',
+    'boards/fetchAllBoards',
     async () =>  await AllBoardsAPI()
 )
 
 export const fetchFindSingleBoard: any = createAsyncThunk(
-    'articles/fetchFindSingleBoard',
+    'boards/fetchFindSingleBoard',
     async (id:number) =>  await FindSingleBoardAPI(id)
 )
 
 export const fetchUpdateBoard: any = createAsyncThunk(
-    'articles/fetchUpdateBoard',
+    'boards/fetchUpdateBoard',
     async (board:IBoard) =>  await UpdateBoardAPI(board)
 )
 
 export const fetchSaveBoard: any = createAsyncThunk(
-    'articles/fetchSaveBoard',
+    'boards/fetchSaveBoard',
     async (board:IBoard) =>  await SaveBoardAPI(board)
 )

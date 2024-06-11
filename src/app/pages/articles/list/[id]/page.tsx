@@ -1,6 +1,5 @@
 'use client'
 
-import ArticleColumns from "@/app/component/articles/modul/columns";
 import { PG } from "@/app/component/common/enums/PG";
 import { DataGrid } from "@mui/x-data-grid";
 import Image from 'next/image';
@@ -12,6 +11,7 @@ import { getAllArticles } from "@/app/component/articles/service/article.slice";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMyArticleList } from "@/app/component/articles/service/article.service";
 import { IArticle } from "@/app/component/articles/model/article.model";
+import ArticleColumns from "@/app/component/articles/modul/article.columns";
 
 
 const cards = [

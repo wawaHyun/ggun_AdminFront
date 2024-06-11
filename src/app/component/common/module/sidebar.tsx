@@ -4,11 +4,18 @@ import { useRouter } from "next/navigation";
 import { CallIcon, ChartIcon, HomeIcon, ListIcon, MailIcon, NewsIcon } from '@/app/atoms/icons/icons';
 import { PG } from '../enums/PG';
 import { useState } from "react";
+import { fetchLogoutUser } from "../../users/service/user.service";
+import { useDispatch } from "react-redux";
 
 function Sidebar() {
 
     const router = useRouter()
     const [show, setShow] = useState(0);
+    const dispatch = useDispatch()
+
+    const logout = (id:number) =>{
+        dispatch(fetchLogoutUser(id))
+    }
 
     interface ISubmenu {
         id: number;
@@ -33,6 +40,7 @@ function Sidebar() {
         { id: 1, title: "임직원관리", icon: <ListIcon />, address: () => router.push(`${PG.WORKER}/list`) },
         { id: 2, title: "사용자관리", icon: <ListIcon />, address: () => router.push(`${PG.USER}/list`) },
         { id: 3, title: "관리자권한", icon: <ListIcon />, address: () => router.push(`${PG.WORKER}/list`) },
+        { id: 4, title: "workerlogin", icon: <ListIcon />, address: () => router.push(`${PG.WORKER}/login`) },
     ]
 
     const memus = [
@@ -52,12 +60,15 @@ function Sidebar() {
         <nav className="h-screen  bg-white text-black border shadow-lg fixed">
             <ul className="bg-white h-[90px] w-[100px] rounded-full">
                 <li>
-                    <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-full h-full text-pebble-500">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-full h-full text-pebble-500">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                     </svg>
                 </li>
                 <li className="text-center">
                     <button onClick={()=>`${PG.USER}/list`}>username</button>
+                </li>
+                <li className="text-center text-gray-500 text-xs">
+                    <button onClick={()=>logout(1)}>Logout</button>
                 </li>
             </ul>
 

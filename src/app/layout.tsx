@@ -26,11 +26,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="flex w-screen h-screen">
           <ReduxProvider>
-            <div className="w-[110px] h-screen">
-              {/* <Header /> */}
+            <div className="w-[90px] bg-black h-screen">
               <Sidebar />
             </div>
-            <div className="w-[90%] h-screen">
+            <div className="ml-[110px] mr-[10px] h-screen">
               {children}
             </div>
             {/* <Footer /> */}

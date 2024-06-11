@@ -10,13 +10,13 @@ const status = {
 
 
 interface userState {
-    json? : IUser,
-    array? : Array<IUser>,
+    json?: IUser,
+    array?: Array<IUser>,
 }
 
-export const initialState:userState = {
-    json : {} as IUser,
-    array : [],
+export const initialState: userState = {
+    json: {} as IUser,
+    array: [],
 }
 
 
@@ -28,11 +28,11 @@ export const userSlice = createSlice({
     extraReducers: builder => {
         const { pending, rejected } = status;
         builder
+            .addCase(fetchAllUsers.fulfilled, (state: any, { payload }: any) => { state.array = payload })
             .addCase(fetchSingleUser.fulfilled, (state: any, { payload }: any) => { state.json = payload })
-            .addCase(fetchAllUsers.fulfilled, (state: any, { payload }: any) => { state.json = payload })
             .addCase(fetchExistUser.fulfilled, (state: any, { payload }: any) => { state.text = payload })
             .addCase(fetchLoginUser.fulfilled, (state: any, { payload }: any) => { state.json = payload })
-            .addCase(fetchLogoutUser.fulfilled, (state: any, { payload }: any) => { state.json  = payload })
+            .addCase(fetchLogoutUser.fulfilled, (state: any, { payload }: any) => { state.json = payload })
             .addCase(fetchJoinUser.fulfilled, (state: any, { payload }: any) => { state.json = payload })
     }
 })
