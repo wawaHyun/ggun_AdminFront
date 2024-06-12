@@ -1,4 +1,4 @@
-'use client'
+
 
 import styled from 'styled-components';
 import { Line } from 'react-chartjs-2';
@@ -27,11 +27,7 @@ ChartJS.register(
   Legend
 );
 
-const Demo1: NextPage = ({ params }: any) => {
-
-  const paramsData = [
-    {stock: params.stock}
-  ]
+const Demo1: NextPage = () => {
 
   const data:any = {
     datasets: [
@@ -193,15 +189,6 @@ const Demo1: NextPage = ({ params }: any) => {
       },
     }
   };
-
-
-// const Mychart = new Chart(
-//   document.getElementById('Mychart')
-// );
-
-//   Mychart.data.datasetsp[0].data[0] = 40
-//   Mychart.update();
-
 
   return (
     <Container>

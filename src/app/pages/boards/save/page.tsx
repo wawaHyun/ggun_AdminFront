@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { PG } from '@/app/component/common/enums/PG';
-import PinkButton from '@/app/atoms/button/PinkButton';
+import {PinkButton} from '@/app/atoms/button/PinkButton';
 import { fetchAllBoards, fetchSaveBoard } from '@/app/component/boards/service/board.service';
 import { useDispatch } from 'react-redux';
 

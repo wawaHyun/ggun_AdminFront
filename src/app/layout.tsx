@@ -29,7 +29,7 @@ export default function RootLayout({
             <div className="w-[90px] bg-black h-screen">
               <Sidebar />
             </div>
-            <div className="ml-[110px] mr-[10px] h-screen">
+            <div className="ml-[110px] mr-[10px] h-screen mt-3">
               {children}
             </div>
             {/* <Footer /> */}

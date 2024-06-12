@@ -1,7 +1,7 @@
 'use client'
 
 import CardButton from "@/app/atoms/button/CardButton"
-import PinkButton from "@/app/atoms/button/PinkButton";
+import {PinkButton} from "@/app/atoms/button/PinkButton";
 import {  ListIcon } from "@/app/atoms/icons/icons";
 import { IBoard } from "@/app/component/boards/model/board.model";
 import { fetchAllBoards } from "@/app/component/boards/service/board.service";

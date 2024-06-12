@@ -13,10 +13,10 @@ import {
 import { NextPage } from 'next';
 
 import Chart from 'chart.js/auto';
-import { INps } from '../model/jusik.model';
-import { getAllNps } from '../service/jusik.slice';
+import { INps } from '../model/nps.model';
+import { getAllNps } from '../service/transaction.slice';
 import { useSelector } from 'react-redux';
-import { fetchTop10Nps } from '../service/jusik.service';
+import { fetchTop10Nps } from '../service/transaction.service';
 import { useDispatch } from 'react-redux';
 Chart.register(CategoryScale,
     LinearScale,
@@ -37,13 +37,13 @@ function Demo2() {
         datasets: [
             {
                 label: 'Allper',
-                type: 'line',
+                type: 'bar',
                 data: allNps.map((i) => i.valuation),
                 backgroundColor: 'rgb(54, 162, 235)',
             },
             {
                 label: 'two!!',
-                type: 'line',
+                type: 'bar',
                 data: ["150000", 450000, 140000, 160000, 110000],
                 backgroundColor: 'blue',
             },
@@ -53,6 +53,12 @@ function Demo2() {
 
     const oprions: any = {
         scales: {
+            // plugins: {
+            //     title: {
+            //         display: true,
+            //         text: 'Custom Chart Subtitle'
+            //     }
+            // },
             x: {
                 stacked: true,
             },
@@ -71,7 +77,6 @@ function Demo2() {
     }, []);
 
     return (
-
         <Line data={data} options={oprions}></Line>
     );
 }

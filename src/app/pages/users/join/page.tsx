@@ -7,7 +7,7 @@ import { PG } from "@/app/component/common/enums/PG";
 import { useDispatch } from "react-redux";
 import { IUser } from "@/app/component/users/model/user.model";
 import { fetchJoinUser } from "@/app/component/users/service/user.service";
-import MoveButton from "@/app/atoms/button/MoveButton";
+import {MoveButton} from "@/app/atoms/button/MoveButton";
 
 
 export default function Join() {

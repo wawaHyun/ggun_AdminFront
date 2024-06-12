@@ -1,7 +1,7 @@
 'use server'
 
-import { AllNps, Top10Nps } from "@/api/jusik/route"
-import { INps } from "../model/jusik.model"
+import { AllNps, Top10Nps } from "@/api/nps/route"
+import { INps } from "../model/nps.model"
 
 export const AllNpsAPI = async () => {
         try {

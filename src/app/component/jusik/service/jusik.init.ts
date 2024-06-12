@@ -1,4 +1,4 @@
-import { INps } from "../model/jusik.model";
+import { INps } from "../model/nps.model";
 
 export const initialState: INps = {
     id: 0,

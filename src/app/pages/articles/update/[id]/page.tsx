@@ -4,7 +4,7 @@ import { AttachFile, FmdGood, ThumbUpAlt } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { PG } from '@/app/component/common/enums/PG';
-import PinkButton from '@/app/atoms/button/PinkButton';
+import {PinkButton} from '@/app/atoms/button/PinkButton';
 
 
 

@@ -53,7 +53,7 @@ export default function NewsPage() {
     <div className="h-screen w-screen flex justify-center">
       <div className="h-[80%] w-full mt-5 ">
         <div className="grid grid-cols-12 text-center w-full h-[10%] cursor-pointer border shadow-lg rounded-lg mb-5 content-center borderç">
-          <div className="text-bold text-[16px] text-black hover:text-gray-300" onClick={() => router.push(`${PG.JUSIK}/`)}>News Home</div>
+          <div className="text-bold text-[16px] text-black hover:text-gray-300" onClick={() => router.push(`${PG.TRAN}/`)}>News Home</div>
           {newsMenu.map((elem: NewsMenuProps, i: number) => {
             return (
               <div key={elem.id} onClick={() => { elem.ref }} className="text-center text-black hover:text-gray-300">

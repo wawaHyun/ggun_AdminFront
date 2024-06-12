@@ -2,7 +2,7 @@
 
 import { PG } from "@/app/component/common/enums/PG";
 import Link from "next/link";
-import MoveButton from "./MoveButton";
+import { MoveButton } from "./MoveButton";
 import { useRouter } from "next/navigation";
 
 interface ICardButton {

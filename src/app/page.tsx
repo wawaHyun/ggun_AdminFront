@@ -6,13 +6,12 @@ import { useRouter } from "next/navigation";
 import { PG } from "@/app/component/common/enums/PG";
 import { NextPage } from "next"
 import React from "react";
-import MoveBotton from "@/app/atoms/button/MoveButton";
 import { useDispatch } from "react-redux";
 import { fetchExistUser, fetchLoginUser } from "@/app/component/users/service/user.service";
 import { IUser } from "@/app/component/users/model/user.model";
 import { gridColumnLookupSelector } from "@mui/x-data-grid";
-import MoveButton from "@/app/atoms/button/MoveButton";
-import PinkButton from "./atoms/button/PinkButton";
+import {MoveButton} from "@/app/atoms/button/MoveButton";
+
 
 const Login: NextPage = () => {
     // const [userinfo, setUserinfo] = useState({ username: '', password: '', id: 0 })

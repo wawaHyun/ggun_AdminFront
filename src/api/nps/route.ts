@@ -1,6 +1,6 @@
 'use server'
 
-import { INps } from "@/app/component/jusik/model/jusik.model";
+import { INps } from "@/app/component/jusik/model/nps.model";
 import client from "@/lib/prisma/db";
 
 export async function AllNps() {

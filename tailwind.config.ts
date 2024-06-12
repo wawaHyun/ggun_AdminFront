@@ -1,4 +1,5 @@
 import { appBarClasses } from "@mui/material";
+import shadows from "@mui/material/styles/shadows";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -25,9 +26,13 @@ const config: Config = {
           500 : "#872642",
           600 : "#9F4298"
         },
-      }
+      },
+ 
     },
   },
   plugins: [],
 };
+
+
+
 export default config;

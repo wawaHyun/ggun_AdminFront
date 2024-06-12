@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { fetchAllNps, fetchTop10Nps } from "./jusik.service";
-import { INps } from "../model/jusik.model";
+import { fetchAllNps, fetchTop10Nps } from "./transaction.service";
+import { INps } from "../model/nps.model";
 
 
 const status = {

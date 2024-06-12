@@ -3,5 +3,5 @@ export const enum PG {
     WORKER = '/pages/workers',
     BOARD = '/pages/boards',
     ARTICLE = '/pages/articles',
-    JUSIK = '/pages/jusik',
+    TRAN = '/pages/transaction',
 }

@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { NextPage } from "next";
 import { useRouter } from "next/navigation";
 import { useEffect  } from "react";
-import PinkButton from "@/app/atoms/button/PinkButton";
+import {PinkButton} from "@/app/atoms/button/PinkButton";
 import { getAllArticles } from "@/app/component/articles/service/article.slice";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMyArticleList } from "@/app/component/articles/service/article.service";

@@ -4,7 +4,7 @@ import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 import articleReducer from "@/app/component/articles/service/article.slice";
 import userReducer from "@/app/component/users/service/user.slice";
 import boardReducer from "@/app/component/boards/service/board.slice";
-import npsReducer from "@/app/component/jusik/service/jusik.slice";
+import npsReducer from "@/app/component/jusik/service/transaction.slice";
 
 
 const createNoopStorage = () => {
