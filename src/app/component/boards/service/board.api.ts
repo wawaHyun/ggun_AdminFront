@@ -40,7 +40,7 @@ export const UpdateBoardAPI = async (board:IBoard) => {
 export const SaveBoardAPI = async (board:IBoard) => {
     try {
         const response:any = await SaveBoard(board)
-        console.log("SaveBoardAPI : "+ response)
+        // console.log("SaveBoardAPI : "+ response)
         return response
     } catch (error) {
         console.log("SaveBoardAPI EERR!!!"+ error)

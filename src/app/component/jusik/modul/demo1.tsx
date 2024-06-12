@@ -2,23 +2,32 @@
 
 import styled from 'styled-components';
 import { Line } from 'react-chartjs-2';
-import Chart from 'chart.js/auto';
-import { CategoryScale, LinearScale } from 'chart.js';
-import { INps } from '../model/jusik.model';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
 import { NextPage } from 'next';
+
+import Chart from 'chart.js/auto';
 Chart.register(CategoryScale, LinearScale);
 
-interface IData {
-  type: any,
-  label: any,
-  borderColor: any,
-  borderWidth: any,
-  data: any,
-  yAxisID: any,
-}
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
-
-const Mychart: NextPage = ({ params }: any) => {
+const Demo1: NextPage = ({ params }: any) => {
 
   const paramsData = [
     {stock: params.stock}
@@ -185,14 +194,25 @@ const Mychart: NextPage = ({ params }: any) => {
     }
   };
 
+
+// const Mychart = new Chart(
+//   document.getElementById('Mychart')
+// );
+
+//   Mychart.data.datasetsp[0].data[0] = 40
+//   Mychart.update();
+
+
   return (
     <Container>
+<canvas id='Mychart'>
       <Line  data={data} options={options} />
+</canvas>
     </Container>
   );
 };
 
-export default Mychart; 
+export default Demo1; 
 
 const Container = styled.div`
   width: 90vw;

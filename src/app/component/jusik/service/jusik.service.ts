@@ -1,8 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { AllNpsAPI } from "./jusik.api";
+import { AllNpsAPI, Top10NpsAPI } from "./jusik.api";
 
 
 export const fetchAllNps: any = createAsyncThunk(
-    'users/fetchAllNps',
+    'nps/fetchAllNps',
     async () =>  await AllNpsAPI()
+)
+
+export const fetchTop10Nps: any = createAsyncThunk(
+    'nps/fetchTop10Nps',
+    async () =>  await Top10NpsAPI()
 )

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { fetchAllNps } from "./jusik.service";
+import { fetchAllNps, fetchTop10Nps } from "./jusik.service";
 import { INps } from "../model/jusik.model";
 
 
@@ -28,6 +28,7 @@ export const npsSlice = createSlice({
         const { pending, rejected } = status;
         builder
             .addCase(fetchAllNps.fulfilled, (state: any, { payload }: any) => { state.array = payload })
+            .addCase(fetchTop10Nps.fulfilled, (state: any, { payload }: any) => { state.array = payload })
     }
 })
 
