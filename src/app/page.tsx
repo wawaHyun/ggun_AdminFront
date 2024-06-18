@@ -10,7 +10,10 @@ import { useDispatch } from "react-redux";
 import { fetchExistUser, fetchLoginUser } from "@/app/component/users/service/user.service";
 import { IUser } from "@/app/component/users/model/user.model";
 import { gridColumnLookupSelector } from "@mui/x-data-grid";
-import {MoveButton} from "@/app/atoms/button/MoveButton";
+import { GrayButton, MoveButton, MoveButton2 } from "@/app/atoms/button/MoveButton";
+import SendMail from "./component/boards/modul/sendMail";
+import SandMail from "./component/boards/modul/sendMail";
+import { DownIcon, XIcon } from "./atoms/icons/icons";
 
 
 const Login: NextPage = () => {
@@ -21,6 +24,7 @@ const Login: NextPage = () => {
 
     const [len, setLen] = useState(false);
     const [msg, setMsg] = useState('');
+    const [send, setSend] = useState(false);
 
     const formRef = useRef<HTMLInputElement>(null)
     const router = useRouter()
@@ -145,6 +149,7 @@ const Login: NextPage = () => {
                                 )
                             : <pre><h6 className='text-red-500'>{msg}</h6></pre>}
 
+
                         <div className="h-[30px] mt-5">
                             <MoveButton text="Sign In" path={() => handleSubmit()} />
                         </div>
@@ -153,6 +158,23 @@ const Login: NextPage = () => {
                             className="text-xs text-gray-500 hover:text-gray-900 text-end w-full mt-2" onClick={() => forgetPw()}>
                             Forget Password?
                         </button>
+
+                        <div className="p-3 text-xs text-gray-500">
+                            신규 생성은 관리자에게 문의 부탁드립니다. <br />
+                            <div className="w-[50%] h-[30px] mt-2">
+                                <GrayButton text="관리자 문의" path={() => setSend(!send)} />
+                            </div>
+                            {send == true ?
+                                <div className="absolute top-8 left-[20%] rounded-lg h-auto w-[50%] bg-white text-black border shadow-lg pl-8 flex justify-start">
+                                    <div className="w-full my-3">
+                                        <SandMail />
+                                    </div>
+                                    <button className="bg-white left-[50%] h-[40px]" onClick={() => setSend(false)}>
+                                        <XIcon color="gray" />
+                                    </button>
+                                </div>
+                                : <div></div>}
+                        </div>
                     </div>
                 </div>
             </div>

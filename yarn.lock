@@ -1427,6 +1427,11 @@
   resolved "https://registry.yarnpkg.com/@trysound/sax/-/sax-0.2.0.tgz#cccaab758af56761eb7bf37af6f03f326dd798ad"
   integrity sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==
 
+"@types/animejs@^3.1.12":
+  version "3.1.12"
+  resolved "https://registry.yarnpkg.com/@types/animejs/-/animejs-3.1.12.tgz#78fcc3df03ac07cbaef50fd37512e5031826dc42"
+  integrity sha512-fpdH+ZtlO0kqjTOqRaBdsEmvpRNOayI8k4EVkEtitL5l6wducDOXk0rgQgfZqWf/ZX9DzXrHf257S5i9xTcISQ==
+
 "@types/hoist-non-react-statics@^3.3.0":
   version "3.3.5"
   resolved "https://registry.yarnpkg.com/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.5.tgz#dab7867ef789d87e2b4b0003c9d65c49cc44a494"
@@ -1587,6 +1592,11 @@ ajv@^6.12.4:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
+
+animejs@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/animejs/-/animejs-3.2.2.tgz#59be98c58834339d5847f4a70ddba74ac75b6afc"
+  integrity sha512-Ao95qWLpDPXXM+WrmwcKbl6uNlC5tjnowlaRYtuVDHHoygjtIPfDUoK9NthrlZsQSKjZXlmji2TrBUAVbiH0LQ==
 
 ansi-regex@^5.0.1:
   version "5.0.1"
@@ -3478,11 +3488,6 @@ jiti@^1.21.0:
   version "1.21.0"
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.21.0.tgz#7c97f8fe045724e136a397f7340475244156105d"
   integrity sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==
-
-jose@^5.4.0:
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/jose/-/jose-5.4.0.tgz#4f6c2357e7b3cd4bc10ec65bb29e677d7adfbc84"
-  integrity sha512-6rpxTHPAQyWMb9A35BroFl1Sp0ST3DpPcm5EVIxZxdH+e0Hv9fwhyB3XLKFUcHNpdSDnETmBfuPPTTlYz5+USw==
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"

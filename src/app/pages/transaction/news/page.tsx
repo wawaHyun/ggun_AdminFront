@@ -3,6 +3,7 @@
 import { PG } from "@/app/component/common/enums/PG";
 import { useRouter } from "next/navigation";
 import Image from 'next/image';
+import Footer from "@/app/component/common/module/footer";
 
 
 export default function NewsPage() {
@@ -51,9 +52,9 @@ export default function NewsPage() {
 
   return (
     <div className="h-screen w-screen flex justify-center">
-      <div className="h-[80%] w-full mt-5 ">
-        <div className="grid grid-cols-12 text-center w-full h-[10%] cursor-pointer border shadow-lg rounded-lg mb-5 content-center borderç">
-          <div className="text-bold text-[16px] text-black hover:text-gray-300" onClick={() => router.push(`${PG.TRAN}/`)}>News Home</div>
+      <div className=" h-[80%] w-full">
+        <div className="group m-2 grid grid-cols-12 text-center w-full h-[10%] cursor-pointer border shadow-lg rounded-lg content-center ">
+          <span className=" text-bold text-[16px] text-black hover:text-gray-300" onClick={() => router.push(`${PG.TRAN}/`)}>News Home</span>
           {newsMenu.map((elem: NewsMenuProps, i: number) => {
             return (
               <div key={elem.id} onClick={() => { elem.ref }} className="text-center text-black hover:text-gray-300">
@@ -117,7 +118,10 @@ export default function NewsPage() {
           </ul>
         </div>
 
+        <div className="bottom-0">
+          <Footer />
 
+        </div>
       </div>
     </div>
   );

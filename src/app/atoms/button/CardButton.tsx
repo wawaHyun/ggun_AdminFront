@@ -1,6 +1,6 @@
 'use client'
 
-import { PG } from "@/app/component/common/enums/PG";
+import { PG } from "@/common/enums/PG";
 import Link from "next/link";
 import { MoveButton } from "./MoveButton";
 import { useRouter } from "next/navigation";

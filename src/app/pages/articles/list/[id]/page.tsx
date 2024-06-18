@@ -68,7 +68,7 @@ const ArticlesList: NextPage = ({ params }: any) => {
                     },
                 
                 }}
-                pageSizeOptions={[10, 20, 50]}
+                // pageSizeOptions={[10, 20, 50]}
                 checkboxSelection
             />}
         </div>

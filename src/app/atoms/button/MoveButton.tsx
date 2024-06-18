@@ -21,3 +21,14 @@ export const MoveButton2 = ({ text, path }: IButton) => {
         </button>
     )
 }
+
+export const GrayButton = ({ text, path }: IButton) => {
+    return (
+        <button key={1}
+        onClick={path}
+        type="button" 
+        className="text-gray-500 border bg-white shadow-lg rounded-lg hover:hover:bg-slate-200 focus:outline-none font-medium text-sm text-center w-full h-full ">
+               {text}
+        </button>
+    )
+}
