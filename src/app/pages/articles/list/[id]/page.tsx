@@ -1,0 +1,78 @@
+'use client'
+
+import { PG } from "@/app/component/common/enums/PG";
+import { DataGrid } from "@mui/x-data-grid";
+import Image from 'next/image';
+import { NextPage } from "next";
+import { useRouter } from "next/navigation";
+import { useEffect  } from "react";
+import {PinkButton} from "@/app/atoms/button/PinkButton";
+import { getAllArticles } from "@/app/component/articles/service/article.slice";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMyArticleList } from "@/app/component/articles/service/article.service";
+import { IArticle } from "@/app/component/articles/model/article.model";
+import ArticleColumns from "@/app/component/articles/modul/article.columns";
+
+
+const cards = [
+    "https://www.tailwindtap.com/assets/components/horizontal-carousel/mountain-nightview.jpg",
+    "https://www.tailwindtap.com/assets/components/horizontal-carousel/autumn.jpg",
+    "https://www.tailwindtap.com/assets/components/horizontal-carousel/babypinetree.jpg",
+    "https://www.tailwindtap.com/assets/components/horizontal-carousel/beach.jpg",
+    "https://www.tailwindtap.com/assets/components/horizontal-carousel/purpleflowers.jpg",
+    "https://www.tailwindtap.com/assets/components/horizontal-carousel/starrysky.jpg",
+    "https://www.tailwindtap.com/assets/components/horizontal-carousel/lake.jpg",
+];
+
+
+const ArticlesList: NextPage = ({ params }: any) => {
+
+    const router = useRouter();
+    const dispatch = useDispatch()
+    const allArticles: IArticle[] = useSelector(getAllArticles)
+
+    useEffect(() => {
+        const id = parseInt(params.id);
+        dispatch(fetchMyArticleList(id))
+    }, [])
+
+
+    return (<>
+
+        <div className="flex flex-col items-center justify-center w-full bg-300">
+            <div className="flex overflow-x-scroll snap-x snap-mandatory max-w-6xl no-scrollbar">
+                {/* {cards.map((data, index) => {
+                    return (
+                        <section className="flex-shrink-0 w-full snap-center justify-center items-center" key={index}>
+                            <Image src={data} alt="Images to scroll horizontal2" width={800} height={800} className="w-full h-[500px]" />
+                        </section>
+                    );
+                })} */}
+            </div>
+        </div>
+
+        <br />
+        <div className="w-screen text-center mb-5 h-[50px] broder">
+            <PinkButton text="글쓰러가기" path={()=>router.push(`${PG.ARTICLE}/save`)}/>
+        </div>
+
+        <div style={{ height: "100%", width: "100%", fontSize: 50 }}>
+            {allArticles && <DataGrid
+                rows={allArticles}
+                columns={ArticleColumns()}
+                initialState={{
+                    pagination: {
+                        paginationModel: {
+                            pageSize: 10,
+                        },
+                    },
+                
+                }}
+                // pageSizeOptions={[10, 20, 50]}
+                checkboxSelection
+            />}
+        </div>
+    </>)
+}
+
+export default ArticlesList

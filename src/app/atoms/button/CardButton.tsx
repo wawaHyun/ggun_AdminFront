@@ -1,8 +1,8 @@
 'use client'
 
-import { PG } from "@/app/component/common/enums/PG";
+import { PG } from "@/common/enums/PG";
 import Link from "next/link";
-import MoveButton from "./MoveButton";
+import { MoveButton } from "./MoveButton";
 import { useRouter } from "next/navigation";
 
 interface ICardButton {
@@ -17,7 +17,7 @@ export default function CardButton({ id, title, description, img }: ICardButton)
     const router = useRouter()
     return (
         <div key={id} className="max-w-sm bg-white-500 border items-center border-gray-200 rounded-lg shadow ">
-            <Link href={`${PG.ARTICLE}/mylist/${id}`}>
+            <Link href={`${PG.ARTICLE}/list/${id}`}>
                 <div className="flex justify-center mt-5">
                     {img}
                 </div>
@@ -32,7 +32,7 @@ export default function CardButton({ id, title, description, img }: ICardButton)
                     {description}
                 </div>
                 <div className="h-[35px]">
-                <MoveButton text={title +" Read more"} path={()=>router.push(`${PG.ARTICLE}/mylist/${id}`)}/>
+                <MoveButton text={title +" Read more"} path={()=>router.push(`${PG.ARTICLE}/list/${id}`)}/>
                 </div>
             </div>
         </div>  

@@ -1,3 +1,5 @@
+import { appBarClasses } from "@mui/material";
+import shadows from "@mui/material/styles/shadows";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -16,21 +18,21 @@ const config: Config = {
 
       },
       colors: {
-        gguntheme: {
-          110: "#FFF5E0",
-          120: "#FF6969",
-          130: "#C70039",
-          140: "#141E46",
-
-          210 : "#FF204E",
-          220 : "#A0153E",
-          230 : "#5D0E41",
-          240 : "#00224D",
+        pebble:{
+          100 : "#433E49",
+          200 : "#928490",
+          300 : "#DBC1AD",
+          400 : "#F3E8EB",
+          500 : "#872642",
+          600 : "#9F4298"
         },
-      },  
-      
+      },
+ 
     },
   },
   plugins: [],
 };
+
+
+
 export default config;

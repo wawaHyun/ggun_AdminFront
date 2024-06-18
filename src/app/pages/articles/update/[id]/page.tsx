@@ -4,7 +4,7 @@ import { AttachFile, FmdGood, ThumbUpAlt } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { PG } from '@/app/component/common/enums/PG';
-import PinkButton from '@/app/atoms/button/PinkButton';
+import {PinkButton} from '@/app/atoms/button/PinkButton';
 
 
 
@@ -70,9 +70,9 @@ export default function ArticleUpdate({ params }: any) {
   return (
     <form className="max-w mx-auto" >
       <div className="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
-        <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">게시글 수정!</label>
+        <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-900 ">게시글 수정!</label>
         <select defaultValue={params.id} onChange={handleArticleInfo} name="id"
-          className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
 
           {boardlist.map((i: any) =>
             <option key={i.id} value={i.id}>{i.title}</option>

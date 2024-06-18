@@ -25,7 +25,3 @@ body {
     text-wrap: balance;
   }
 }
-
-.ggun-terms {
-  @apply text-gray-400 bg-gray-200
-}
