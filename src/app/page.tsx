@@ -3,17 +3,15 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { PG } from "@/app/component/common/enums/PG";
 import { NextPage } from "next"
 import React from "react";
 import { useDispatch } from "react-redux";
-import { fetchExistUser, fetchLoginUser } from "@/app/component/users/service/user.service";
-import { IUser } from "@/app/component/users/model/user.model";
-import { gridColumnLookupSelector } from "@mui/x-data-grid";
-import { GrayButton, MoveButton, MoveButton2 } from "@/app/atoms/button/MoveButton";
-import SendMail from "./component/boards/modul/sendMail";
+import { PG } from "@/common/enums/PG";
+import { GrayButton, MoveButton } from "@/atoms/button/MoveButton";
 import SandMail from "./component/boards/modul/sendMail";
-import { DownIcon, XIcon } from "./atoms/icons/icons";
+import { XIcon } from "../../public/icons/icons";
+import { IUser } from "./component/users/model/user.model";
+import { fetchExistUser, fetchLoginUser } from "./component/users/service/user.service";
 
 
 const Login: NextPage = () => {

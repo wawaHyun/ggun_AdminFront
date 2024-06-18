@@ -38,7 +38,7 @@ const color =[
 
     const data: any =
     {
-        // labels: color.map((i) => i.name+"1"),
+        labels: color.map((i) => i.name+"1"),
         datasets: [
             {
                 // label: color.map((i)=>i.name="2"),

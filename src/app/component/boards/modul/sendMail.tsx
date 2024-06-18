@@ -2,12 +2,12 @@
 
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import { PG } from '@/app/component/common/enums/PG';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSaveArticle } from '@/app/component/articles/service/article.service';
 import { getSingleArticle } from '@/app/component/articles/service/article.slice';
 import { AttachFile, FmdGood, ThumbUpAlt } from '@mui/icons-material';
-import { MoveButton } from '@/app/atoms/button/MoveButton';
+import { MoveButton } from '@/atoms/button/MoveButton';
 
 
 export default function SandMail() {

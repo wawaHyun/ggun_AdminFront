@@ -11,7 +11,7 @@ import {
     Legend,
 } from 'chart.js';
 import { NextPage } from 'next';
-// import kaeru from '@/app/atoms/img/앗사깨꾹.gif'
+import kaeru from '@/app/atoms/img/앗사깨꾹.gif'
 
 import Chart from 'chart.js/auto';
 import { INps } from '../model/nps.model';
@@ -39,7 +39,7 @@ function DoughnutChart() {
     ]
 
     const data: any = {
-        // labels: color.map((i) => i.name),
+        labels: color.map((i) => i.name),
         datasets: [{
             label: '',
             data: color.map((i) => i.value),
@@ -48,7 +48,7 @@ function DoughnutChart() {
         }]
     };
 
-    // const image = () => { { kaeru } }
+    const image = () => { { kaeru } }
 
     const oprions: any = {
         plugins: {

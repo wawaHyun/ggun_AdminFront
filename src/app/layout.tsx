@@ -4,10 +4,10 @@ import { Inter } from "next/font/google";
 import { parseCookies, setCookie } from "nookies";
 import "./globals.css";
 import dynamic from "next/dynamic";
-import Header from "./component/common/module/header";
-import Sidebar from "./component/common/module/sidebar";
+import Sidebar from "@/common/module/sidebar";
+import Header from "@/common/module/header";
 
-const ReduxProvider = dynamic(() => import("@/redux/redux-provider"), {
+const ReduxProvider = dynamic(() => import("@/_redux/redux-provider"), {
   ssr: false
 });
 
@@ -26,14 +26,14 @@ export default function RootLayout({
         <title>최고의 주식거래소:: GGUN</title>
       </head>
       <body className={inter.className}>
-        <div className="w-screen h-screen">
+        <div className="w-screen h-screen p-3">
           <ReduxProvider>
-            <div className="h-[50px] w-[auto] z-50 fixed top-0 ">
+            {/* <div className="h-[50px] w-[auto] z-50 fixed top-0 ">
               <Sidebar />
-            </div>
-            {/* <div className="h-auto z-0 hover:z-50">
-              <Header />
             </div> */}
+            <div className="h-auto w-screen z-0 hover:z-50">
+              <Header />
+            </div>
             <div className="h-[90%] z-0 justify-center flex">
               {children}
             </div>
