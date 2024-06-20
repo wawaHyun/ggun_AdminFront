@@ -161,6 +161,9 @@ const Login: NextPage = () => {
                             <div className="w-[50%] h-[30px] mt-2">
                                 <GrayButton text="관리자 문의" path={() => setSend(!send)} />
                             </div>
+                            <div className="w-[50%] h-[30px] mt-2">
+                                <GrayButton text="사용자 로그인으로 돌아가기" path={() => router.push(`http://localhost:3000/`)} />
+                            </div>
                             {send == true ?
                                 <div className="absolute top-8 left-[25%] rounded-lg h-auto w-[50%] bg-white text-black border shadow-lg pl-8 flex justify-start">
                                     <div className="w-full my-3">

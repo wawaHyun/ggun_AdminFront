@@ -27,14 +27,14 @@ function Alarm() {
         <div className="w-full h-full">
             <button className="fixed right-3 top-3" onClick={() => setIsOpen(!isOpen)}>
                 <Image src="/imgs/bell.png" width="50" height="50" alt="알람이 왔습니다!" />
-                <span className="bg-red-500 h-4 w-4 rounded-full w-auto text-xs text-white absolute top-1 right-1">{articles.length}</span>
+                <span className="bg-red-500 h-4 w-4 rounded-full text-xs text-white absolute top-1 right-1">{articles.length}</span>
             </button>
 
             {isOpen == true ?
                 <div className="absolute top-3 right-[65px] w-full h-[80%] border-gray-300 border overflow-auto bg-white shadow-lg rounded-lg p-3">
                         {articles.map((i: any) =>
                         <div key={i.id} className="flex-col py-1 ">
-                            <BaseBox content={
+                             <BaseBox color="white hover:bg-gray-100" content={
                                 <div>
                                     <div className="flex">
                                         <div className="text-sm w-2/3 truncate">{i.title}</div>

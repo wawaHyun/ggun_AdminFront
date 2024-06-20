@@ -32,16 +32,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="w-screen h-screen bg-white">
           <ReduxProvider>
-            {/* <div className="z-50 fixed top-0 h-screen w-[50px]">
-            <MiniSidebar />
-            </div> */}
-            {/* <div className="h-auto w-screen fixed z-0 hover:z-50">
-              <Header />
-            </div> */}
-            <div className="h-screen w-[300px] top-0 left-0 fixed z-10">
+            <div className="h-screen hover:w-[300px] top-0 left-0 fixed z-10">
               <Sidebar /> 
             </div>
-            <div className="h-screen w-screen top-0 right-0 fixed z-10">
+            <div className="h-screen hover:w-[500px] top-0 right-0 fixed z-10">
               <Alarm /> <ChatRoom />
             </div>
             <div className="justify-center flex">
