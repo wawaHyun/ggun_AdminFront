@@ -7,9 +7,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { PG } from "@/app/common/enums/PG";
 import { GrayButton, MoveButton } from "@/atoms/button/MoveButton";
-import SandMail from "./success/sendMail/sendMail";
+import SandMail from "@/app/success/sendMail/sendMail";
 import { XIcon } from "../../public/icons/icons";
-import { IUser } from "./component/users/model/user.model";
+import { IUser } from "@/app/component/users/model/user.model";
 import { fetchExistUser, fetchLoginUser } from "./component/users/service/user.service";
 
 
