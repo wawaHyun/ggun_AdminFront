@@ -1,7 +1,7 @@
 'use server'
 
-import { AllArticleList, DeleteArticle, FindSingleArticle, MyArticleList, SaveArticle, UpdateAricle } from "@/api/article/route"
-import { instance } from "../../common/config/axios-config"
+import { AllArticleList, DeleteArticle, FindSingleArticle, MyArticleList, SaveArticle, UpdateAricle } from "@/app/api/article/route"
+// import { instance } from "../../common/config/axios-config"
 import { IArticle } from "../model/article.model"
 
 

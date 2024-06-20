@@ -1,6 +1,6 @@
 'use server'
 
-import client from "@/lib/prisma/db";
+import client from "@/_lib/prisma/db";
 
 export async function AllTrade() {
     const response = await client.npsStat.findMany({})

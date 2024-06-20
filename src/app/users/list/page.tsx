@@ -9,7 +9,7 @@ import { IUser } from "@/app/component/users/model/user.model";
 import React from "react";
 import { fetchAllUsers } from "@/app/component/users/service/user.service";
 import { getAllUsers } from "@/app/component/users/service/user.slice";
-import { PG } from "@/common/enums/PG";
+import { PG } from "@/app/common/enums/PG";
 import { MoveButton } from "@/atoms/button/MoveButton";
 
 const UserList: NextPage = () => {

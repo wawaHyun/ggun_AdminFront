@@ -17,17 +17,36 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+th,
+td {
+  text-align : center;
+  padding : 8px 8px;
+}
+th {
+  background: #42444e;
+  color: #fff;
+  text-align: center;
+  border: 0.3px solid #ffffff;
+}
+td {
+  border: 0.3px solid #dee2e6;
+}
+tr:nth-child(even) td {
+  background: #f8f9fa;
 }

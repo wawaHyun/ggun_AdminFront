@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { PG } from "@/common/enums/PG";
+import { PG } from "@/app/common/enums/PG";
 import { useDispatch } from "react-redux";
 import { IUser } from "@/app/component/users/model/user.model";
 import { fetchJoinUser } from "@/app/component/users/service/user.service";

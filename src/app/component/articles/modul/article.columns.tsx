@@ -1,12 +1,12 @@
 
 import { Link } from '@mui/material'
 import { GridColDef } from '@mui/x-data-grid'
-import { MyTypography } from '../../common/style/cell';
-import { PG } from '../../common/enums/PG';
-import {PinkButton} from '@/app/atoms/button/PinkButton';
 import { IArticle } from '../model/article.model';
 import { useDispatch } from 'react-redux';
 import { fetchDeleteArticle } from '../service/article.service';
+import { MyTypography } from '@/app/common/style/cell';
+import { PG } from '@/app/common/enums/PG';
+import { PinkButton } from '@/atoms/button/PinkButton';
 
 
 export default function ArticleColumns(): GridColDef[] {

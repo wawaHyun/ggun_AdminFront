@@ -1,7 +1,7 @@
 'use server'
 
 import { IBoard } from "../model/board.model"
-import { AllBoards, FindSingleBoard, SaveBoard, UpdateBoard } from "@/api/board/route"
+import { AllBoards, FindSingleBoard, SaveBoard, UpdateBoard } from "@/app/api/board/route"
 
 
 export const AllBoardsAPI = async () => {

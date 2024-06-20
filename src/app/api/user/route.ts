@@ -1,7 +1,7 @@
 'use server'
 
 import { IUser } from "@/app/component/users/model/user.model";
-import client from "@/lib/prisma/db";
+import client from "@/_lib/prisma/db";
 import { NextResponse } from "next/server";
 
 export async function AllUsers() {

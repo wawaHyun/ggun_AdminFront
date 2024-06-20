@@ -4,10 +4,10 @@ import { AttachFile, FmdGood, ThumbUpAlt } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { PG } from '@/app/component/common/enums/PG';
-import {PinkButton} from '@/app/atoms/button/PinkButton';
 import { fetchAllBoards, fetchSaveBoard } from '@/app/component/boards/service/board.service';
 import { useDispatch } from 'react-redux';
+import { PinkButton } from '@/atoms/button/PinkButton';
+import { PG } from '@/app/common/enums/PG';
 
 
 

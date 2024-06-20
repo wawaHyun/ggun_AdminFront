@@ -1,12 +1,16 @@
 'use client'
 
+import { DataGrid } from "@mui/x-data-grid";
+import Image from 'next/image';
 import { NextPage } from "next";
 import { useRouter } from "next/navigation";
 import { useEffect  } from "react";
+import { getAllArticles } from "@/app/component/articles/service/article.slice";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMyArticleList } from "@/app/component/articles/service/article.service";
 import { IArticle } from "@/app/component/articles/model/article.model";
-import { getAllArticles } from "@/app/component/articles/service/article.slice";
+import ArticleColumns from "@/app/component/articles/modul/article.columns";
+
 
 const cards = [
     "https://www.tailwindtap.com/assets/components/horizontal-carousel/mountain-nightview.jpg",
@@ -31,33 +35,42 @@ const ArticlesList: NextPage = ({ params }: any) => {
     }, [])
 
 
-    return (<>
+    return (
+        <div></div>
+        // <div className="flex flex-col items-center justify-center w-full bg-300">
+        //     <div className="flex overflow-x-scroll snap-x snap-mandatory max-w-6xl no-scrollbar">
+        //          {cards.map((data, index) => {
+        //             return (
+        //                 <section className="flex-shrink-0 w-full snap-center justify-center items-center" key={index}>
+        //                     <Image src={data} alt="Images to scroll horizontal2" width={800} height={800} className="w-full h-[500px]" />
+        //                 </section>
+        //             );
+        //         })} 
+        //     </div>
+        // </div>
 
-        <div className="flex flex-col items-center justify-center w-full bg-300">
-            <div>관리자 문의</div>
-            <div>
-                <table>
-                    <th>
-                        <td>No.</td>
-                        <td>제목</td>
-                        <td>작성자</td>
-                        <td>처리상태</td>
-                        <td>작성일</td>
-                    </th>
-                        {allArticles.map((i:any)=>
-                    <tr key={i.id}>
-                        <td>{i.id}</td>
-                        <td>{i.title}</td>
-                        <td>{i.content}</td>
-                        <td>{i.answer}</td>
-                        <td>{i.modDate}</td>
-                    </tr>
-                        )}
-                    
-                </table>
-            </div>
-        </div>
-    </>)
+        // <br />
+        // <div className="w-screen text-center mb-5 h-[50px] broder">
+        //     <PinkButton text="글쓰러가기" path={()=>router.push(`${PG.ARTICLE}/save`)}/>
+        // </div>
+
+        // <div style={{ height: "100%", width: "100%", fontSize: 50 }}>
+        //     {allArticles && <DataGrid
+        //         rows={allArticles}
+        //         columns={ArticleColumns()}
+        //         initialState={{
+        //             pagination: {
+        //                 paginationModel: {
+        //                     pageSize: 10,
+        //                 },
+        //             },
+                
+        //         }}
+        //       pageSizeOptions={[10, 20, 50]}
+        //         checkboxSelection
+        //     />}
+        // </div> 
+    )
 }
 
 export default ArticlesList

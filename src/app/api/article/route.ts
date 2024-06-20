@@ -1,7 +1,7 @@
 'use server'
 
 import { IArticle } from "@/app/component/articles/model/article.model";
-import client from "@/lib/prisma/db";
+import client from "@/_lib/prisma/db";
 
 export async function AllArticleList() {
     const response = await client.articles.findMany({})

@@ -1,6 +1,6 @@
 'use server'
 
-import { AllUsers, DeleteUser, ExistUser, JoinUser, LoginUser, LogoutUser, SingleUser } from "@/api/user/route"
+import { AllUsers, DeleteUser, ExistUser, JoinUser, LoginUser, LogoutUser, SingleUser } from "@/app/api/user/route"
 import { IUser } from "../model/user.model"
 
 export const AllUsersAPI = async () => {

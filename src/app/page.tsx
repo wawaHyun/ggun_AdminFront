@@ -1,21 +1,19 @@
 'use client';
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { NextPage } from "next"
 import React from "react";
 import { useDispatch } from "react-redux";
-import { PG } from "@/common/enums/PG";
+import { PG } from "@/app/common/enums/PG";
 import { GrayButton, MoveButton } from "@/atoms/button/MoveButton";
-import SandMail from "./component/boards/modul/sendMail";
+import SandMail from "./success/sendMail/sendMail";
 import { XIcon } from "../../public/icons/icons";
 import { IUser } from "./component/users/model/user.model";
 import { fetchExistUser, fetchLoginUser } from "./component/users/service/user.service";
 
 
 const Login: NextPage = () => {
-    // const [userinfo, setUserinfo] = useState({ username: '', password: '', id: 0 })
 
     const [isWrongId, setIsWrongId] = useState('');
     const [isWrongPw, setIsWrongPw] = useState('');
@@ -75,7 +73,7 @@ const Login: NextPage = () => {
                             // console.log("서버에서 넘어온 message " + parseCookies().message)
                             // console.log("서버에서 넘어온 token " + parseCookies().accessToken)
                             // console.log("token decoding 내용 " + jwtDecode<any>(parseCookies().accessToken).username)
-                            router.push(`${PG.BOARD}/list`)
+                            router.push(`${PG.SUCCESS}/dashboard`)
                             router.refresh()
                         })
                         .catch((err: any) => {
@@ -97,7 +95,7 @@ const Login: NextPage = () => {
 
     return (
         <div className="flex justify-center content-center w-screen items-center h-screen ">
-            <div className=" flex rounded-lg shadow-lg border w-[70%] h-[70%] ">
+            <div className=" flex rounded-lg shadow-lg border w-[70%] h-[80%] ">
                 <div
                     className="hidden md:block lg:w-1/2 bg-cover bg-indigo-950"
                     style={{
@@ -106,6 +104,7 @@ const Login: NextPage = () => {
                 ></div>
                 <div className="w-full p-8 lg:w-1/2">
                     <p className="text-xl text-gray-600 text-center">관리자 페이지</p>
+
                     <div className="mt-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">
                             ID
@@ -120,8 +119,8 @@ const Login: NextPage = () => {
                         {len === false ?
                             userinfo.username == '' || userinfo.username === undefined ? <pre></pre> :
                                 (isWrongId === 'true' ?
-                                    (<pre><h6 className='text-red-500'>* Wrong username form.</h6></pre>) :
-                                    (<pre><h6 className='text-green-500'>* good username form.</h6></pre>)
+                                    (<pre><h6 className='text-red-500 text-sm'>* Wrong username form.</h6></pre>) :
+                                    (<pre><h6 className='text-green-500 text-sm'>* good username form.</h6></pre>)
                                 )
                             : <pre><h6 className='text-red-500'>{msg}</h6></pre>}
 
@@ -142,8 +141,8 @@ const Login: NextPage = () => {
                                 (isWrongPw === 'true' ?
                                     // password.length > 15 ?
                                     // (<pre><h6 className='text-orange-500'>* password가 15자를 넘었습니다..</h6></pre>) :
-                                    (<pre><h6 className='text-red-500'>* Wrong password form.<br />영어 소문자, 대문자, #?!@$ %^&*- 포함<br />6자이상 </h6></pre>) :
-                                    (<pre><h6 className='text-green-500'>* good password form.</h6></pre>)
+                                    (<pre><h6 className='text-red-500 text-sm'>* Wrong password form.<br />영어 소문자, 대문자, #?!@$ %^&*- 포함<br />6자이상 </h6></pre>) :
+                                    (<pre><h6 className='text-green-500 text-sm'>* good password form.</h6></pre>)
                                 )
                             : <pre><h6 className='text-red-500'>{msg}</h6></pre>}
 
@@ -163,11 +162,11 @@ const Login: NextPage = () => {
                                 <GrayButton text="관리자 문의" path={() => setSend(!send)} />
                             </div>
                             {send == true ?
-                                <div className="absolute top-8 left-[20%] rounded-lg h-auto w-[50%] bg-white text-black border shadow-lg pl-8 flex justify-start">
+                                <div className="absolute top-8 left-[25%] rounded-lg h-auto w-[50%] bg-white text-black border shadow-lg pl-8 flex justify-start">
                                     <div className="w-full my-3">
                                         <SandMail />
                                     </div>
-                                    <button className="bg-white left-[50%] h-[40px]" onClick={() => setSend(false)}>
+                                    <button className="bg-white left-[50%] h-[40px] w-[30px] rounded-lg" onClick={() => setSend(false)}>
                                         <XIcon color="gray" />
                                     </button>
                                 </div>

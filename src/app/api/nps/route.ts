@@ -1,7 +1,7 @@
 'use server'
 
 import { INps } from "@/app/component/jusik/model/nps.model";
-import client from "@/lib/prisma/db";
+import client from "@/_lib/prisma/db";
 
 export async function AllNps() {
     const response:INps[] = await client.npsStat.findMany({})

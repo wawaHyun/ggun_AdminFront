@@ -1,6 +1,6 @@
 'use server'
 
-import { AllNps, Top10Nps } from "@/api/nps/route"
+import { AllNps, Top10Nps } from "@/app/api/nps/route"
 import { INps } from "../model/nps.model"
 
 export const AllNpsAPI = async () => {

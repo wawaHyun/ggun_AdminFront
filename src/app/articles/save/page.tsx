@@ -11,7 +11,7 @@ import { fetchSaveArticle } from '@/app/component/articles/service/article.servi
 import { fetchAllBoards } from '@/app/component/boards/service/board.service';
 import { IArticle } from '@/app/component/articles/model/article.model';
 import { getSingleArticle } from '@/app/component/articles/service/article.slice';
-import { PG } from '@/common/enums/PG';
+import { PG } from '@/app/common/enums/PG';
 import { PinkButton } from '@/atoms/button/PinkButton';
 
 
