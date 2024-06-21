@@ -1,19 +1,50 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { CallIcon, ChartIcon, HomeIcon, ListIcon, MailIcon, NewsIcon, TallbarIcon } from "../../../../public/icons/icons";
 import { PG } from '../enums/PG';
 import Image from "next/image";
 import TimeNow from "./timeNow";
+import { useDispatch } from "react-redux";
+import { fetchLogoutAdmin, fetchSingleAdmin } from "@/app/component/admins/service/admin.service";
+import { destroyCookie, parseCookies } from "nookies";
+import { jwtDecode } from "jwt-decode";
 
 function Sidebar() {
 
+    const dispatch = useDispatch();
     const router = useRouter()
     const [show, setShow] = useState(0);
+    const [isOpen, setIsOpen] = useState(false);
+    let token = "";
+
+    useEffect(() => {
+        const cookies = parseCookies();
+        if (cookies.accessToken) {
+            token = cookies.accessToken;
+            dispatch(fetchSingleAdmin(jwtDecode<any>(token).adminId));
+        } else {
+            console.log('쿠키가 없어서 로그인 페이지로 이동');
+            router.push('/');
+        }
+    }, []);
+
 
     const logout = (id: number) => {
-        alert("로그아웃 되었습니다. ")
+        console.log('logout 적용 전' + parseCookies().accessToken);
+        dispatch(fetchLogoutAdmin())
+            .then((res: any) => {
+                destroyCookie(null, 'accessToken');
+
+                token = "";
+                location.replace('/');
+                console.log('logout 적용 후' + parseCookies().accessToken);
+                alert("로그아웃 되었습니다. ")
+            })
+            .catch((err: any) => {
+                console.log('logout error' + err);
+            });
     }
 
     const showSubMenu = (value: number) => {
@@ -21,7 +52,6 @@ function Sidebar() {
         show <= 0 ? setShow(value) : setShow(0);
     }
 
-    const [isOpen, setIsOpen] = useState(false);
 
     interface ISubmenu {
         id: number;
@@ -42,8 +72,8 @@ function Sidebar() {
         { id: 1, title: "Reports", icon: <ChartIcon />, address: () => router.push(`${PG.REPORT}/dashboard`) },
     ]
     const boardSub: ISubmenu[] = [
-        { id: 1, title: "사내 공지사항", icon: <ChartIcon />, address: () => router.push(`articles/1`) },
-        { id: 2, title: "관리자 문의", icon: <ChartIcon />, address: () => router.push(`articles/2`) },
+        { id: 1, title: "사내 공지사항", icon: <ChartIcon />, address: () => router.push(`/articles/1`) },
+        { id: 2, title: "관리자 문의", icon: <ChartIcon />, address: () => router.push(`/articles/2`) },
     ]
     const wipSub: ISubmenu[] = [
         { id: 1, title: "demochart", icon: <ChartIcon />, address: () => router.push(`${PG.WIP}/demochart`) },
@@ -51,8 +81,6 @@ function Sidebar() {
         { id: 3, title: "관리자 권한관리", icon: <ChartIcon />, address: () => router.push(`${PG.WIP}/users/list`) },
         { id: 2, title: "종류별 chart", icon: <ChartIcon />, address: () => router.push(`${PG.WIP}/typeOfChart`) },
     ]
-
-
 
     return (
         <div className="">

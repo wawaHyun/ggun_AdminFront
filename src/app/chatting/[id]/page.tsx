@@ -1,11 +1,11 @@
 'use client'
 
-import { UserIcon } from "../../../../public/icons/icons";
+import { AdminIcon } from "../../../../public/icons/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 function Chartting({ params }: any) {
-    
+
     const myid = 1111;
 
     const textDemo = [
@@ -49,7 +49,7 @@ function Chartting({ params }: any) {
                             </div>
                             :
                             <div key={i.id} className="flex w-full flex">
-                                <div className="w-[50px] h-[40px]"> <UserIcon color="#433E49" /></div>
+                                <div className="w-[50px] h-[40px]"> <AdminIcon color="#433E49" /></div>
                                 <div className="border shadow-md rounded-lg text-pretty flex items-center my-3 max-w-[45%] p-2 bg-pebble-400">
                                     {i.text}
                                 </div>

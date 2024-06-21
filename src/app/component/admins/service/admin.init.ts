@@ -1,6 +1,6 @@
-import { IUser } from "../model/user.model";
+import { IAdmin } from "../model/admin.model";
 
-export const initialState: IUser = {
+export const initialState: IAdmin = {
     id: 0,
     username: '',
     password: '',
@@ -11,7 +11,7 @@ export const initialState: IUser = {
     phone: '',
     asset: '',
     mbti: '',
-    token : '',
+    token: '',
     investment_propensity: '',
     // modDate: '',
     // regDate: ''

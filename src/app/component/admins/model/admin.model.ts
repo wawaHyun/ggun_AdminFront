@@ -1,4 +1,4 @@
-export declare type IUser = {
+export declare type IAdmin = {
     id?: number,
     username?: string,
     password?: string,

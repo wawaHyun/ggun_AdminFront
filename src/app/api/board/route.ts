@@ -11,9 +11,7 @@ export async function AllBoards() {
 export async function FindSingleBoard(id: number) {
     try {
         const response = await client.boards.findFirst({
-            where: {
-                id: id,
-            },
+            where: {id: id,},
         })
         console.log(JSON.stringify(response))
         return response

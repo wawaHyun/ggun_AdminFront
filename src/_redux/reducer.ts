@@ -2,7 +2,7 @@ import { combineReducers } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 import articleReducer from "@/app/component/articles/service/article.slice";
-import userReducer from "@/app/component/users/service/user.slice";
+import adminReducer from "@/app/component/admins/service/admin.slice";
 import boardReducer from "@/app/component/boards/service/board.slice";
 import npsReducer from "@/app/component/jusik/service/transaction.slice";
 
@@ -32,10 +32,10 @@ const articlePersistConfig = {
   storage,
   whitelist: ["articleState"],
 };
-const userPersistConfig = {
-  key: "user",
+const adminPersistConfig = {
+  key: "admin",
   storage,
-  whitelist: ["userState"],
+  whitelist: ["adminState"],
 };
 const boardPersistConfig = {
   key: "board",
@@ -52,13 +52,13 @@ const npsPersistConfig = {
 
 
 const persistedArticleReducer = persistReducer(articlePersistConfig, articleReducer);
-const persistedUserReducer = persistReducer(userPersistConfig, userReducer);
+const persistedAdminReducer = persistReducer(adminPersistConfig, adminReducer);
 const persistedBoardReducer = persistReducer(boardPersistConfig, boardReducer);
 const persistedNpsReducer = persistReducer(npsPersistConfig, npsReducer);
 
 export const rootReducer = combineReducers({
   article: persistedArticleReducer,
-  user: persistedUserReducer,
+  admin: persistedAdminReducer,
   board: persistedBoardReducer,
   nps: persistedNpsReducer
 });
