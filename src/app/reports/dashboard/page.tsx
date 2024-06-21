@@ -5,7 +5,7 @@ import DoughnutChart from "@/app/component/jusik/modul/doughnutChart";
 import PolarChart from "@/app/component/jusik/modul/polarChart";
 import TableDemo from "@/app/component/jusik/modul/tableDemo";
 import { BaseBox } from "@/atoms/form/boxForm";
-import Calendar from "@/app/common/module/calender";
+import Calendar from "@/app/reports/module/calender";
 
 
 export default function ChargingStationSharp() {

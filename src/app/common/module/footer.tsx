@@ -3,7 +3,7 @@ import { FacebookIcon, InstaIcon, TwitterIcon } from  "../../../../public/icons/
 
 function Footer() {
     return (
-        <div className="sticky bottom-0 border w-screen bg-pebble-100 text-white flex gap-5 p-5">
+        <div className="w-full bg-pebble-100 text-white flex gap-5 p-5">
             <div className="w-[50%]">
          <ul>
             <li>상호 : (주) 꾼 | 대표자 : 김장사</li>

@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 import Sidebar from "@/app/common/module/sidebar";
 import { useState } from "react";
 import Alarm from "@/app/common/module/alarm";
-import ChatRoom from "./common/module/chatroom";
+import ChatRoom from "./chatting/page";
 
 const ReduxProvider = dynamic(() => import("@/_redux/redux-provider"), {
   ssr: false

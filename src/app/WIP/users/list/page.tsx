@@ -26,7 +26,7 @@ const UserList: NextPage = () => {
     return (
             <div className="w-screen h-screen bg-green-300 mt-2 items-center content-center">
                 <div className="w-[30%] mb-3 h-[50px] broder">
-                    <MoveButton text="임직원 추가" path={() => router.push(`${PG.USER}/join`)} />
+                    <MoveButton text="임직원 추가" path={() => alert("임직원을 추가하기 위해서는 인사팀에게 문의하십시오.")} />
                 </div>
 
                 <div className="">

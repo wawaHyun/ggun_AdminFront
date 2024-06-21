@@ -7,7 +7,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { PG } from "@/app/common/enums/PG";
 import { GrayButton, MoveButton } from "@/atoms/button/MoveButton";
-import SandMail from "@/app/success/sendMail/sendMail";
+import SandMail from "@/app/articles/sendMail/page";
 import { XIcon } from "../../public/icons/icons";
 import { IUser } from "@/app/component/users/model/user.model";
 import { fetchExistUser, fetchLoginUser } from "./component/users/service/user.service";
@@ -73,7 +73,7 @@ const Login: NextPage = () => {
                             // console.log("서버에서 넘어온 message " + parseCookies().message)
                             // console.log("서버에서 넘어온 token " + parseCookies().accessToken)
                             // console.log("token decoding 내용 " + jwtDecode<any>(parseCookies().accessToken).username)
-                            router.push(`${PG.SUCCESS}/dashboard`)
+                            router.push(`${PG.REPORT}/dashboard`)
                             router.refresh()
                         })
                         .catch((err: any) => {
