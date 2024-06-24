@@ -1,34 +1,33 @@
 'use server'
 
-import { IAdmin } from "@/app/component/admins/model/admin.model";
-import client from "@/_lib/prisma/db";
-import { NextResponse } from "next/server";
+import { IAdmin } from "../../redux/model/admin.model";
+import client from "../../../../_lib/prisma/db";
 
-export async function AllAdmins() {
-    const response = await client.users.findMany({})
+export async function allAdmins() {
+    const response = await client.admins.findMany({})
     return response
 }
 
-export async function Colsadmin() {
-    const response = await client.users.findFirst({})
+export async function colsadmin() {
+    const response = await client.admins.findFirst({})
     return response
 }
 
-export async function SingleAdmin(id: number) {
-    const response = await client.users.findFirst({
+export async function singleAdmin(id: number) {
+    const response = await client.admins.findFirst({
         where: { id: id },
     })
     return response
 }
 
-export async function DeleteAdmin(id: number) {
-    const response = await client.users.delete({
+export async function deleteAdmin(id: number) {
+    const response = await client.admins.delete({
         where: { id: id },
     })
     return response
 }
 
-export async function ExistAdmin(username: string) {
+export async function existAdmin(username: string) {
     console.log("ExistAdminAPI : " + username);
     try {
         const response = await client.users.findFirst({
@@ -45,10 +44,10 @@ export async function ExistAdmin(username: string) {
     }
 }
 
-export async function LoginAdmin(user: IAdmin) {
-    console.log("LoginAdminAPI : " + user.id);
-    const { id, username, password } = user;
-    const response = await client.users.update({
+export async function loginAdmin(admin: IAdmin) {
+    console.log("LoginAdminAPI : " + admin.id);
+    const { id, username, password } = admin;
+    const response = await client.admins.update({
         where: {
             id: id,
             username: username,
@@ -62,8 +61,8 @@ export async function LoginAdmin(user: IAdmin) {
     return response
 }
 
-export async function LogoutAdmin(id: number) {
-    const response = await client.users.update({
+export async function logoutAdmin(id: number) {
+    const response = await client.admins.update({
         where: {
             id: id,
         },
@@ -75,21 +74,21 @@ export async function LogoutAdmin(id: number) {
     return response
 }
 
-export async function JoinAdmin(user: IAdmin) {
-    const { username, password, phone, name, age, email, address, asset, mbti, investment_propensity } = user;
-    const response = await client.users.create({
-        data: {
-            username: username,
-            password: password,
-            name: name,
-            phone: phone,
-            age: age,
-            email: email,
-            address: address,
-            asset: asset,
-            mbti: mbti,
-            investment_propensity: investment_propensity,
-        },
-    });
-    return NextResponse.json({ message: "success", data: response })
+export async function joinAdmin(admin: IAdmin) {
+    const { username, password, phone, name, age, email, address, asset, mbti, investment_propensity } = admin;
+    // const response = await client.admins.create({
+    //     data: {
+    //         username: username,
+    //         password: password,
+    //         name: name,
+    //         phone: phone,
+    //         age: age,
+    //         email: email,
+    //         address: address,
+    //         asset: asset,
+    //         mbti: mbti,
+    //         investment_propensity: investment_propensity,
+    //     },
+    // });
+    // return NextResponse.json({ message: "success", data: response })
 }

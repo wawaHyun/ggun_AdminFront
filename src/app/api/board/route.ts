@@ -1,14 +1,14 @@
 'use server'
 
-import { IBoard } from "@/app/component/boards/model/board.model";
-import client from "@/_lib/prisma/db";
+import { IBoard } from "../../redux/model/board.model";
+import client from "../../../../_lib/prisma/db";
 
-export async function AllBoards() {
+export async function allBoards() {
     const response: IBoard[] = await client.boards.findMany({})
     return response
 }
 
-export async function FindSingleBoard(id: number) {
+export async function findSingleBoard(id: number) {
     try {
         const response = await client.boards.findFirst({
             where: {id: id,},
@@ -20,7 +20,7 @@ export async function FindSingleBoard(id: number) {
     }
 }
 
-export async function UpdateBoard(data: IBoard) {
+export async function updateBoard(data: IBoard) {
     const { id, title, description } = data
     console.log(id)
     const response = await client.boards.update({
@@ -28,21 +28,21 @@ export async function UpdateBoard(data: IBoard) {
             id: id,
         },
         data: {
-            title: title,
-            description: description,
+            title: title ?? "default title",
+            description: description ?? "default description",  
         }
     })
     console.log(JSON.stringify("UpdateBoard :" + response))
     return response
 }
 
-export async function SaveBoard(data: IBoard) {
-    const { id, title, description } = data
+export async function saveBoard(data: IBoard) {
+    const { title, description } = data
     try {
-        const response = await client.boards.create({
+        const response = await ({
             data: {
-                title: title,
-                description: description,
+                title: title ?? "default title",
+                description: description ?? "default description",  
             }
         })
         console.log(JSON.stringify("SaveBoard :" + response))

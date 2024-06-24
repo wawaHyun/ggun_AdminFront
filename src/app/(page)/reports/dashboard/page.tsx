@@ -1,11 +1,11 @@
 'use client'
 
-import { BarChart } from "@mui/icons-material"
-import { BaseBox } from "@/app/component/box/boxFormat"
-import PolarChart from "@/app/component/chart/polarChart"
-import TableDemo from "@/app/component/chart/tableDemo"
-import Calendar from "@/app/component/util/calender"
-import DoughnutChart from "@/app/component/chart/doughnutChart"
+import BarChart from "@/app/component/chart/barChart";
+import DoughnutChart from "@/app/component/chart/doughnutChart";
+import PolarChart from "@/app/component/chart/polarChart";
+import TableDemo from "@/app/component/chart/tableDemo";
+import { BaseBox } from "@/app/component/box/boxFormat";
+import Calendar from "@/app/component/util/calender";
 
 
 export default function ChargingStationSharp() {

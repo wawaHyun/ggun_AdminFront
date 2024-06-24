@@ -5,14 +5,15 @@ import { useRouter } from "next/navigation";
 import { NextPage } from "next"
 import React from "react";
 import { useDispatch } from "react-redux";
-import { PG } from "@/app/common/enums/PG";
-import { GrayButton, MoveButton } from "@/atoms/button/MoveButton";
-import SandMail from "@/app/articles/sendMail/page";
+import { PG } from "./common/enums/PG";
+import { GrayButton, MoveButton } from "./component/button/MoveButton";
+import SandMail from "./(page)/articles/sendMail/page";
 import { XIcon } from "../../public/icons/icons";
-import { IAdmin } from "@/app/component/admins/model/admin.model";
-import { fetchExistAdmin, fetchLoginAdmin } from "./component/admins/service/admin.service";
+import { IAdmin } from "./redux/model/admin.model";
+import { fetchExistAdmin, fetchLoginAdmin } from "./redux/service/admin.service";
 import { parseCookies, setCookie } from "nookies";
 import { jwtDecode } from "jwt-decode";
+import { existAdmin, loginAdmin } from "./api/admin/route";
 
 const Login: NextPage = () => {
 
@@ -61,33 +62,64 @@ const Login: NextPage = () => {
     const handleSubmit = () => {
         console.log('login page 입력받은 내용 ' + JSON.stringify(admininfo))
         setLen(true)
-        dispatch(fetchExistAdmin(admininfo.username))
-            .then((resp: any) => {
-                console.log('login page : ' + JSON.stringify(resp))
-                if (resp.payload == true) {
-                    setMsg("* 있는 아이디입니다.")
-                    dispatch(fetchLoginAdmin(admininfo))
-                        .then((resp: any) => {
-                            setCookie({}, 'message', resp.payload.message, { httpOnly: false, path: '/' })
-                            setCookie({}, 'accessToken', resp.payload.accessToken, { httpOnly: false, path: '/' })
-                            console.log("서버에서 넘어온 message " + parseCookies().message)
-                            console.log("서버에서 넘어온 token " + parseCookies().accessToken)
-                            console.log("token decoding 내용 " + jwtDecode<any>(parseCookies().accessToken).username)
-                            router.push(`${PG.REPORT}/dashboard`)
-                            router.refresh()
-                        })
-                        .catch((err: any) => {
-                            console.log("fetchLoginAdmin error : " + JSON.stringify(err))
-                            alert("Wrong password. 시도하세요")
-                        })
-                } else {
-                    console.log("fetchExistAdmin page false : " + JSON.stringify(resp))
-                    setMsg('* 회원가입을 진행해주세요.')
-                }
-            })
-            .catch((err: any) => {
-                console.log("fetchExistAdmin error : " + err)
-            })
+        //prisma
+       existAdmin(admininfo.username)
+        .then((resp: any) => {
+            console.log('login page : ' + JSON.stringify(resp))
+            if (resp.payload == true) {
+                setMsg("* 있는 아이디입니다.")
+                loginAdmin(admininfo)
+                    .then((resp: any) => {
+                        // setCookie({}, 'message', resp.payload.message, { httpOnly: false, path: '/' })
+                        // setCookie({}, 'accessToken', resp.payload.accessToken, { httpOnly: false, path: '/' })
+                        // console.log("서버에서 넘어온 message " + parseCookies().message)
+                        // console.log("서버에서 넘어온 token " + parseCookies().accessToken)
+                        // console.log("token decoding 내용 " + jwtDecode<any>(parseCookies().accessToken).username)
+                        router.push(`${PG.REPORT}/dashboard`)
+                        router.refresh()
+                    })
+                    .catch((err: any) => {
+                        console.log("fetchLoginAdmin error : " + JSON.stringify(err))
+                        alert("Wrong password. 시도하세요")
+                    })
+            } else {
+                console.log("fetchExistAdmin page false : " + JSON.stringify(resp))
+                setMsg('* 회원가입을 진행해주세요.')
+            }
+        })
+        .catch((err: any) => {
+            console.log("fetchExistAdmin error : " + err)
+        })
+
+
+        //spring
+        // dispatch(fetchExistAdmin(admininfo.username))
+        //     .then((resp: any) => {
+        //         console.log('login page : ' + JSON.stringify(resp))
+        //         if (resp.payload == true) {
+        //             setMsg("* 있는 아이디입니다.")
+        //             dispatch(fetchLoginAdmin(admininfo))
+        //                 .then((resp: any) => {
+        //                     setCookie({}, 'message', resp.payload.message, { httpOnly: false, path: '/' })
+        //                     setCookie({}, 'accessToken', resp.payload.accessToken, { httpOnly: false, path: '/' })
+        //                     console.log("서버에서 넘어온 message " + parseCookies().message)
+        //                     console.log("서버에서 넘어온 token " + parseCookies().accessToken)
+        //                     console.log("token decoding 내용 " + jwtDecode<any>(parseCookies().accessToken).username)
+        //                     router.push(`${PG.REPORT}/dashboard`)
+        //                     router.refresh()
+        //                 })
+        //                 .catch((err: any) => {
+        //                     console.log("fetchLoginAdmin error : " + JSON.stringify(err))
+        //                     alert("Wrong password. 시도하세요")
+        //                 })
+        //         } else {
+        //             console.log("fetchExistAdmin page false : " + JSON.stringify(resp))
+        //             setMsg('* 회원가입을 진행해주세요.')
+        //         }
+        //     })
+        //     .catch((err: any) => {
+        //         console.log("fetchExistAdmin error : " + err)
+        //     })
 
         if (formRef.current) {
             formRef.current.value = "";
@@ -96,7 +128,7 @@ const Login: NextPage = () => {
 
     return (
         <div className="flex justify-center content-center w-screen items-center h-screen ">
-            <div className=" flex rounded-lg shadow-lg border w-[70%] h-[80%] ">
+            <div className=" flex rounded-lg shadow-lg border w-[70%] h-[85%] ">
                 {/* <div
                     className="hidden md:block lg:w-1/2 bg-cover bg-indigo-950"
                     style={{
@@ -117,10 +149,10 @@ const Login: NextPage = () => {
                         {len === false ?
                             admininfo.username?.length === 0 || admininfo.username === undefined ? <pre></pre> :
                                 (isWrongId === 'true' ?
-                                    (<pre><h6 className='text-red-500'>* Wrong username form.</h6></pre>) :
-                                    (<pre><h6 className='text-green-500'>* good username form.</h6></pre>)
+                                    (<pre><h6 className='text-red-500 text-sm'>* Wrong username form.</h6></pre>) :
+                                    (<pre><h6 className='text-green-500 text-sm'>* good username form.</h6></pre>)
                                 )
-                            : <pre><h6 className='text-red-500'>{msg}</h6></pre>}
+                            : <pre><h6 className='text-red-500 text-sm'>{msg}</h6></pre>}
 
                     </div>
                     <div className="mt-4 flex flex-col justify-between">
@@ -138,9 +170,9 @@ const Login: NextPage = () => {
                             admininfo.password?.length === 0 || admininfo.password === undefined ? <pre></pre> :
                                 (isWrongPw === 'true' ?
                                     admininfo.password.length > 15 ?
-                                        (<pre><h6 className='text-orange-500'>* password가 15자를 넘었습니다..</h6></pre>) :
-                                        (<pre><h6 className='text-red-500'>* Wrong password form.<br />영어 소문자, 대문자, #?!@$ %^&*- 포함<br />6자이상 </h6></pre>) :
-                                    (<pre><h6 className='text-green-500'>* good password form.</h6></pre>)
+                                        (<pre><h6 className='text-orange-500 text-sm'>* password가 15자를 넘었습니다..</h6></pre>) :
+                                        (<pre><h6 className='text-red-500 text-sm'>* Wrong password form.<br />영어 소문자, 대문자, #?!@$ %^&*- 포함<br />6자이상 </h6></pre>) :
+                                    (<pre><h6 className='text-green-500 text-sm'>* good password form.</h6></pre>)
                                 )
                             : <pre></pre>}
 

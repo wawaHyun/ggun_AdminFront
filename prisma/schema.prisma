@@ -9,44 +9,79 @@ datasource db {
 }
 
 model users {
-  username              String?
-  password              String?
-  name                  String?
-  phone                 String?
-  address               String?
-  age                   String?
-  asset                 String?
-  email                 String?
-  investment_propensity String?
-  mbti                  String?
-  mod_date              String?
-  reg_date              String?
   id                    Int     @id @default(autoincrement())
-  token                 String?
+  username              String  @db.VarChar(100)
+  password              String  @db.VarChar(100)
+  name                  String? @db.VarChar(100)
+  age                   String? @db.VarChar(50)
+  sex                   String? @db.VarChar(30)
+  email                 String? @db.VarChar(200)
+  address               String? @db.VarChar(200)
+  phone                 String? @db.VarChar(50)
+  asset                 Int?
+  color                 String? @db.VarChar(50)
+  investment_propensity String? @db.VarChar(50)
+  mod_date              String? @db.VarChar(50)
+  reg_date              String? @db.VarChar(50)
+  role                  String? @db.VarChar(30)
 }
 
 model boards {
-  title       String?
+  id          Int        @id @default(autoincrement())
+  title       String     @db.VarChar(255)
   description String?
-  mod_date    String?
-  reg_date    String?
-  id          Int     @id @default(autoincrement())
+  mod_date    String?    @db.VarChar(30)
+  reg_date    String?    @db.VarChar(30)
+  articles    articles[]
 }
 
 model articles {
-  title    String?
-  content  String?
-  mod_date String?
-  reg_date String?
-  board    Int?
-  writer   String?
-  id       Int     @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
+  title     String  @db.VarChar(255)
+  content   String?
+  writer_id Int?
+  board_id  Int?
+  mod_date  String? @db.VarChar(30)
+  reg_date  String? @db.VarChar(30)
+  boards    boards? @relation(fields: [board_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-model npsStat {
-  id        Int     @id @default(autoincrement())
-  stock     String?
-  valuation String?
-  perAsset  String?
-  perAll    String?
+model admins {
+  id         Int     @id @default(autoincrement())
+  username   String  @db.VarChar(255)
+  password   String  @db.VarChar(255)
+  enp_name   String? @db.VarChar(50)
+  enp_num    String? @db.VarChar(10)
+  department String? @db.VarChar(255)
+  position   String? @db.VarChar(100)
+  job        String? @db.VarChar(255)
+  enp_email  String? @db.VarChar(255)
+  phone      String? @db.VarChar(20)
+  role       String? @db.VarChar(10)
+  mod_date   String? @db.VarChar(30)
+  reg_date   String? @db.VarChar(30)
+  token      String? @db.VarChar
+}
+
+model transactions {
+  id             Int     @id @default(autoincrement())
+  username       String  @db.VarChar(50)
+  buy_stock      String? @db.VarChar(50)
+  buy_quantity   String? @db.VarChar(50)
+  buy_total      String? @db.VarChar(50)
+  sell_stock     String? @db.VarChar(50)
+  sell_quantity  String? @db.VarChar(50)
+  sell_total     String? @db.VarChar(50)
+  trade_date     String? @db.VarChar(50)
+  closing_price  String? @db.VarChar(50)
+  net_profit     String? @db.VarChar(50)
+  purchase_fee   String? @db.VarChar(50)
+  selling_fee    String? @db.VarChar(50)
+  purchase_tax   String? @db.VarChar(50)
+  selling_tax    String? @db.VarChar(50)
+  purchase_total String? @db.VarChar(50)
+  selling_total  String? @db.VarChar(50)
+  standard_fee   String? @db.VarChar(50)
+  base_tax       String? @db.VarChar(50)
+  trade_total    String? @db.VarChar(50)
 }

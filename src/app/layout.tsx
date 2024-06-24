@@ -4,12 +4,12 @@ import { Inter } from "next/font/google";
 import { parseCookies, setCookie } from "nookies";
 import "./globals.css";
 import dynamic from "next/dynamic";
-import Sidebar from "@/app/common/module/sidebar";
-import Alarm from "@/app/common/module/alarm";
-import ChatRoom from "./chatting/page";
+import Sidebar from "./component/navigation/sidebar";
+import Alarm from "./component/util/alarm";
 import { Metadata } from "next";
+import ChatRoom from "./(page)/chatting/page";
 
-const ReduxProvider = dynamic(() => import("@/_redux/redux-provider"), {
+const ReduxProvider = dynamic(() => import("./redux/redux-provider"), {
   ssr: false
 });
 
@@ -25,13 +25,13 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
-        <link rel="icon" href="/imgs/qnaicon.png" type="image/<generated>" sizes="<generated" />
+        <link rel="icon" href="/imgs/chart.png" type="image/<generated>" sizes="<generated" border-radius="50%"  />
         <title>최고의 주식거래소:: GGUN</title>
       </head>
       <body className={inter.className}>
         <div className="w-screen h-screen bg-white">
           <ReduxProvider>
-            {parseCookies().accessToken != undefined ?
+            {/* {parseCookies().accessToken != undefined ? */}
               <div>
                 <div className="h-screen hover:w-[300px] top-0 left-0 fixed z-10">
                   <Sidebar />
@@ -40,7 +40,7 @@ export default function RootLayout({
                   <Alarm /> <ChatRoom />
                 </div>
               </div>
-              : <div></div>}
+               {/* : <div></div>} */}
             <div className="justify-center flex">
               {children}
             </div>
