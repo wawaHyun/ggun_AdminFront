@@ -4,7 +4,7 @@ import { IBoard } from "../model/board.model"
 import { allBoards, findSingleBoard, saveBoard, updateBoard } from "../../api/board/route"
 
 
-export const AllBoardsAPI = async () => {
+export const allBoardsAPI = async () => {
     try {
         const response:IBoard[] = await allBoards ()
         console.log("AllBoardsAPI : "+ response)
@@ -15,7 +15,7 @@ export const AllBoardsAPI = async () => {
     }
 }
 
-export const FindSingleBoardAPI = async (id:number) => {
+export const findSingleBoardAPI = async (id:number) => {
     try {
         const response = await findSingleBoard(id)
         console.log("FindSingleBoardAPI : "+ response)
@@ -26,7 +26,7 @@ export const FindSingleBoardAPI = async (id:number) => {
     }
 }
 
-export const UpdateBoardAPI = async (board:IBoard) => {
+export const updateBoardAPI = async (board:IBoard) => {
     try {
         const response:any = await updateBoard(board)
         console.log("UpdateBoardAPI : "+ response)
@@ -37,7 +37,7 @@ export const UpdateBoardAPI = async (board:IBoard) => {
     }
 }
 
-export const SaveBoardAPI = async (board:IBoard) => {
+export const saveBoardAPI = async (board:IBoard) => {
     try {
         const response:any = await saveBoard(board)
         // console.log("SaveBoardAPI : "+ response)

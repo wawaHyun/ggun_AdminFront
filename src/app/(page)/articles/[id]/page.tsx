@@ -1,34 +1,34 @@
 'use client'
 
 import { NextPage } from "next";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllArticles } from "@/app/redux/silce/article.slice";
 import { fetchMyArticleList } from "@/app/redux/service/article.service";
 import { IArticle } from "@/app/redux/model/article.model";
-import { myArticleList } from "@/app/api/article/route";
-import { IpArticle } from "@/app/api/article/model/article.model";
 import Pagination from "@/app/component/navigation/pagination";
+import { IpArticle } from "@/app/api/article/model/article.model";
+import { myArticleList } from "@/app/api/article/route";
 
 const articles: NextPage = ({ params }: any) => {
 
-    const router = useRouter();
-    const dispatch = useDispatch()
-    // const allArticles: IArticle[] = useSelector(getAllArticles)
-    const [allArticles, setAllArticles] = useState<IpArticle[]>();
+    const [allArticles, setAllArticles] = useState<IpArticle[]>([]);
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(10);
+    const offset = (page - 1) * limit;
 
     useEffect(() => {
         //hard
         // const maplist = params.id == 1 ? qnalist : articles;
 
         //prisma
-        myArticleList(1)
-            .then((res: any) => {
-                setAllArticles(res)
+        myArticleList(params.id)
+            .then((res:any) => {
+                setAllArticles(res);
             })
-            .catch((error: any) =>
-                console.log("articles err!!! : " + error))
+            .catch((error: any) => {
+                console.log("articles err!!! : " + error);
+            });
 
         //spring
         // dispatch(fetchMyArticleList(params.id))
@@ -71,7 +71,6 @@ const articles: NextPage = ({ params }: any) => {
     ]
 
     return (
-
         <div className="w-full h-full">
             <div className="fixed z-[1] top-0 left-0 right-0 m-auto bg-pebble-200 text-[32px] rounded-b-lg text-center w-[80%] pb-1">
                 사내 공지사항</div>
@@ -83,31 +82,32 @@ const articles: NextPage = ({ params }: any) => {
                             <th>제목</th>
                             <th>작성자</th>
                             <th>내용</th>
-                            <th>처리상태</th>
+                            <th>borad id</th>
                             <th>작성일</th>
                             <th>처리완료일</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {allArticles?.map((i: any) =>
-                            <tr key={i.id}>
-                                <td>{i.id}</td>
-                                <td>{i.title}</td>
-                                <td>{i.content}</td>
-                                <td>{i.writer_id}</td>
-                                {/* <td>{i.answer}</td> */}
-                                <td>{i.reg_date}</td>
-                                <td>{i.mod_date}</td>
+                        {allArticles.slice(offset, offset + limit).map((v:any,i:any)=>
+                        // {articles.map((v, i) =>
+                            <tr key={v.id}>
+                                <td>{v.id}</td>
+                                <td>{v.title}</td>
+                                <td>{v.writer_id}</td>
+                                <td>{v.content}</td>
+                                <td>{v.board_id}</td>
+                                <td>{v.reg_date}</td>
+                                <td>{v.mod_date}</td>
                             </tr>
                         )}
                     </tbody>
                 </table>
-                <div className="w-full h-[80px]">
-                    <Pagination />
+                <div className="w-full items-center flex justify-center h-[50px]">
+                    <Pagination total={allArticles.length} limit={10} page={page} setPage={setPage} />
                 </div>
             </div>
         </div>
     )
-}
+};
 
-export default articles
+export default articles;

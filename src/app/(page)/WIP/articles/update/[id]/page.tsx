@@ -1,6 +1,6 @@
 'use client'
 
-import { PinkButton } from '../../@/app/component/button/PinkButton';
+import { MoveButton } from '@/app/component/button/MoveButton';
 import { AttachFile, FmdGood, ThumbUpAlt } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
@@ -97,8 +97,8 @@ export default function ArticleUpdate({ params }: any) {
 
         <div className="buttons flex">
           <div className="buttons flex gap-5 justify-center h-[50px]">
-            <PinkButton text="게시글 수정" path={onSubmit} />
-            {/* <PinkButton text="CANCEL" path={() => router.back()} /> */}
+            <MoveButton text="게시글 수정" path={onSubmit} />
+            {/* <MoveButton text="CANCEL" path={() => router.back()} /> */}
           </div>
         </div>
       </div>

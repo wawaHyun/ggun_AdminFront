@@ -6,10 +6,10 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import React from "react";
-import { MoveButton } from "../@/app/component/button/MoveButton";
+import { MoveButton } from "@/app/component/button/MoveButton";
 import { fetchAllAdmins } from '../../../../redux/service/admin.service';
-import { IAdmin } from '../../../../redux/model/admin.model';
-import { getAllAdmins } from '../../@/app/component/admins/service/admin.slice';
+import { IAdmin } from '@/app/redux/model/admin.model';
+import { getAllAdmins } from '@/app/redux/silce/admin.slice';
 
 const AdminList: NextPage = () => {
 
@@ -21,6 +21,15 @@ const AdminList: NextPage = () => {
         dispatch(fetchAllAdmins())
     }, [])
 
+
+    const handleScroll = () => {
+        //window.innerHeight 현재 보고 있는 화면의 길이 
+        //document.documentElement.scrollTop은 현재 화면이 어느 화면의 어느 좌표를 보고있는지를 알려주는 top 좌표 (얼마만큼 스크롤했느냐로 생각하면 된다)
+        //document.documentElement.offsetHeight는 스크롤을 포함한 전체 페이지 길이이다.
+        if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight) {
+            // setIsFetching(true);
+        }
+    }
 
     return (
         <div className="w-full h-full">

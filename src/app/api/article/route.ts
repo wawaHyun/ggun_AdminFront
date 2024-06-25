@@ -9,12 +9,23 @@ export async function allArticleList() {
     return response
 }
 
-export async function myArticleList(board_id: number) {
+
+export async function limitArticleList(offset:number) {
+    const response = await client.articles.findMany({
+            skip: offset,
+            take:20,
+    })
+    return response
+}
+
+
+export async function myArticleList(board_id: string) {
+    const board = parseInt(board_id)
     try{
-        console.log("MyArticleList route : "+ board_id)
+        console.log("MyArticleList route : "+ board)
         const response:IpArticle[] = await client.articles.findMany({
             where: {
-                board_id: board_id
+                board_id: board
             },
         })
         // console.log(JSON.stringify(response))

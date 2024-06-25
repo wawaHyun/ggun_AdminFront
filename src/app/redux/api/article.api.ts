@@ -5,7 +5,7 @@ import { IArticle } from "../model/article.model"
 import { instance } from "../../common/config/axios-config"
 
 
-export const AllArticlesAPI = async () => {
+export const allArticlesAPI = async () => {
     try {
         const response = await instance().get('/articles/list',{})
         // console.log("AllArticlesAPI : "+ response.data)
@@ -16,7 +16,7 @@ export const AllArticlesAPI = async () => {
     }
 }
 
-export const MyArticleListAPI = async (board:number) => {
+export const myArticleListAPI = async (board:number) => {
     try{                                                        
         const response = await instance().get('/articles/myList',{
             params: {board}
@@ -31,7 +31,7 @@ export const MyArticleListAPI = async (board:number) => {
 
 }
 
-export const DeleteArticleAPI = async (id:number) => {
+export const deleteArticleAPI = async (id:number) => {
     try {
         const response:any = await instance().delete('/articles/delete',{
             params: {id}
@@ -44,7 +44,7 @@ export const DeleteArticleAPI = async (id:number) => {
     }
 }
 
-export const FindSingleArticleAPI = async (id:number) => {
+export const findSingleArticleAPI = async (id:number) => {
     try {
         const response:any = await instance().get('/articles/detail',{
             params: {id}
@@ -57,7 +57,7 @@ export const FindSingleArticleAPI = async (id:number) => {
     }
 }
 
-export const SaveArticleAPI = async (article: IArticle) => {
+export const saveArticleAPI = async (article: IArticle) => {
     try {
         const response = await instance().post('/articles/save', article)
 
@@ -69,7 +69,7 @@ export const SaveArticleAPI = async (article: IArticle) => {
     }
 }
 
-export const UpdateAricleAPI = async (article: IArticle) => {
+export const updateAricleAPI = async (article: IArticle) => {
     try {
         const response = await instance().put('/articles/modify', article)
         console.log("UpdateAricleAPI : "+ response.data)

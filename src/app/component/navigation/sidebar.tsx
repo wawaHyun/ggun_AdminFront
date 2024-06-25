@@ -80,10 +80,12 @@ function Sidebar() {
         { id: 2, title: "web news", icon: <ChartIcon />, address: () => router.push(`${PG.WIP}/frontNews`) },
         { id: 3, title: "관리자 권한관리", icon: <ChartIcon />, address: () => router.push(`${PG.WIP}/users/list`) },
         { id: 2, title: "종류별 chart", icon: <ChartIcon />, address: () => router.push(`${PG.WIP}/typeOfChart`) },
+        { id: 2, title: "infinite", icon: <ChartIcon />, address: () => router.push(`${PG.WIP}/articles/infinite`) },
+        { id: 2, title: "paging", icon: <ChartIcon />, address: () => router.push(`${PG.WIP}/articles/base`) },
     ]
 
     return (
-        <div className="">
+        <div className="scroll-auto">
             {isOpen == true ?
                 <div key="1" className="fixed top-0 left-[0px] flex bg-pebble-100 text-white">
                     <div className="w-[270px] h-full ">
