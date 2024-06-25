@@ -14,17 +14,22 @@ const Pagination = ({ total, limit, page, setPage }: any) => {
     return (
         <>
             <div className="flex bg-pebble-200 text-white rounded-full">
-                <button onClick={() => setPage(page - 1)} disabled={page === 1} className="w-[40px] px-2 hover:backdrop-brightness-125 rounded-l-full">
+                <button onClick={() => {setPage(page - 1), setBtnActive(page)}} disabled={page === 1} className="w-[40px] px-2 hover:backdrop-brightness-125 rounded-l-full">
                     <ArrowLeftIcon />
                 </button>
                 {Array.from({ length: numPages }, (v: any, i: any) =>
-                    <div className="flex content-center items-center">
-                        <button value={i} key={i + 1}
-                            className={`i === btnActive ? "active" : "" hover:backdrop-brightness-125 w-[30px] h-[30px] hover:block`} onClick={(e: any) => handelPageBtn(e, i)}
+                    <div key={i + 1} className="flex content-center items-center">
+                        {btnActive == i ?  
+                            <button value={i} 
+                            className={`backdrop-brightness-125 w-[30px] h-[30px] hover:block`} onClick={(e: any) => handelPageBtn(e, i)}
                             aria-current={page === i + 1 ? "page" : undefined}>{i + 1}</button>
+                            :
+                            <button value={i}
+                            className={`hover:backdrop-brightness-125 w-[30px] h-[30px] hover:block`} onClick={(e: any) => handelPageBtn(e, i)}
+                            aria-current={page === i + 1 ? "page" : undefined}>{i + 1}</button>}
                     </div>
                 )}
-                <button onClick={() => setPage(page + 1)} disabled={page === numPages} className="w-[40px] px-2 hover:bg-pebble-200 rounded-r-full">
+                <button onClick={() => {setPage(page + 1), setBtnActive(page+1)} } disabled={page === numPages} className="w-[40px] px-2 hover:bg-pebble-200 rounded-r-full">
                     <ArrowRightIcon /></button>
             </div >
         </>

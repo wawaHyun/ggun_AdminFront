@@ -4,19 +4,25 @@ import { allArticleList, limitArticleList } from "@/app/api/article/route";
 import { forwardRef, useEffect, useRef, useState } from "react";
 
 const InfiniteArticles3 = () => {
-    // const targetRef = useRef(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [allArticles, setAllArticles] = useState<IpArticle[]>([]);
 
-    let offset = 20
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    const [allArticles, setAllArticles] = useState<IpArticle[]>([]);
+    const [page, setPage] = useState(1);
+    const [total, setTotal] = useState(1);
+    const [limit, setLimit] = useState(10);
+    let offset = (page - 1) * limit
+    const numPages = Math.ceil(total / limit);
 
     useEffect(() => {
-        // let offset = 0 + moreList
-        limitArticleList(0)
-            .then((res: IpArticle[]) => {
-                setAllArticles(res)
-            console.log("30개 불러옴")})
-            .catch((error: any) => console.error(error));
+        allArticleList()
+            .then((res:any) => {
+                setAllArticles(res);
+                setTotal(res.length);
+            })
+            .catch((error: any) => {
+                console.log("articles err!!! : " + error);
+            });
     }, []);
 
     const getMoreItem = async () => {
@@ -28,7 +34,6 @@ const InfiniteArticles3 = () => {
             // setAllArticles((prevLists) => [...prevLists, ...res]);
             setAllArticles(res)
             console.log("333 : "+ allArticles);
-    
             if( offset < 86) offset += 20;
         } catch (error: any) {
             console.error(error);
@@ -53,10 +58,10 @@ const InfiniteArticles3 = () => {
 
         if (IS_BBOTTOM > page) {
             console.log("IS_BOTTOM : "+ IS_BBOTTOM2);
+            console.log("IS_BBOTTOM"+ IS_BBOTTOM);
             console.log("WINDOW_HEIGHT"+WINDOW_HEIGHT);
             console.log("SCROLLED_HEIGHT"+SCROLLED_HEIGHT);
             console.log("DOC_TOTAL_HEIGHT"+DOC_TOTAL_HEIGHT);
-            console.log("IS_BBOTTOM"+IS_BBOTTOM);
             // getMoreItem();
             page++
         }
@@ -79,18 +84,19 @@ const InfiniteArticles3 = () => {
                             <th>처리완료일</th>
                         </tr>
                     </thead>
-                    <tbody >
-                        {allArticles.map((v,i) => (
-                            <tr key={`${v.id}-${i}`} >
+                    <tbody>
+                        {allArticles.slice(offset, offset + limit).map((v:any,i:any)=>
+                        // {articles.map((v, i) =>
+                            <tr key={v.id}>
                                 <td>{v.id}</td>
                                 <td>{v.title}</td>
                                 <td>{v.writer_id}</td>
                                 <td>{v.content}</td>
+                                <td>{v.board_id}</td>
                                 <td>{v.reg_date}</td>
                                 <td>{v.mod_date}</td>
                             </tr>
-                        ))}
-
+                        )}
                     </tbody>
                 </table>
                 <div className="w-full h-[80px]">
