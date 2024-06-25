@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 import Sidebar from "./component/navigation/sidebar";
 import Alarm from "./component/util/alarm";
 import { Metadata } from "next";
-import ChatRoom from "./(page)/chatting/page";
+import ChatRoom from "./(page)/chatting/chatroom/page";
 
 const ReduxProvider = dynamic(() => import("./redux/redux-provider"), {
   ssr: false
@@ -31,7 +31,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="w-screen h-screen bg-white">
           <ReduxProvider>
-            {/* {parseCookies().accessToken != undefined ? */}
+            {parseCookies().accessToken != undefined ?
               <div>
                 <div className="h-screen hover:w-[300px] top-0 left-0 fixed z-10">
                   <Sidebar />
@@ -40,7 +40,7 @@ export default function RootLayout({
                   <Alarm /> <ChatRoom />
                 </div>
               </div>
-               {/* : <div></div>} */}
+               : <div></div>} 
             <div className="justify-center flex">
               {children}
             </div>

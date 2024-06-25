@@ -1,13 +1,13 @@
 'use client'
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { CallIcon, ChartIcon, HomeIcon, ListIcon, MailIcon, NewsIcon, TallbarIcon } from  "../../../../public/icons/icons";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { destroyCookie, parseCookies } from "nookies";
 import { jwtDecode } from "jwt-decode";
-import { fetchLogoutAdmin, fetchSingleAdmin } from "../../redux/service/admin.service";
+import { fetchFindAdminById, fetchLogoutAdmin } from "../../redux/service/admin.service";
 import TimeNow from "../util/timeNow";
 import { PG } from "../../common/enums/PG";
 
@@ -17,18 +17,18 @@ function Sidebar() {
     const router = useRouter()
     const [show, setShow] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
-    let token = "";
+    const token = useRef("");
 
     useEffect(() => {
-        // const cookies = parseCookies();
-        // if (cookies.accessToken) {
-        //     token = cookies.accessToken;
-        //     dispatch(fetchSingleAdmin(jwtDecode<any>(token).adminId));
-        // } else {
-        //     console.log('쿠키가 없어서 로그인 페이지로 이동');
-        //     router.push('/');
-        // }
-    }, []);
+        const cookies = parseCookies();
+        if (cookies.accessToken) {
+            token.current = cookies.accessToken;
+            dispatch(fetchFindAdminById(jwtDecode<any>(token.current).adminId));
+        } else {
+            console.log('쿠키가 없어서 로그인 페이지로 이동');
+            router.push('/');
+        }
+    }, [dispatch, router]);
 
 
     const logout = (id: number) => {
@@ -37,7 +37,7 @@ function Sidebar() {
             .then((res: any) => {
                 destroyCookie(null, 'accessToken');
 
-                token = "";
+                token.current = "";
                 location.replace('/');
                 console.log('logout 적용 후' + parseCookies().accessToken);
                 alert("로그아웃 되었습니다. ")

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { allAdminsAPI, deleteAdminAPI, existAdminAPI, joinAdminAPI, loginAdminAPI, logoutAdminAPI, singleAdminAPI } from "../api/admin.api";
+import { allAdminsAPI, deleteAdminAPI, existAdminAPI, findAdminByIdAPI, joinAdminAPI, loginAdminAPI, logoutAdminAPI } from "../api/admin.api";
 import { IAdmin } from "../model/admin.model";
 
 export const fetchAllAdmins: any = createAsyncThunk(
@@ -7,9 +7,9 @@ export const fetchAllAdmins: any = createAsyncThunk(
     async () => await allAdminsAPI()
 )
 
-export const fetchSingleAdmin: any = createAsyncThunk(
-    'admins/fetchSingleAdmin',
-    async (id: number) => await singleAdminAPI(id)
+export const fetchFindAdminById: any = createAsyncThunk(
+    'admins/fetchFindAdminById',
+    async (id: number) => await findAdminByIdAPI(id)
 )
 
 export const fetchDeleteAdmin: any = createAsyncThunk(

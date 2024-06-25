@@ -13,23 +13,12 @@ import { getAllAdmins } from '@/app/redux/silce/admin.slice';
 
 const AdminList: NextPage = () => {
 
-    const router = useRouter();
     const dispatch = useDispatch()
     const alladmins: IAdmin[] = useSelector(getAllAdmins)
 
     useEffect(() => {
         dispatch(fetchAllAdmins())
-    }, [])
-
-
-    const handleScroll = () => {
-        //window.innerHeight 현재 보고 있는 화면의 길이 
-        //document.documentElement.scrollTop은 현재 화면이 어느 화면의 어느 좌표를 보고있는지를 알려주는 top 좌표 (얼마만큼 스크롤했느냐로 생각하면 된다)
-        //document.documentElement.offsetHeight는 스크롤을 포함한 전체 페이지 길이이다.
-        if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight) {
-            // setIsFetching(true);
-        }
-    }
+    }, [dispatch])
 
     return (
         <div className="w-full h-full">

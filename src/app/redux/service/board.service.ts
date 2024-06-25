@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { allBoardsAPI, findSingleBoardAPI, saveBoardAPI, updateBoardAPI } from "../api/board.api";
+import { allBoardsAPI, findBoardByIdAPI, saveBoardAPI, updateBoardAPI } from "../api/board.api";
 import { IBoard } from "../model/board.model";
 
 export const fetchAllBoards: any = createAsyncThunk(
@@ -7,9 +7,9 @@ export const fetchAllBoards: any = createAsyncThunk(
     async () =>  await allBoardsAPI()
 )
 
-export const fetchFindSingleBoard: any = createAsyncThunk(
-    'boards/fetchFindSingleBoard',
-    async (id:number) =>  await findSingleBoardAPI(id)
+export const fetchFindBoardById: any = createAsyncThunk(
+    'boards/fetchFindBoardById',
+    async (id:number) =>  await findBoardByIdAPI(id)
 )
 
 export const fetchUpdateBoard: any = createAsyncThunk(

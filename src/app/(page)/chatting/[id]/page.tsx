@@ -3,6 +3,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { AdminIcon } from "../../../../../public/icons/icons";
+import { getAllChats } from "@/app/redux/silce/chat.slice";
+import { fetchChatById } from "@/app/redux/service/chat.service";
 
 function Chartting({ params }: any) {
 
@@ -27,28 +29,28 @@ function Chartting({ params }: any) {
     ]
 
     const dispatch = useDispatch()
-    // const allArticles: IArticle[] = useSelector(getChat)
 
-    // useEffect(() => {
-    //     const id = parseInt(params.id);
-    //     dispatch(fetchMyArticleList(id))
-    // }, [])
+    const allchatlist = useSelector(getAllChats);
+
+    useEffect(() => {
+        dispatch(fetchChatById(params.id))
+    }, [params.id, dispatch]);
 
 
     return (
         <div className="w-full h-full flex flex-col justify-center ">
             <div className="absolute top-[55px] inset-x-0  m-auto w-[75%]">
                 <div className=" m-auto overflow-y-auto p-2">
-                    {textDemo && textDemo.map((i: any) =>
+                    {allchatlist && allchatlist.map((i: any) =>
                         i.roomid == myid ?
-                            <div key={i.id} className="flex w-full flex justify-end ">
+                            <div key={i.id} className="w-full flex justify-end ">
                                 <div className="mx-2 content-end text-gray-300">{i.time}</div>
                                 <div className="border shadow-md rounded-lg text-pretty flex items-center my-3 max-w-[45%] p-2 bg-white ">
                                     {i.text}
                                 </div>
                             </div>
                             :
-                            <div key={i.id} className="flex w-full flex">
+                            <div key={i.id} className="flex w-full">
                                 <div className="w-[50px] h-[40px]"> <AdminIcon color="#433E49" /></div>
                                 <div className="border shadow-md rounded-lg text-pretty flex items-center my-3 max-w-[45%] p-2 bg-pebble-400">
                                     {i.text}

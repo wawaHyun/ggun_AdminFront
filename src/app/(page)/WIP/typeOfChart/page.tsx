@@ -1,11 +1,11 @@
 'use client'
 
-import BarChart from "@/app/component/jusik/chart/barChart";
-import DoubelBarChart from "@/app/component/jusik/chart/doubelBarChart";
-import DoughnutChart from "@/app/component/jusik/chart/doughnutChart";
-import PolarChart from "@/app/component/jusik/chart/polarChart";
-import RadarChart from "@/app/component/jusik/chart/radarChart";
 import { BaseBox } from "@/app/component/box/boxFormat";
+import BarChart from "@/app/component/chart/barChart";
+import DoubelBarChart from "@/app/component/chart/doubelBarChart";
+import DoughnutChart from "@/app/component/chart/doughnutChart";
+import PolarChart from "@/app/component/chart/polarChart";
+import RadarChart from "@/app/component/chart/radarChart";
 
 function TypeOfChart() {
 

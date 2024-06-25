@@ -16,13 +16,13 @@ export const allArticlesAPI = async () => {
     }
 }
 
-export const myArticleListAPI = async (board:number) => {
+export const myArticleListAPI = async (id:number) => {
+    // const board = parseInt(board_id)
     try{                                                        
         const response = await instance().get('/articles/myList',{
-            params: {board}
+            params: {id}
         })
-         console.log("MyArticleListAPI 11 : "+ response)
-         console.log("MyArticleListAPI 22 : "+ response.data)
+         console.log("MyArticleListAPI : "+ response.data)
         return response.data
     }catch(error:any){
         console.log(error)
@@ -44,15 +44,15 @@ export const deleteArticleAPI = async (id:number) => {
     }
 }
 
-export const findSingleArticleAPI = async (id:number) => {
+export const findArticleByIdAPI = async (id:number) => {
     try {
         const response:any = await instance().get('/articles/detail',{
             params: {id}
         })
-        console.log("FindSingleArticleAPI : "+ response.data)
+        console.log("findArticleByIdAPI : "+ response.data)
         return response.data
     } catch (error) {
-        console.log("FindSingleArticleAPI EERR!!!"+ error)
+        console.log("findArticleByIdAPI EERR!!!"+ error)
         return error
     }
 }
@@ -60,7 +60,6 @@ export const findSingleArticleAPI = async (id:number) => {
 export const saveArticleAPI = async (article: IArticle) => {
     try {
         const response = await instance().post('/articles/save', article)
-
         console.log("SaveArticleAPI : "+ response.data)
         return response.data
     } catch (error) {

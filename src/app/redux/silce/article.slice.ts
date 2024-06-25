@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchAllArticles, fetchDeleteArticle, fetchFindSingleArticle, fetchMyArticleList, fetchSaveArticle, fetchUpdateAricle } from '../service/article.service';
+import { fetchAllArticles, fetchDeleteArticle, fetchFindArticleById, fetchMyArticleList, fetchSaveArticle, fetchUpdateAricle } from '../service/article.service';
 import { IArticle } from "../model/article.model";
 
 const status = {
@@ -32,7 +32,7 @@ export const articleSlice = createSlice({
             .addCase(fetchAllArticles.fulfilled, (state: any, { payload }: any) => { state.array = payload })
             .addCase(fetchMyArticleList.fulfilled, (state: any, { payload }: any) => { state.array = payload })
             .addCase(fetchDeleteArticle.fulfilled, (state: any, { payload }: any) => { state.json = payload })
-            .addCase(fetchFindSingleArticle.fulfilled, (state: any, { payload }: any) => { state.json = payload })
+            .addCase(fetchFindArticleById.fulfilled, (state: any, { payload }: any) => { state.json = payload })
             .addCase(fetchSaveArticle.fulfilled, (state: any, { payload }: any) => { state.json = payload })
             .addCase(fetchUpdateAricle.fulfilled, (state: any, { payload }: any) => { state.json = payload }) 
     }

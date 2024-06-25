@@ -31,26 +31,24 @@ export default function SandMail() {
     alert(JSON.stringify(data) + " Save! ")
 
     //prisma
-    saveArticle(data)
-       .then((res: any) => {
-        console.log("res : " + JSON.stringify(res) + ", data: " + JSON.stringify(data) + ", data.board: " + data.board)
-        alert("SaveArticle: " + JSON.stringify(SaveArticle))
-        router.push(`/articles/${data.board}`)
-      })
-      .catch((error: any) => {
-        console.log('article page onSubmit error : {}', error)
-      })
-
-    //spring
-    // dispatch(fetchSaveArticle(data))
-    //   .then((res: any) => {
-    //     alert("res : " + JSON.stringify(res) + ", data: " + JSON.stringify(data) + ", data.board: " + data.board)
+    // saveArticle(data)
+    //    .then((res: any) => {
+    //     console.log("res : " + JSON.stringify(res) + ", data: " + JSON.stringify(data) + ", data.board: " + data.board)
     //     alert("SaveArticle: " + JSON.stringify(SaveArticle))
-    //     router.push(`${PG.ARTICLE}/list/${data.board}`)
     //   })
     //   .catch((error: any) => {
     //     console.log('article page onSubmit error : {}', error)
     //   })
+
+    //spring
+    dispatch(fetchSaveArticle(data))
+      .then((res: any) => {
+        console.log("res : " + JSON.stringify(res) + ", data: " + JSON.stringify(data) + ", data.board: " + data.board)
+        alert("SaveArticle: " + JSON.stringify(SaveArticle))
+      })
+      .catch((error: any) => {
+        console.log('article page onSubmit error : {}', error)
+      })
     }
 
     return (

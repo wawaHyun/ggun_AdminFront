@@ -9,15 +9,15 @@ export const allAdminsAPI = async () => {
     return response.data
 }
 
-export const singleAdminAPI = async (id: number) => {
+export const findAdminByIdAPI = async (id: number) => {
     try {
         const response = await instance().get('/admins/detail', {
             params: { id }
         })
-        console.log("SingleAdminAPI : " + response.data)
+        console.log("findAdminByIdAPI : " + response.data)
         return response.data
     } catch (error) {
-        console.log("SingleAdminAPI EERR!!!" + error)
+        console.log("findAdminByIdAPI EERR!!!" + error)
         return error
     }
 }

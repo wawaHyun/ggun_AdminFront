@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { fetchAllAdmins, fetchExistAdmin, fetchJoinAdmin, fetchLoginAdmin, fetchLogoutAdmin, fetchSingleAdmin } from "../service/admin.service"
+import { fetchAllAdmins, fetchExistAdmin, fetchFindAdminById, fetchJoinAdmin, fetchLoginAdmin, fetchLogoutAdmin } from "../service/admin.service"
 import { IAdmin } from "../model/admin.model"
 
 const status = {
@@ -27,7 +27,7 @@ export const userSlice = createSlice({
         const { pending, rejected } = status;
         builder
             .addCase(fetchAllAdmins.fulfilled, (state: any, { payload }: any) => { state.array = payload })
-            .addCase(fetchSingleAdmin.fulfilled, (state: any, { payload }: any) => { state.json = payload })
+            .addCase(fetchFindAdminById.fulfilled, (state: any, { payload }: any) => { state.json = payload })
             .addCase(fetchExistAdmin.fulfilled, (state: any, { payload }: any) => { state.text = payload })
             .addCase(fetchLoginAdmin.fulfilled, (state: any, { payload }: any) => { state.json = payload })
             .addCase(fetchLogoutAdmin.fulfilled, (state: any, { payload }: any) => { state.json = payload })
