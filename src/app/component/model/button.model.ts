@@ -1,4 +1,5 @@
 interface IButton {
     text: string,
-    path: any
+    path: any,
+    color?:string,
 }

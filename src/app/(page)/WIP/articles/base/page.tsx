@@ -1,43 +1,71 @@
 'use client'
 
-import { myArticleList } from "@/app/api/article/route";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IpArticle } from "@/app/api/article/model/article.model";
 import Pagination from "@/app/component/navigation/pagination";
+import { allArticleList } from "@/app/api/article/route";
+import Loader from "@/app/component/box/loader";
+import InfiniteArticles3 from "../infinite3/page";
 
 const PageArticles = () => {
 
     const [allArticles, setAllArticles] = useState<IpArticle[]>([]);
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(10);
-    const offset = (page-1) * limit;
+    const offset = (page - 1) * limit;
 
-    const allList = async () =>{
-        myArticleList("1")
-        .then((res: any) => {
-            setAllArticles(res);
-        })
-        .catch((error: any) => {
-            console.log("articles err!!! : " + error);
-        });
+    useEffect(() => {
+        allArticleList()
+            .then((res: any) =>
+                setAllArticles(res)
+            )
+            .catch((error: any) => {
+                console.log("articles err!!! : " + error);
+            });
+    }, [])
+
+    const allList = async () => {
+        allartiList()
+            .then((res: any) => {
+                setAllArticles(res);
+            })
+            .catch((error: any) => {
+                console.log("articles err!!! : " + error);
+            });
     }
 
-    
+
+    const allartiList = async () => {
+        const res: any = await fetch(`http://localhost:3001/board`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'API-Key': '',
+            },
+            body: '',
+        })
+        const data = await res.json()
+        console.log("allartiList : " + data)
+        return Response.json(data)
+    }
+
+
     return (
         <div>
-            <button onClick={()=>allList()}>클릿쓰</button>
-            <div>
-                {/* {allArticles.map((v, i)=> */}
-                {allArticles.slice(offset, offset + limit).map((v:any,i:any)=>
-                <div className="flex gap-3" key={v.id}>
-                    <div>{v.id}</div>
-                    <div>{v.title}</div>
-                    <div>{v.content}</div>
-                </div>
+            <div>ddd
+                {/* {allArticles.map((v:any) =>  */}
+                {allArticles.slice(offset, offset + limit).map((v: any, i: any) =>
+                    <div className="flex gap-10 m-8 border" key={v.id}>
+                        <div>{v.id}</div>
+                        <div>{v.title}</div>
+                        <div>{v.content}</div>
+                        <div></div>
+                    </div>
                 )}
             </div>
             <div className="w-full h-20">
-                <Pagination total={allArticles.length} limit={10} page={page} setPage={setPage} />
+                {/* <Pagination total={allArticles.length} limit={10} page={page} setPage={setPage} /> */}
+                <InfiniteArticles3 total={allArticles.length} limit={10} page={page} setPage={setPage} />
             </div>
         </div>
     )

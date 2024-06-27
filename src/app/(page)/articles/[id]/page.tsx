@@ -8,7 +8,6 @@ import { fetchMyArticleList } from "@/app/redux/service/article.service";
 import { IArticle } from "@/app/redux/model/article.model";
 import Pagination from "@/app/component/navigation/pagination";
 import { IpArticle } from "@/app/api/article/model/article.model";
-import { myArticleList } from "@/app/api/article/route";
 
 const Articles: NextPage = ({ params }: any) => {
 

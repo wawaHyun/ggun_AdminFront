@@ -7,7 +7,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { PG } from "./common/enums/PG";
 import { GrayButton, MoveButton } from "./component/button/MoveButton";
-import SandMail from "./(page)/articles/sendMail/page";
+import SandMail from "./(page)/sendMail/page";
 import { XIcon } from "../../public/icons/icons";
 import { IAdmin } from "./redux/model/admin.model";
 import { fetchExistAdmin, fetchLoginAdmin } from "./redux/service/admin.service";
@@ -127,7 +127,7 @@ const Login: NextPage = () => {
     }
 
     return (
-        <div className="flex justify-center content-center w-screen items-center h-screen ">
+        <main className="flex justify-center content-center w-screen items-center h-screen ">
             <div className=" flex rounded-lg shadow-lg border w-[70%] h-[85%] ">
                 {/* <div
                     className="hidden md:block lg:w-1/2 bg-cover bg-indigo-950"
@@ -208,7 +208,7 @@ const Login: NextPage = () => {
                 </div>
             </div>
 
-        </div>
+        </main>
     )
 }
 

@@ -1,7 +1,6 @@
 'use server'
 
 import { IBoard } from "../model/board.model"
-import { allBoards, findSingleBoard, saveBoard, updateBoard } from "../../api/board/route"
 import { instance } from "@/app/common/config/axios-config"
 
 
@@ -17,14 +16,14 @@ export const allBoardsAPI = async () => {
 }
 
 export const findBoardByIdAPI = async (id:number) => {
-    try {
-        const response = await findSingleBoard(id)
-        console.log("findBoardByIdAPI : "+ response)
-        return response
-    } catch (error) {
-        console.log("findBoardByIdAPI EERR!!!"+ error)
-        return error
-    }
+    // try {
+    //     const response = await findSingleBoard(id)
+    //     console.log("findBoardByIdAPI : "+ response)
+    //     return response
+    // } catch (error) {
+    //     console.log("findBoardByIdAPI EERR!!!"+ error)
+    //     return error
+    // }
 }
 
 export const updateBoardAPI = async (board:IBoard) => {

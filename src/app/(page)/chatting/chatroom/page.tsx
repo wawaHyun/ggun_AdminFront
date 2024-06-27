@@ -32,7 +32,7 @@ function ChatRoom() {
     return (
         <div className="w-full h-full">
             <button className="fixed right-3 bottom-3" onClick={() => setIsOpen(!isOpen)}>
-                <Image src="/imgs/chatroom.png" width="50" height="50" alt="채팅빙 목록" />
+                <Image src="/imgs/chatroom.png" width="50" height="50" alt="채팅빙 목록" priority/>
                 <span className="bg-red-500 h-4 w-4 rounded-full text-xs text-white absolute top-0 right-0">{roomlist.length}</span>
             </button>
 

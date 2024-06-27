@@ -2,7 +2,6 @@
 
 import { instance } from "@/app/common/config/axios-config"
 import { IAdmin } from "@/app/redux/model/admin.model"
-// import { instance } from "@/app/common/config/axios-config"
 
 export const allAdminsAPI = async () => {
     const response = await instance().get('/admins/list', {})

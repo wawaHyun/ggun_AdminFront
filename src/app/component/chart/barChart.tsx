@@ -13,12 +13,6 @@ import {
 import { NextPage } from 'next';
 
 import Chart from 'chart.js/auto';
-import { INps } from '../model/nps.model';
-import { getAllNps } from '../service/transaction.slice';
-import { useSelector } from 'react-redux';
-import { fetchTop10Nps } from '../service/transaction.service';
-import { useDispatch } from 'react-redux';
-import { BorderColor } from '@mui/icons-material';
 Chart.register(CategoryScale,
     LinearScale,
     PointElement,

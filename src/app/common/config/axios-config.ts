@@ -8,11 +8,11 @@ setInterceptor(instance)
 return instance
 }
 
-// export  function server() {
-//     const instance = axios.create({ baseURL: process.env.SERVER })
-// setInterceptor(instance)
-// return instance
-// }
+export  function server() {
+    const instance = axios.create({ baseURL: process.env.REACT_APP_SERVER })
+setInterceptor(instance)
+return instance
+}
 
 //dynamic
 export const setInterceptor = (inputInstance:AxiosInstance)=>{

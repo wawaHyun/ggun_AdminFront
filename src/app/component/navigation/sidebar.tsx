@@ -20,14 +20,14 @@ function Sidebar() {
     const token = useRef("");
 
     useEffect(() => {
-        const cookies = parseCookies();
-        if (cookies.accessToken) {
-            token.current = cookies.accessToken;
-            dispatch(fetchFindAdminById(jwtDecode<any>(token.current).adminId));
-        } else {
-            console.log('쿠키가 없어서 로그인 페이지로 이동');
-            router.push('/');
-        }
+        // const cookies = parseCookies();
+        // if (cookies.accessToken) {
+        //     token.current = cookies.accessToken;
+        //     dispatch(fetchFindAdminById(jwtDecode<any>(token.current).adminId));
+        // } else {
+        //     console.log('쿠키가 없어서 로그인 페이지로 이동');
+        //     router.push('/');
+        // }
     }, [dispatch, router]);
 
 
@@ -85,7 +85,7 @@ function Sidebar() {
     ]
 
     return (
-        <div className="scroll-auto">
+        <nav className="scroll-auto">
             {isOpen == true ?
                 <div key="1" className="fixed top-0 left-[0px] flex bg-pebble-100 text-white">
                     <div className="w-[270px] h-full ">
@@ -159,7 +159,7 @@ function Sidebar() {
                 </div>
             }
 
-        </div >
+        </nav >
     )
 }
 

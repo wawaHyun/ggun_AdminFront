@@ -2,52 +2,63 @@
 
 import { IBoard } from "../../redux/model/board.model";
 import client from "../../../../_lib/prisma/db";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export async function allBoards() {
-    const response: IBoard[] = await client.boards.findMany({})
-    return response
-}
-
-export async function findSingleBoard(id: number) {
+export async function GET(req: NextApiRequest, res: NextApiResponse) {
+    console.log("board Get in")
+    if(!req.body.id){
     try {
         const response = await client.boards.findFirst({
-            where: {id: id,},
+            where: {id: req.body.id},
         })
         console.log(JSON.stringify(response))
-        return response
+        return res.status(200).json({ message: 'SUCCESS', body: response })
     } catch (err) {
-        console.log(err)
-    }
-}
-
-export async function updateBoard(data: IBoard) {
-    const { id, title, description } = data
-    console.log(id)
-    const response = await client.boards.update({
-        where: {
-            id: id,
-        },
-        data: {
-            title: title ?? "default title",
-            description: description ?? "default description",  
+        res.status(500).send({ error: 'Failed to board GET one' })
         }
-    })
-    console.log(JSON.stringify("UpdateBoard :" + response))
-    return response
+    } else {
+        try {
+            const response = await client.boards.findMany({})
+            console.log(JSON.stringify(response))
+            return res.status(200).json({ message: 'SUCCESS', body: response })
+        } catch (err) {
+            res.status(500).send({ error: 'Failed to board GET many' })
+            }
+    }
 }
 
-export async function saveBoard(data: IBoard) {
-    const { title, description } = data
-    try {
-        const response = await ({
-            data: {
-                title: title ?? "default title",
-                description: description ?? "default description",  
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
+    if(!req.body.id){
+        try {
+            const { id, title, description } = req.body
+            console.log(id)
+            const response = await client.boards.update({
+                where: {
+                    id: id,
+                },
+                data: {
+                    title: title ?? "default title",
+                    description: description ?? "default description",  
+                }
+            })
+            console.log(JSON.stringify("UpdateBoard :" + response))
+            return res.status(200).json({ message: 'SUCCESS', body: response })
+        } catch (err) {
+            res.status(500).send({ error: 'Failed to board POST save' })
+        }
+        } else {
+            const { title, description } = req.body
+            try {
+                const response = await ({
+                    data: {
+                        title: title ?? "default title",
+                        description: description ?? "default description",  
+                    }
+                })
+                console.log(JSON.stringify("SaveBoard :" + response))
+                return res.status(200).json({ message: 'SUCCESS', body: response })
+            } catch (err) {
+                res.status(500).send({ error: 'Failed to board POST update' })
             }
-        })
-        console.log(JSON.stringify("SaveBoard :" + response))
-        return response
-    } catch (err) {
-        console.log(err)
-    }
+        }
 }

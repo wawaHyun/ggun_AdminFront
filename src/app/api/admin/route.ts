@@ -13,7 +13,7 @@ export async function colsadmin() {
     return response
 }
 
-export async function singleAdmin(id: number) {
+export async function findAdminById(id: number) {
     const response = await client.admins.findFirst({
         where: { id: id },
     })
