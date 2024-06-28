@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import Sidebar from "./component/navigation/sidebar";
 import Alarm from "./component/util/alarm";
 import ChatRoom from "./(page)/chatting/chatroom/page";
+import { parseCookies } from "nookies";
 
 const ReduxProvider = dynamic(() => import("./redux/redux-provider"), {
   ssr: false
@@ -38,7 +39,7 @@ export default function RootLayout({
                   <Alarm /> <ChatRoom />
                 </div>
               </div>
-               {/* : <div></div>}  */}
+               {/* : <div></div>}   */}
             <div className="justify-center flex">
               {children}
             </div>

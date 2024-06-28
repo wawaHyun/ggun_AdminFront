@@ -5,8 +5,6 @@ import DoughnutChart from "@/app/component/chart/doughnutChart";
 import PolarChart from "@/app/component/chart/polarChart";
 import TableDemo from "@/app/component/chart/tableDemo";
 import { BaseBox } from "@/app/component/box/boxFormat";
-import Calendar from "@/app/component/util/calender";
-
 
 export default function ChargingStationSharp() {
     return (
@@ -38,7 +36,7 @@ export default function ChargingStationSharp() {
                     } /></div>
                     <div className=""><BaseBox content={<PolarChart />} /></div>
                     <div className=""><BaseBox content={<DoughnutChart />} /></div>
-                    <div className=""><BaseBox content={<Calendar />} /></div>
+                    <div className=""><BaseBox content={<PolarChart />} /></div>
 
                     <div className="grid col-span-2"><BaseBox content={<BarChart />} /></div>
                     <div className="grid col-span-2"><BaseBox content={<BarChart />} /></div>

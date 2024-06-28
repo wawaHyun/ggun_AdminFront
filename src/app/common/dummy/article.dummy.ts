@@ -1,47 +1,4 @@
-'use client'
-
-import { NextPage } from "next";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllArticles } from "@/app/redux/silce/article.slice";
-import { fetchMyArticleList } from "@/app/redux/service/article.service";
-import { IArticle } from "@/app/redux/model/article.model";
-import Pagination from "@/app/component/navigation/pagination";
-import { IpArticle } from "@/app/api/article/model/article.model";
-
-const Articles: NextPage = ({ params }: any) => {
-
-    const dispatch = useDispatch();
-    const articlesList: IArticle[] = useSelector(getAllArticles);
-
-    const [allArticles, setAllArticles] = useState<IArticle[]>([]);
-    const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(10);
-    const offset = (page - 1) * limit;
-
-    useEffect(() => {
-        //hard
-        // const maplist = params.id == 1 ? qnalist : articles;
-
-        //prisma
-        // myArticleList(params.id)
-        //     .then((res:any) => {
-        //         setAllArticles(res);
-        //     })
-        //     .catch((error: any) => {
-        //         console.log("articles err!!! : " + error);
-        //     });
-
-        //spring
-        dispatch(fetchMyArticleList(params.id))
-            .then((res: any) =>
-               console.log(res)
-            )
-        .catch((error: any) =>
-            console.log("articles err!!! : " + error))
-}, [params.id, dispatch]);
-
-const qnalist = [
+export const qnaDummy = [
     { id: 1, title: "관리자 권한 설정", content: "관리자 권한 설정입니다. 아래 공문 확인하여 자세한 내용 확인 부탁드리며, 관련 문의는", writer: "홍길동", answer: "답변완료", modDate: "24-04-10" },
     { id: 2, title: "로그인 관련 공지", content: "로그인 관련 공지입니다. 아래 공문 확인하여 자세한 내용 확인 부탁드리며, 관련 문의는", writer: "김이박", answer: "답변완료", modDate: "24-04-12" },
     { id: 3, title: "비번 초기화 관련 공지사항", content: "비번 초기화 관련 공지사항입니다. 아래 공문 확인하여 자세한 내용 확인 부탁드리며, 관련 문의는", writer: "박하나", answer: "답변완료", modDate: "24-04-14" },
@@ -56,7 +13,7 @@ const qnalist = [
     { id: 12, title: "24년 6월 발령 공지", content: "24년 6월 발령 공지입니다. 아래 공문 확인하여 자세한 내용 확인 부탁드리며, 관련 문의는", writer: "한영희", answer: "처리중", modDate: "24-06-10" },
 ]
 
-const articles = [
+export const articleDummy = [
     { id: 1, title: "관리자 권한 문의", content: "관리자 권한 설정에 관한 문의...", writer: "홍길동", answer: "답변완료", modDate: "24-04-10" },
     { id: 2, title: "로그인이 안돼요", content: "어제는 됐는데 오늘하려고 하니까...", writer: "김이박", answer: "답변완료", modDate: "24-04-12" },
     { id: 3, title: "비번 초기화", content: "비밀번호 초기화 문의 드립니...", writer: "박하나", answer: "답변완료", modDate: "24-04-14" },
@@ -70,45 +27,3 @@ const articles = [
     { id: 11, title: "비번 바꿔주세요", content: "비번 너무 많이 틀려서 로그인이 안됩니다..", writer: "엄나라", answer: "처리중", modDate: "24-06-05" },
     { id: 12, title: "자택 근무자 접속 안돼요", content: "방화벽 낮춰도 접속 막혀져 있는데 어떻게 해야 하나요?", writer: "한영희", answer: "처리중", modDate: "24-06-10" },
 ]
-
-return (
-    <div className="w-full h-full">
-        <div className="fixed z-[1] top-0 left-0 right-0 m-auto bg-pebble-200 text-[32px] rounded-b-lg text-center w-[80%] pb-1">
-            사내 공지사항</div>
-        <div className="absolute top-[43px] left-0 right-0 m-auto w-[80%] bg-white">
-            <table className="sticky z-[0] p-4">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>제목</th>
-                        <th>작성자</th>
-                        <th>내용</th>
-                        <th>borad id</th>
-                        <th>작성일</th>
-                        <th>처리완료일</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* {allArticles.slice(offset, offset + limit).map((v: any, i: any) => */}
-                      {articlesList.map((v:any, i:any) =>
-                        <tr key={v.id}>
-                            <td>{v.id}</td>
-                            <td>{v.title}</td>
-                            <td>{v.writer_id}</td>
-                            <td>{v.content}</td>
-                            <td>{v.board_id}</td>
-                            <td>{v.regDate}</td>
-                            <td>{v.modDate}</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
-            <div className="w-full items-center flex justify-center h-[50px]">
-                <Pagination total={allArticles.length} limit={10} page={page} setPage={setPage} />
-            </div>
-        </div>
-    </div>
-)
-};
-
-export default Articles;

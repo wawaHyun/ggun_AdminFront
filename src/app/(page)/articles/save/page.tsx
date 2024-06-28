@@ -1,7 +1,8 @@
 'use client'
 
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { getSingleArticle } from '@/app/redux/silce/article.slice';
 import { AttachFile, FmdGood, ThumbUpAlt } from '@mui/icons-material';
@@ -9,10 +10,9 @@ import { MoveButton } from '@/app/component/button/MoveButton';
 import { useState } from 'react';
 import { findArticleById } from '@/app/api/article/route';
 
-export default function SandMail() {
+function ArticleSave() {
 
   const router = useRouter();
-  const pathName = usePathname();
 
   const { register, handleSubmit, formState: { errors }, } = useForm<any>({
     // defaultValues: {
@@ -67,10 +67,10 @@ export default function SandMail() {
   }
 
   return (
-
-    <div className='flex justify-center w-[100%]'>
+    <div className='flex justify-center w-full h-full'>
+    <div className='w-[40%]'>
       <form className="w-[100%]" onSubmit={handleSubmit(onSubmit)}>
-        <div className="text-center text-[20px] my-3">관리자 이메일 문의 <br /><br /> <hr /></div>
+        <div className="text-center text-[20px] my-3">게시글 작성하기<br /><br /> <hr /></div>
 
         <div className='flex gap-2 pb-2'>
           <input className="" placeholder='사원번호'
@@ -79,9 +79,6 @@ export default function SandMail() {
             type="text" {...register('enpName', { required: true, maxLength: 30 })} />
         </div>
         <div className='space-y-2'>
-          <input className="" placeholder='회신받을 이메일'
-            type="eamil" {...register('email', { required: true, maxLength: 100 })} />
-
           <input className="" placeholder="Title"
             type="text" {...register('title', { required: true, maxLength: 30 })} />
 
@@ -98,9 +95,13 @@ export default function SandMail() {
           <div className="count ml-auto text-gray-400 text-xs font-semibold">0/300</div>
         </div>
         <div className="buttons flex gap-5 justify-center h-[50px]">
-          <MoveButton text="메일보내기" path={onSubmit} />
+          <MoveButton text="작성완료" path={onSubmit} />
+          <MoveButton text="취소" path={()=>router.back()} />
         </div>
       </form >
     </div>
+    </div>
   );
-}
+};
+
+export default ArticleSave;

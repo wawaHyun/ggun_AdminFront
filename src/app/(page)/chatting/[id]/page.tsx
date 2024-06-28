@@ -32,16 +32,16 @@ function Chartting({ params }: any) {
 
     const allchatlist = useSelector(getAllChats);
 
-    useEffect(() => {
-        dispatch(fetchChatById(params.id))
-    }, [params.id, dispatch]);
+    // useEffect(() => {
+    //     dispatch(fetchChatById(params.id))
+    // }, [params.id, dispatch]);
 
 
     return (
         <div className="w-full h-full flex flex-col justify-center ">
             <div className="absolute top-[55px] inset-x-0  m-auto w-[75%]">
                 <div className=" m-auto overflow-y-auto p-2">
-                    {allchatlist && allchatlist.map((i: any) =>
+                    {textDemo.map((i: any) =>
                         i.roomid == myid ?
                             <div key={i.id} className="w-full flex justify-end ">
                                 <div className="mx-2 content-end text-gray-300">{i.time}</div>
@@ -61,7 +61,7 @@ function Chartting({ params }: any) {
                 </div>
                 <div className="fixed inset-x-0 top-0 w-[80%] m-auto bold bg-pebble-200 text-center h-[50px] text-white content-center text-[27px] rounded-b-lg">{params.id}님과의 대화</div>
                 <div className="relative h-[50px] bottom-0 inset-x-0 m-auto w-full">
-                    <input type="text" placeholder="enter the text" className="fixed bottom-0 w-[75%] border shadow-lg rounded-lg min-h-[50px] px-5" />
+                    <input type="text" placeholder="enter the text" className="fixed bottom-2 w-[75%] h-[50px]" />
                 </div>
             </div>
         </div>

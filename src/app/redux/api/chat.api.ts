@@ -6,7 +6,7 @@ import { IChat } from "../model/chat.model"
 
 export const allChatsAPI = async () => {
     try {
-        const response:IChat[] = await instance().get('/chats/list', {})
+        const response:IChat[] = await instance().get('/alarms/list', {})
         return response;
     } catch (error) {
         console.log("allChatsAPI EERR!!!"+ error)
@@ -16,7 +16,7 @@ export const allChatsAPI = async () => {
 
 export const findChartByIdAPI = async (id:number) => {
     try {
-        const response:any = await instance().get('/chats/recieve/${roomId}',{
+        const response:any = await instance().get('/alarms/recieve/${roomId}',{
             params: {id}
         })
         console.log("findChartByIdAPI : "+ response.data)
@@ -29,7 +29,7 @@ export const findChartByIdAPI = async (id:number) => {
 
 export const sendChatAPI = async (chat: IChat) => {
     try {
-        const response = await instance().post('/chats/send', chat)
+        const response = await instance().post('/alarms/send', chat)
         console.log("sendChatAPI : "+ response.data)
         return response.data
     } catch (error) {

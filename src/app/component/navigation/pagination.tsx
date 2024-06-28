@@ -29,7 +29,7 @@ const Pagination = ({ total, limit, page, setPage }: any) => {
                             aria-current={page === i + 1 ? "page" : undefined}>{i + 1}</button>}
                     </div>
                 )}
-                <button onClick={() => {setPage(page + 1), setBtnActive(page+1)} } disabled={page === numPages} className="w-[40px] px-2 hover:bg-pebble-200 rounded-r-full">
+                <button onClick={() => {setPage(page + 1), setBtnActive(page+1)} } disabled={page === numPages} className="w-[40px] px-2 hover:backdrop-brightness-125 rounded-r-full">
                     <ArrowRightIcon /></button>
             </div >
         </>

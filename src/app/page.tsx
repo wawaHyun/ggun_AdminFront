@@ -92,26 +92,26 @@ const Login: NextPage = () => {
     //     })
 
 
-        //spring
+        //spring    
         dispatch(fetchExistAdmin(admininfo.username))
             .then((resp: any) => {
                 console.log('login page : ' + JSON.stringify(resp))
                 if (resp.payload == true) {
                     setMsg("* 있는 아이디입니다.")
-                    dispatch(fetchLoginAdmin(admininfo))
-                        .then((resp: any) => {
-                            setCookie({}, 'message', resp.payload.message, { httpOnly: false, path: '/' })
-                            setCookie({}, 'accessToken', resp.payload.accessToken, { httpOnly: false, path: '/' })
-                            console.log("서버에서 넘어온 message " + parseCookies().message)
-                            console.log("서버에서 넘어온 token " + parseCookies().accessToken)
-                            console.log("token decoding 내용 " + jwtDecode<any>(parseCookies().accessToken).username)
-                            router.push(`${PG.REPORT}/dashboard`)
-                            router.refresh()
-                        })
-                        .catch((err: any) => {
-                            console.log("fetchLoginAdmin error : " + JSON.stringify(err))
-                            alert("Wrong password. 시도하세요")
-                        })
+                    // dispatch(fetchLoginAdmin(admininfo))
+                    //     .then((resp: any) => {
+                    //         setCookie({}, 'message', resp.payload.message, { httpOnly: false, path: '/' })
+                    //         setCookie({}, 'accessToken', resp.payload.accessToken, { httpOnly: false, path: '/' })
+                    //         console.log("서버에서 넘어온 message " + parseCookies().message)
+                    //         console.log("서버에서 넘어온 token " + parseCookies().accessToken)
+                    //         console.log("token decoding 내용 " + jwtDecode<any>(parseCookies().accessToken).username)
+                    //         router.push(`${PG.REPORT}/dashboard`)
+                    //         router.refresh()
+                    //     })
+                    //     .catch((err: any) => {
+                    //         console.log("fetchLoginAdmin error : " + JSON.stringify(err))
+                    //         alert("Wrong password. 시도하세요")
+                    //     })
                 } else {
                     console.log("fetchExistAdmin page false : " + JSON.stringify(resp))
                     setMsg('* 회원가입을 진행해주세요.')
