@@ -128,23 +128,14 @@ const Login: NextPage = () => {
 
     return (
         <main className="flex justify-center content-center w-screen items-center h-screen ">
-            <div className=" flex rounded-lg shadow-lg border w-[70%] h-[85%] ">
-                {/* <div
-                    className="hidden md:block lg:w-1/2 bg-cover bg-indigo-950"
-                    style={{
-                        backgroundImage: `url(https://www.tailwindtap.com//assets/components/form/userlogin/login_tailwindtap.jpg)`,
-                    }}></div> */}
-                <div className="w-full p-8 lg:w-1/2">
+            <div className=" flex rounded-lg shadow-lg border min-w-[500px] h-[85%]">
+                <div className="w-full p-8">
                     <p className="text-xl text-gray-600 text-center">관리자 로그인</p>
-
                     <div className="mt-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">
                             ID : ggunAdmin0001
                         </label>
-                        <input
-                            className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:   outline-2 focus:outline-blue-700"
-                            type="text" name="username" onChange={handleAdminname}
-                            required />
+                        <input type="text" name="username" onChange={handleAdminname}required />
 
                         {len === false ?
                             admininfo.username?.length === 0 || admininfo.username === undefined ? <pre></pre> :
@@ -161,10 +152,7 @@ const Login: NextPage = () => {
                                 Password : pO2(eO73)%@
                             </label>
                         </div>
-                        <input
-                            className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
-                            type="password" name="password" onChange={handlePassword} ref={formRef} />
-
+                        <input type="password" name="password" onChange={handlePassword} ref={formRef} />
 
                         {len === false ?
                             admininfo.password?.length === 0 || admininfo.password === undefined ? <pre></pre> :

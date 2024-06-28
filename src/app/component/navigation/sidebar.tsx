@@ -77,11 +77,9 @@ function Sidebar() {
     ]
     const wipSub: ISubmenu[] = [
         { id: 1, title: "demochart", icon: <ChartIcon />, address: () => router.push(`${PG.WIP}/demochart`) },
-        { id: 2, title: "web news", icon: <ChartIcon />, address: () => router.push(`${PG.WIP}/frontNews`) },
         { id: 3, title: "관리자 권한관리", icon: <ChartIcon />, address: () => router.push(`${PG.WIP}/users/list`) },
-        { id: 2, title: "종류별 chart", icon: <ChartIcon />, address: () => router.push(`${PG.WIP}/typeOfChart`) },
-        { id: 2, title: "infinite", icon: <ChartIcon />, address: () => router.push(`${PG.WIP}/articles/infinite`) },
-        { id: 2, title: "paging", icon: <ChartIcon />, address: () => router.push(`${PG.WIP}/articles/base`) },
+        { id: 4, title: "종류별 chart", icon: <ChartIcon />, address: () => router.push(`${PG.WIP}/typeOfChart`) },
+        { id: 5, title: "infinite", icon: <ChartIcon />, address: () => router.push(`${PG.WIP}/articles/infinite`) },
     ]
 
     return (
