@@ -1,7 +1,7 @@
 'use client'
 import { IpArticle } from "@/app/api/article/model/article.model";
 import { allArticleList, limitArticleList } from "@/app/api/article/route";
-import Loader from "@/app/component/box/loader";
+import Loader from "@/app/common/box/loader";
 import { forwardRef, useEffect, useRef, useState } from "react";
 
 const InfiniteArticles2_3 = () => {

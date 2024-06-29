@@ -1,17 +1,17 @@
 'use client'
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { CallIcon, ChartIcon, HomeIcon, ListIcon, MailIcon, NewsIcon, TallbarIcon } from  "../../../../public/icons/icons";
+import { } from "@/app/common/icons/icons";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { destroyCookie, parseCookies } from "nookies";
 import { jwtDecode } from "jwt-decode";
-import { fetchFindAdminById, fetchLogoutAdmin } from "../../redux/service/admin.service";
+import { fetchLogoutAdmin } from "../../redux/service/admin.service";
 import TimeNow from "../util/timeNow";
-import { PG } from "../../common/enums/PG";
 import Link from "next/link";
 import { BoardSub, JusikSub, Menus, WipSub } from "@/app/common/enums/menus";
+import { TallbarIcon } from "@/app/common/icons/sideberIcon";
 
 function Sidebar() {
 

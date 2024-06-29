@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import Image from 'next/image';
 import NewsHeader from "../../component/navigation/newsHeader";
-import Footer from "@/app/component/box/footer";
+import Footer from "@/app/common/box/footer";
 export default function NewsPage() {
 
   const router = useRouter()

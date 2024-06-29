@@ -10,7 +10,7 @@ import Pagination from "@/app/component/navigation/pagination";
 import { IpArticle } from "@/app/api/article/model/article.model";
 import { useRouter } from "next/navigation";
 import { Search } from "@/app/component/search/search";
-import { MoveButton } from "@/app/component/button/MoveButton";
+import { MoveButton } from "@/app/common/button/MoveButton";
 import { qnaDummy } from "@/app/common/dummy/article.dummy";
 
 const Articles: NextPage = ({ params }: any) => {

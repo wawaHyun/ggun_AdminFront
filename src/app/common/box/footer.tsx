@@ -1,4 +1,4 @@
-import { FacebookIcon, InstaIcon, TwitterIcon } from  "../../../../public/icons/icons";
+import { FacebookIcon, InstaIcon, TwitterIcon } from  "../icons/icons";
 
 
 function Footer() {

@@ -1,0 +1,5 @@
+export const TallbarIcon = (color: any) => {
+    return (
+        <svg className="h-12 w-12" style={color} width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">  <path stroke="none" d="M0 0h24v24H0z" />  <line x1="10" y1="5" x2="10" y2="19" />  <line x1="14" y1="5" x2="14" y2="19" /></svg>
+    )
+}

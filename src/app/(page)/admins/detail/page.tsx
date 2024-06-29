@@ -5,8 +5,8 @@ import { NextPage } from "next";
 import { useDispatch, useSelector } from "react-redux";
 import React from "react";
 import { useEffect, useState } from "react";
-import { MoveButton } from "@/app/component/button/MoveButton";
-import { BaseBox } from '@/app/component/box/boxFormat';
+import { MoveButton } from "@/app/common/button/MoveButton";
+import { WhiteBox } from '@/app/common/box/whiteBox';
 
 const AdminDetail = ({ params }: any) => {
 
@@ -53,7 +53,7 @@ const AdminDetail = ({ params }: any) => {
 
     return (
         <div className='w-full h-[150px]'>
-            <div className='pb-10'> <BaseBox content={btn == 0 ? "수정 모드" : "조회 모드"} color="text-center"/></div>
+            <div className='pb-10'> <WhiteBox content={btn == 0 ? "수정 모드" : "조회 모드"} color="text-center"/></div>
             <div className='w-full h-auto flex'>
                 <div className='w-[10%]'>
                     <Image src='/imgs/user.gif' width="100" height="100" alt="adminPic" className='w-full h-auto rounded-lg' />

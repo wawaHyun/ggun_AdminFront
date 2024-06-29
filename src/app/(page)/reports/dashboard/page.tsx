@@ -4,7 +4,7 @@ import BarChart from "@/app/component/chart/barChart";
 import DoughnutChart from "@/app/component/chart/doughnutChart";
 import PolarChart from "@/app/component/chart/polarChart";
 import TableDemo from "@/app/component/chart/tableDemo";
-import { BaseBox } from "@/app/component/box/boxFormat";
+import { WhiteBox } from "@/app/common/box/whiteBox";
 
 export default function ChargingStationSharp() {
     return (
@@ -27,19 +27,19 @@ export default function ChargingStationSharp() {
                         <p>31,567</p>
                         <p>오늘의 매도량</p>
                     </div>
-                    <div className=""><BaseBox content={
+                    <div className=""><WhiteBox content={
                         <div className="w-[100%] flex-col">
                             <p>일별 접속자수 </p>
                                 <TableDemo />
                         </div>
 
                     } /></div>
-                    <div className=""><BaseBox content={<PolarChart />} /></div>
-                    <div className=""><BaseBox content={<DoughnutChart />} /></div>
-                    <div className=""><BaseBox content={<PolarChart />} /></div>
+                    <div className=""><WhiteBox content={<PolarChart />} /></div>
+                    <div className=""><WhiteBox content={<DoughnutChart />} /></div>
+                    <div className=""><WhiteBox content={<PolarChart />} /></div>
 
-                    <div className="grid col-span-2"><BaseBox content={<BarChart />} /></div>
-                    <div className="grid col-span-2"><BaseBox content={<BarChart />} /></div>
+                    <div className="grid col-span-2"><WhiteBox content={<BarChart />} /></div>
+                    <div className="grid col-span-2"><WhiteBox content={<BarChart />} /></div>
                 </div>
             </div>
         </div>

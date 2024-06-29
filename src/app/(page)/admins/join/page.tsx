@@ -5,8 +5,8 @@ import { NextPage } from "next";
 import { useDispatch, useSelector } from "react-redux";
 import React from "react";
 import { useEffect, useState } from "react";
-import { MoveButton } from "@/app/component/button/MoveButton";
-import { BaseBox } from '@/app/component/box/boxFormat';
+import { MoveButton } from "@/app/common/button/MoveButton";
+import { WhiteBox } from '@/app/common/box/whiteBox';
 
 const AdminJoin: NextPage = () => {
 

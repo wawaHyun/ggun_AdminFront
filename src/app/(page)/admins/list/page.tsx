@@ -6,12 +6,12 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import React from "react";
 import { useEffect, useState } from "react";
-import { MoveButton } from "@/app/component/button/MoveButton";
+import { MoveButton } from "@/app/common/button/MoveButton";
 import { fetchAllAdmins } from '../../../redux/service/admin.service';
 import { IAdmin } from '@/app/redux/model/admin.model';
 import { getAllAdmins } from '@/app/redux/silce/admin.slice';
 import Pagination from '@/app/component/navigation/pagination';
-import { BaseBox } from '@/app/component/box/boxFormat';
+import { WhiteBox } from '@/app/common/box/whiteBox';
 import { Search } from '@/app/component/search/search';
 import AdminJoin from '../join/page';
 import AdminDetail from '../detail/page';
@@ -119,7 +119,7 @@ const AdminList: NextPage = () => {
                 </div>
 
                 <div className='w-full P-5 h-[300px]'>
-                    <BaseBox color="" content={
+                    <WhiteBox color="" content={
                         <div className='w-full h-full'>{handleButton(btn)}</div>
                     } />
                 </div>

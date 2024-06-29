@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSingleArticle } from '@/app/redux/silce/article.slice';
 import { AttachFile, FmdGood, ThumbUpAlt } from '@mui/icons-material';
-import { MoveButton } from '@/app/component/button/MoveButton';
+import { MoveButton } from '@/app/common/button/MoveButton';
 import { useState } from 'react';
 import { findArticleById } from '@/app/api/article/route';
 

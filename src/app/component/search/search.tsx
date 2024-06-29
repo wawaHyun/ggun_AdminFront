@@ -1,4 +1,4 @@
-import { QuestionIcon } from "../../../../public/icons/icons";
+import { QuestionIcon } from "@/app/common/icons/icons";
 
 
 export function Search({ text, path, color }: IButton) {

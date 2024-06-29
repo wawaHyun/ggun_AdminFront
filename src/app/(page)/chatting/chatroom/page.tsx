@@ -4,7 +4,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { BaseBox } from "@/app/component/box/boxFormat";
+import { WhiteBox } from "@/app/common/box/whiteBox";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllChats } from "@/app/redux/silce/chat.slice";
 import { fetchAllChats } from "@/app/redux/service/chat.service";
@@ -40,7 +40,7 @@ function ChatRoom() {
                 <div className="absolute bottom-[5%] right-[70px] w-full h-auto border-gray-300 border overflow-auto bg-white shadow-lg rounded-lg p-3">
                         {roomlist.map((i: any) =>
                         <button key={i.id} className="flex-col py-1 w-full text-left" onClick={()=>router.push(`/chatting/${i.senderId}`)}>
-                            <BaseBox color="white hover:bg-pebble-400 flex-col" content={
+                            <WhiteBox color="white hover:bg-pebble-400 flex-col" content={
                                 <div className="">
                                     <div className="flex ">
                                         <div className="text-sm w-2/3 truncate">{i.sender}와의 대화</div>

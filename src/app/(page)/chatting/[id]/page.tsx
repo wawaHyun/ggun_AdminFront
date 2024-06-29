@@ -2,7 +2,7 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { AdminIcon } from "../../../../../public/icons/icons";
+import { AdminIcon } from "../@/app/common/icons/AdminIcon";
 import { getAllChats } from "@/app/redux/silce/chat.slice";
 import { fetchChatById } from "@/app/redux/service/chat.service";
 

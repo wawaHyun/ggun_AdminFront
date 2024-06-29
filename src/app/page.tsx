@@ -6,14 +6,15 @@ import { NextPage } from "next"
 import React from "react";
 import { useDispatch } from "react-redux";
 import { PG } from "./common/enums/PG";
-import { GrayButton, MoveButton } from "./component/button/MoveButton";
-import SandMail from "./(page)/sendMail/page";
-import { XIcon } from "../../public/icons/icons";
+import { GrayButton, MoveButton } from "./common/button/MoveButton";
+import SandMail from "./(page)/sendMail/page";;
 import { IAdmin } from "./redux/model/admin.model";
 import { fetchExistAdmin, fetchLoginAdmin } from "./redux/service/admin.service";
 import { parseCookies, setCookie } from "nookies";
 import { jwtDecode } from "jwt-decode";
 import { existAdmin, loginAdmin } from "./api/admin/route";
+import Link from "next/link";
+import { XIcon } from "./common/icons/icons";
 
 const Login: NextPage = () => {
 
@@ -186,9 +187,7 @@ const Login: NextPage = () => {
                                     <div className="w-full my-3">
                                         <SandMail />
                                     </div>
-                                    <button className="bg-white left-[50%] h-[40px] w-[30px] rounded-lg" onClick={() => setSend(false)}>
-                                        <XIcon color="gray" />
-                                    </button>
+                                    <button className="bg-white left-[50%] h-[40px] w-[30px] rounded-lg" onClick={()=>!send} ><XIcon color="gray" /></button>
                                 </div>
                                 : <div></div>}
                         </div>

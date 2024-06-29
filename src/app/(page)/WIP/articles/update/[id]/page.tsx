@@ -1,6 +1,6 @@
 'use client'
 
-import { MoveButton } from '@/app/component/button/MoveButton';
+import { MoveButton } from '@/app/common/button/MoveButton';
 import { AttachFile, FmdGood, ThumbUpAlt } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
