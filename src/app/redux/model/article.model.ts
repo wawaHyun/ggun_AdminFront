@@ -7,3 +7,4 @@ export declare type IArticle = {
     mod_date? : string,
     reg_date? : string
 }
+}

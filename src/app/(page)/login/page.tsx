@@ -11,7 +11,7 @@ const Login: NextPage = () => {
                 <div className="w-full p-8">
                     <p className="text-xl text-gray-600 text-center">관리자 로그인</p>
                     <div>
-                        <LoginBox2 />
+                        <LoginBox />
                         <SendMail />
                     </div>
                 </div>

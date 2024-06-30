@@ -7,7 +7,7 @@ import { Content } from "next/font/google";
 export async function allArticleList() {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admins/articles/list`)
     const data = await response.json();
-    console.log("allArticleList : ", data)
+    // console.log("allArticleList : ", data)
     return data;
 }
 
@@ -67,7 +67,7 @@ export const findArticleById = async (id: number) => {
     try {
         const response: any = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admins/articles/detail?id=${id}`)
         const data = await response.json();
-        console.log("myArticleList : " + JSON.stringify(data))
+        // console.log("myArticleList : " + JSON.stringify(data))
         return data
     } catch (error) {
         console.log("findArticleByIdAPI EERR!!!" + error)

@@ -7,7 +7,7 @@ import { findArticleById } from '@/app/api/article/route';
 
 async function ArticleDetail({params}:any) {
 
-  const Article = await findArticleById(params.id);
+  const article = await findArticleById(params.id);
 
   return (
     <div className='flex justify-center content-center items-center w-full h-full'>
@@ -17,16 +17,16 @@ async function ArticleDetail({params}:any) {
         <div className="text-center text-[20px] my-3">{params.id}번 게시글 조회 <br /><br /> <hr /></div>
 
         <div className='flex gap-2 pb-2'>
-          <input className="" placeholder={`작성자 ID : ${Article.writerId}`}
+          <input className="" placeholder={`작성자 ID : ${article.writerId}`}
             type="text" readOnly/>
-          <input className="" placeholder={Article.regDate}
+          <input className="" placeholder={article.regDate}
             type="text" readOnly/>
         </div>
         <div className='space-y-2'>
-          <input className="" placeholder={Article.title}
+          <input className="" placeholder={article.title}
             type="text" readOnly />
 
-          <textarea className="h-[200px]" placeholder={Article.content}
+          <textarea className="h-[200px]" placeholder={article.content}
             readOnly />
         </div>
         <div className="icons flex text-gray-500 m-2">

@@ -1,6 +1,6 @@
 "use client"
 
-import { existAdmin } from "@/app/api/admin/route";
+import { existAdmin, loginAdmin } from "@/app/api/admin/route";
 import { MoveButton } from "@/app/common/button/MoveButton"
 import { IAdmin } from "@/app/redux/model/admin.model";
 import { fetchExistAdmin } from "@/app/redux/service/admin.service";
@@ -19,17 +19,17 @@ export default function LoginBox () {
     const ref = useRef<HTMLInputElement>(null)
 
     const dispatch = useDispatch();
-    const [admininfo, setadmininfo] = useState({ username: '' } as IAdmin)
+    const [admininfo, setadmininfo] = useState({ enpName: '' } as IAdmin)
 
 
     const handleAdminname = (e: any) => {
         const ID_CHECK = /^[a-zA-Z][a-zA-Z0-9]{5,11}$/g;
-        ID_CHECK.test(admininfo.username + "") ? setIsWrongId('false') : setIsWrongId('true');
+        ID_CHECK.test(admininfo.enpName + "") ? setIsWrongId('false') : setIsWrongId('true');
         setadmininfo({
             ...admininfo,
-            username: e.target.value
+            enpName: e.target.value
         })
-        // console.log('username : ' + JSON.stringify(admininfo))
+        // console.log('enpName : ' + JSON.stringify(admininfo))
         setLen(false)
     }
 
@@ -50,45 +50,43 @@ export default function LoginBox () {
             'Tel : 2046')
     }
 
-    // const exist = await existAdmin(admininfo.username)
-    // const allArticles = await myArticleList(id)
+    // const exist = async()=> await existAdmin(admininfo.enpName)
+    // const login = async()=> await loginAdmin(admininfo)
 
     const handleSubmit = () => {
-    //     console.log('login page 입력받은 내용 ' + JSON.stringify(admininfo))
-    //     setLen(true)
-    //     // exist()
-    //     // dispatch(fetchExistAdmin(admininfo.username))
-    //     // existAdmins()
-    //         .then((resp: any) => {
-    //             console.log('login page : ' + JSON.stringify(resp))
-    //             if (resp.payload == true) {
-    //                 setMsg("* 있는 아이디입니다.")
-    //                 // dispatch(fetchLoginAdmin(admininfo))
-    //                 //     .then((resp: any) => {
-    //                 //         setCookie({}, 'message', resp.payload.message, { httpOnly: false, path: '/' })
-    //                 //         setCookie({}, 'accessToken', resp.payload.accessToken, { httpOnly: false, path: '/' })
-    //                 //         console.log("서버에서 넘어온 message " + parseCookies().message)
-    //                 //         console.log("서버에서 넘어온 token " + parseCookies().accessToken)
-    //                 //         console.log("token decoding 내용 " + jwtDecode<any>(parseCookies().accessToken).username)
-    //                 //         router.push(`${PG.REPORT}/dashboard`)
-    //                 //         router.refresh()
-    //                 //     })
-    //                 //     .catch((err: any) => {
-    //                 //         console.log("fetchLoginAdmin error : " + JSON.stringify(err))
-    //                 //         alert("Wrong password. 시도하세요")
-    //                 //     })
-    //             } else {
-    //                 console.log("fetchExistAdmin page false : " + JSON.stringify(resp))
-    //                 setMsg('* 회원가입을 진행해주세요.')
-    //             }
-    //         })
-    //         .catch((err: any) => {
-    //             console.log("fetchExistAdmin error : " + err)
-    //         })
+        // console.log('login page 입력받은 내용 ' + JSON.stringify(admininfo))
+        // setLen(true)
+        // exist()
+        //     .then((resp: any) => {
+        //         console.log('login page : ' + JSON.stringify(resp))
+        //         if (resp.payload == true) {
+        //             setMsg("* 있는 아이디입니다.")
+        //             // login()
+        //             //     .then((resp: any) => {
+        //             //         setCookie({}, 'message', resp.payload.message, { httpOnly: false, path: '/' })
+        //             //         setCookie({}, 'accessToken', resp.payload.accessToken, { httpOnly: false, path: '/' })
+        //             //         console.log("서버에서 넘어온 message " + parseCookies().message)
+        //             //         console.log("서버에서 넘어온 token " + parseCookies().accessToken)
+        //             //         console.log("token decoding 내용 " + jwtDecode<any>(parseCookies().accessToken).username)
+        //             //         router.push(`${PG.REPORT}/dashboard`)
+        //             //         router.refresh()
+        //             //     })
+        //             //     .catch((err: any) => {
+        //             //         console.log("fetchLoginAdmin error : " + JSON.stringify(err))
+        //             //         alert("Wrong password. 시도하세요")
+        //             //     })
+        //         } else {
+        //             console.log("fetchExistAdmin page false : " + JSON.stringify(resp))
+        //             setMsg('* 회원가입을 진행해주세요.')
+        //         }
+        //     })
+        //     .catch((err: any) => {
+        //         console.log("fetchExistAdmin error : " + err)
+        //     })
 
-    //     if (ref.current) {
-    //         ref.current.value = "";
-    //     }
+        if (ref.current) {
+            ref.current.value = "";
+        }
     }
 
 
@@ -104,7 +102,7 @@ export default function LoginBox () {
                 <input type="text" name="username" onChange={handleAdminname} required />
 
                 {len === false ?
-                    admininfo.username?.length === 0 || admininfo.username === undefined ? <pre></pre> :
+                    admininfo.enpName?.length === 0 || admininfo.enpName === undefined ? <pre></pre> :
                         (isWrongId === 'true' ?
                             (<pre><h6 className='text-red-500 text-sm'>* Wrong username form.</h6></pre>) :
                             (<pre><h6 className='text-green-500 text-sm'>* good username form.</h6></pre>)

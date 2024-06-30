@@ -19,7 +19,7 @@ export default async function ArticlesList({params}:any ) {
     return (
         <div className="w-full h-full">
             <div className="fixed top-0 left-0 right-0 m-auto bg-pebble-200 text-[32px] rounded-b-lg text-center w-[85%] pb-1">
-            {handleTitle(params.id)} {} </div>
+            {handleTitle(params.id)}</div>
             <div className="absolute top-[50px] left-0 right-0 m-auto w-[85%] bg-white pb-3">
                 <Suspense>
                     <Articles id={params.id}/>

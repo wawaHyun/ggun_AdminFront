@@ -11,8 +11,8 @@ interface INewsDummy {
 
   interface INews {
     id?:number,
-    imgLink? : string,
+    imgLink : string,
     title : string,
     content : string,
-    imgSrc? : string,
+    imgSrc : string,
   }
