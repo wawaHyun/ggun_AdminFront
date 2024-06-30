@@ -1,97 +1,76 @@
 'use server'
 
+import { instance } from "@/app/common/config/axios-config";
 import { IArticle } from "@/app/redux/model/article.model";
-import client from "../../../../_lib/prisma/db";
-import { IpArticle } from "./model/article.model";
-import { NextApiRequest, NextApiResponse } from "next";
-
-export async function articleHandler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.method == 'POST') {
-        const { id, title, content, board_id, writer_id } = req.body || {}
-        try {
-            await client.articles.create({
-                data: {
-                    id: id,
-                    title: title ?? "default title",
-                    content: content ?? "default content",
-                    writer_id: writer_id ?? null,
-                    board_id: board_id ?? null,
-                },
-            })
-            return res.status(200).json({ message: 'SUCCESS' })
-        } catch (error) {
-            res.status(500).send({ error: 'Failed to article POST save' })
-        }
-    }
-
-    if (req.method == 'GET') { 
-        console.log("article Get in")
-        try {
-            const board = parseInt(req.body.board_id)
-            console.log("MyArticleList route : " + board)
-            const response: IpArticle[] = await client.articles.findMany({
-                where: {
-                    board_id: board
-                },
-            })
-            console.log(JSON.stringify(response))
-            return res.status(200).json({ message: 'SUCCESS' })
-        } catch (error) {
-            res.status(500).send({ error: 'Failed to article GET find mylist' })
-        }
-    }
-
-    if (req.method == 'DELETE') { //delete
-        try {
-            await client.articles.delete({
-                where: {
-                    id: req.body.id,
-                },
-            })
-            return res.status(200).json({ message: 'SUCCESS' })
-        } catch (error) {
-            res.status(500).send({ error: 'Failed to article DELETE' })
-        }
-    }
-}
-
+import { Content } from "next/font/google";
 
 export async function allArticleList() {
-    const response = await client.articles.findMany({})
-    return response
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admins/articles/list`)
+    const data = await response.json();
+    console.log("allArticleList : ", data)
+    return data;
 }
 
 
-export async function limitArticleList() {
-    const response = await client.articles.findMany({
-        take: 30,
-    })
-    return response
+export const myArticleList = async (board_id: string) => {
+    const board = parseInt(board_id)
+    try {                            
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admins/articles/myList?id=${board}`);
+        const data = await response.json();
+        console.log("myArticleList : " + JSON.stringify(data))
+        return data
+    } catch (error: any) {
+        console.log("myArticleList EERR!!!" + error)
+        return error
+    }
 }
 
-
-export async function findArticleById(id: number) {
-    const response = await client.articles.findFirst({
-        where: { id: id },
-    })
-    return response
+export const saveArticle = async (article: IArticle) => {
+    // console.log("saveArticle : " + JSON.stringify(article))
+    const { title, content, writerId, boardId } = article || {}
+    try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admins/articles/save`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title :title,
+                content : content,
+                writerId : writerId,
+                boardId: "2",
+            })
+        })
+        console.log("saveArticle : " + JSON.stringify(article))
+        const data = await response.json();
+        return data
+    } catch (error) {
+        console.log("saveArticle EERR!!!" + error)
+        return error
+    }
 }
 
-export async function updateAricle(aricle: IArticle) {
-    const { id, title, content, board_id, writer_id} = aricle || {}
-    console.log("UpdateAricleAPI : "+JSON.stringify(aricle))
-    const response = await client.articles.update({
-        where: {
-            id: id,
-        },
-        data: {
-            id:id,
-            title: title,
-            content: content,
-            board_id: board_id,
-            writer_id: writer_id
-        },
-    })
-    console.log(JSON.stringify(response))
-    return response
+// export const deleteArticleAPI = async (id:number) => {
+//     try {
+//         const response:any = await instance().delete('/articles/delete',{
+//             params: {id}
+//         })
+//         console.log("DeleteArticleAPI : "+ response.data)
+//         return response.data
+//     } catch (error) {
+//         console.log("DeleteArticleAPI EERR!!!"+ error)
+//         return error
+//     }
+// }
+
+export const findArticleById = async (id: number) => {
+    try {
+        const response: any = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admins/articles/detail?id=${id}`)
+        const data = await response.json();
+        console.log("myArticleList : " + JSON.stringify(data))
+        return data
+    } catch (error) {
+        console.log("findArticleByIdAPI EERR!!!" + error)
+        return error
+    }
 }

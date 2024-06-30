@@ -69,7 +69,7 @@ const AdminJoin: NextPage = () => {
             </div>
 
             <div className='w-[20%] p-5 content-center'>
-                <div className='h-[30px] mb-3'><MoveButton text="직원 추가" path={() => alert("수정합니다")} /></div>
+                <div className='h-[30px] mb-3'><MoveButton text="직원 추가" click={() => alert("수정합니다")} /></div>
             </div>
         </div>
     )

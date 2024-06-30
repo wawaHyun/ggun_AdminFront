@@ -1,9 +1,7 @@
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function NewsHeader(){
     
-    const router = useRouter()
-
   interface NewsMenuProps {
     id: number;
     menu: string;
@@ -26,12 +24,12 @@ export default function NewsHeader(){
     
     return (
         <div className="sticky top-0 bg-white group m-2 grid grid-cols-12 text-center w-full h-[10%] cursor-pointer border shadow-lg rounded-b-lg content-center ">
-          <span className=" text-bold text-[16px] text-black hover:text-gray-300" onClick={() => router.push(`/news`)}>Home</span>
+          <Link className=" text-bold text-[16px] text-black hover:text-gray-300" href={`/news`}>Home</Link>
           {newsMenu.map((elem: NewsMenuProps, i: number) => {
             return (
-              <div key={elem.id} onClick={() => { elem.ref }} className="text-center text-black hover:text-gray-300">
+              <Link key={elem.id} href={elem.ref} className="text-center text-black hover:text-gray-300">
                 {elem.menu}
-              </div>
+              </Link>
             );
           })}
         </div>

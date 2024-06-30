@@ -5,6 +5,7 @@ import { instance } from "../../common/config/axios-config"
 
 
 export const allArticlesAPI = async () => {
+    console.log("allAdminsAPI 진입 : " )
     try {
         const response = await instance().get('/articles/list',{})
         // console.log("AllArticlesAPI : "+ response.data)
@@ -15,20 +16,36 @@ export const allArticlesAPI = async () => {
     }
 }
 
+// export const myArticleListAPI = async (id:number) => {
+//     // const board = parseInt(board_id)
+//     try{                                                        
+//         const response = await instance().get('/articles/myList',{
+//             params: {id}
+//         })
+//          console.log("MyArticleListAPI : "+ response.data)
+//         return response.data
+//     }catch(error:any){
+//         console.log(error)
+//         return error
+//     }
+// }
+
 export const myArticleListAPI = async (id:number) => {
     // const board = parseInt(board_id)
-    try{                                                        
-        const response = await instance().get('/articles/myList',{
+    try{                         
+        const response:any = await instance().get('/articles/mylist',{
             params: {id}
-        })
-         console.log("MyArticleListAPI : "+ response.data)
-        return response.data
+        })                               
+        // const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admins/articles/list`)
+        // console.log("MyArticleListAPI : "+ `${process.env.NEXT_PUBLIC_API_URL}/admins/articles/list`)
+        console.log("MyArticleListAPI : "+ response.data)
+        return response.data;
     }catch(error:any){
-        console.log(error)
+        console.log("MyArticleListAPI EERR!!!"+ error)
         return error
     }
-
 }
+
 
 export const deleteArticleAPI = async (id:number) => {
     try {

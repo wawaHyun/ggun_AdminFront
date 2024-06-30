@@ -1,10 +1,11 @@
-'use server'
 
 import { instance } from "@/app/common/config/axios-config"
 import { IAdmin } from "@/app/redux/model/admin.model"
 
 export const allAdminsAPI = async () => {
+    console.log("allAdminsAPI 진입 : " )
     const response = await instance().get('/admins/list', {})
+    console.log("allAdminsAPI : " + response.data)
     return response.data
 }
 
@@ -36,7 +37,7 @@ export const deleteAdminAPI = async (id: number) => {
 
 export const existAdminAPI = async (username: string) => {
     try {
-        const response = await instance().get('/auth/exists-username', {
+        const response = await instance().get('/UserAuth/exists-username', {
             params: { username }
         })
         return response.data
@@ -45,6 +46,19 @@ export const existAdminAPI = async (username: string) => {
         return error
     }
 }
+
+// export async function existAdminAPI (username: string) {
+//     try {
+//         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/exists-username`,{username})
+//         console.log("existAdminAPI : " + `${process.env.NEXT_PUBLIC_API_URL}/auth/exists-username/${username}`)
+//         console.log("existAdminAPI : " + response)
+//         console.log("existAdminAPI : " + JSON.stringify(response))
+//         return response
+//     } catch (error: any) {
+//         console.log("ExistAdminAPI EERR!!!", error)
+//         return error
+//     }
+// }
 
 export const loginAdminAPI = async (admin: IAdmin) => {
     try {

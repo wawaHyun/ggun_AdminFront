@@ -97,8 +97,8 @@ export default function ArticleUpdate({ params }: any) {
 
         <div className="buttons flex">
           <div className="buttons flex gap-5 justify-center h-[50px]">
-            <MoveButton text="게시글 수정" path={onSubmit} />
-            {/* <MoveButton text="CANCEL" path={() => router.back()} /> */}
+            <MoveButton text="게시글 수정" click={onSubmit} />
+            {/* <MoveButton text="CANCEL" click={() => router.back()} /> */}
           </div>
         </div>
       </div>

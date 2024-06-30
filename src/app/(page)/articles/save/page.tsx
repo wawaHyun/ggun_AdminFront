@@ -1,107 +1,89 @@
 'use client'
 
-import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-
-import { useDispatch, useSelector } from 'react-redux';
-import { getSingleArticle } from '@/app/redux/silce/article.slice';
-import { AttachFile, FmdGood, ThumbUpAlt } from '@mui/icons-material';
+import { AttachFile, FmdGood } from '@mui/icons-material';
 import { MoveButton } from '@/app/common/button/MoveButton';
+import { WhiteBox } from '@/app/common/box/whiteBox';
+import { saveArticle } from '@/app/api/article/route';
 import { useState } from 'react';
-import { findArticleById } from '@/app/api/article/route';
+import { useRouter } from 'next/navigation';
 
-function ArticleSave() {
 
+export default function ArticleSave({ params }: any) {
+
+  const [artiInfo, setArtiInfo] = useState({
+      id: params.id,
+      title: "빈 제목",
+      content: "내용없음",
+      writerId: "3",
+      boardId: "2"
+  });
   const router = useRouter();
 
-  const { register, handleSubmit, formState: { errors }, } = useForm<any>({
-    // defaultValues: {
-    //   enpId: '',
-    //   enpName: '',
-    //   email: '',
-    //   title: '',
-    //   content: ''
-    // }
-  });
 
-  const [email, setEmail] = useState({
-    enpId: 0,
-    enpName: '',
-    email: '',
-    title: '',
-    content: ''
-  });
+async function save (artiInfo:any){
+  const save = await saveArticle(artiInfo);
+return save;
+}
 
-  // const onSubmit = (data: any) => {
-  //   console.log(JSON.stringify(data))
-  //   alert(JSON.stringify(data) + " Save! ")
-  //   //prisma
-  //   saveArticle(data)
-  //      .then((res: any) => {
-  //       console.log("res : " + JSON.stringify(res) + ", data: " + JSON.stringify(data) + ", data.board: " + data.board)
-  //       alert("SaveArticle: " + JSON.stringify(SaveArticle))
-  //     })
-  //     .catch((error: any) => {
-  //       console.log('article page onSubmit error : {}', error)
-  //     })
-  //   }
-
-  const onSubmit = (data: any) => {
-    console.log("input Info : " + JSON.stringify(data))
-    setEmail(data)
-    seveOne()
-      .then((res) =>
-        console.log("save Info : " + JSON.stringify(res))
-      )
-
+  const input = (info:string,name: string) => {
+    setArtiInfo({
+      ...artiInfo,
+      [name]: info
+    });
+    // console.log('username : ' + JSON.stringify(artiInfo))
   }
 
-  const seveOne = async () => {
-    try {
-      // const response = await instance().post(`/email/send`,{data})
-      const response = await findArticleById(1)
-      console.log("findArticleById response : " + JSON.stringify(response))
-    } catch (error) {
-      console.log("findArticleById error : " + error)
-    }
+  const onSubmit =() => {
+    console.log("input Info : " + JSON.stringify(artiInfo))
+    save(artiInfo)
+    .then((res)=>
+      router.push(`/articles/list/2`)
+    )
   }
 
   return (
-    <div className='flex justify-center w-full h-full'>
-    <div className='w-[40%]'>
-      <form className="w-[100%]" onSubmit={handleSubmit(onSubmit)}>
-        <div className="text-center text-[20px] my-3">게시글 작성하기<br /><br /> <hr /></div>
+    <div className='flex justify-center content-center items-center w-full h-full'>
+      <div className=''>
+        <WhiteBox color="" content={
+          <form className="w-[100%]" >
+            <div className="text-center text-[20px] my-3">게시글 작성하기 {params.id}<br /><br /> <hr /></div>
+            <div className='space-y-2'>
+              <input className="" placeholder='사원번호: writerId'
+                type="number"
+                onInput={(e: any) => {
+                  if (e.target.value >= 0) {
+                      if (e.target.value > 10) {
+                        alert("최대 10까지 입력가능합니다.");
+                      }
+                      e.target.value = e.target.value.slice(0, 5);
+                  } else {
+                    e.target.value = 0;
+                    alert("음수값을 입력할 수 없습니다.");
+                  }
+                }}
+                onChange={(e)=>input(e.target.value,'writerId')}/>
 
-        <div className='flex gap-2 pb-2'>
-          <input className="" placeholder='사원번호'
-            type="text" {...register('enpId', { required: true, maxLength: 30 })} />
-          <input className="" placeholder='사원명'
-            type="text" {...register('enpName', { required: true, maxLength: 30 })} />
-        </div>
-        <div className='space-y-2'>
-          <input className="" placeholder="Title"
-            type="text" {...register('title', { required: true, maxLength: 30 })} />
+              <input className="" placeholder="Title"
+                type="text"  onChange={(e)=>input(e.target.value,'title')}/>
 
-          <textarea className="h-[200px]" placeholder="Describe everything about this post here"
-            {...register('content', { required: true, maxLength: 300 })} />
-        </div>
-        <div className="icons flex text-gray-500 m-2">
-          <svg className="mr-2 cursor-pointer hover:text-gray-700 border rounded-full p-1 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <FmdGood component={FmdGood}></FmdGood>
-          </svg>
-          <svg className="mr-2 cursor-pointer hover:text-gray-700 border rounded-full p-1 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <AttachFile component={AttachFile}></AttachFile>
-          </svg>
-          <div className="count ml-auto text-gray-400 text-xs font-semibold">0/300</div>
-        </div>
-        <div className="buttons flex gap-5 justify-center h-[50px]">
-          <MoveButton text="작성완료" path={onSubmit} />
-          <MoveButton text="취소" path={()=>router.back()} />
-        </div>
-      </form >
-    </div>
+              <textarea className="h-[200px]" placeholder="Describe everything about this post here"
+                onChange={(e)=>input(e.target.value,'content')}/>
+            </div>
+            <div className="icons flex text-gray-500 m-2">
+              <svg className="mr-2 cursor-pointer hover:text-gray-700 border rounded-full p-1 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <FmdGood component={FmdGood}></FmdGood>
+              </svg>
+              <svg className="mr-2 cursor-pointer hover:text-gray-700 border rounded-full p-1 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <AttachFile component={AttachFile}></AttachFile>
+              </svg>
+              <div className="count ml-auto text-gray-400 text-xs font-semibold">0/300</div>
+            </div>
+            <div className="buttons flex gap-5 justify-center h-[50px]">
+              <MoveButton text="작성완료" click={onSubmit} />
+            </div>
+          </form >
+        } />
+      </div>
     </div>
   );
 };
-
-export default ArticleSave;

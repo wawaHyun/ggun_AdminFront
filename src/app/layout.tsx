@@ -1,12 +1,8 @@
-'use client';
 
 import { Inter } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
-import Sidebar from "./component/navigation/sidebar";
-import Alarm from "./component/util/alarm";
-import ChatRoom from "./(page)/chatting/chatroom/page";
-import { parseCookies } from "nookies";
+import Layout from "./common/layout/layout";
 
 const ReduxProvider = dynamic(() => import("./redux/redux-provider"), {
   ssr: false
@@ -20,7 +16,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
-
   return (
     <html lang="ko">
       <head>
@@ -28,20 +23,10 @@ export default function RootLayout({
         <title>최고의 주식거래소:: GGUN</title>
       </head>
       <body className={inter.className}>
-        <div className="w-screen h-screen bg-white">
+        <div className="">
           <ReduxProvider> 
-           {/* {parseCookies().accessToken != undefined ? */}
-              <div>
-                <div className="h-screen hover:w-[300px] top-0 left-0 fixed z-10">
-                  <Sidebar />
-                </div>
-                <div className="h-screen hover:w-[500px] top-0 right-0 fixed z-10">
-                  <Alarm /> <ChatRoom />
-                </div>
-              </div>
-               {/* : <div></div>}   */}
-            <div className="justify-center flex">
-              {children}
+            <div>
+              <Layout>{children}</Layout>
             </div>
             </ReduxProvider>
         </div>

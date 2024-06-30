@@ -2,17 +2,15 @@ import { IAdmin } from "../model/admin.model";
 
 export const initialState: IAdmin = {
     id: 0,
-    username: '',
     password: '',
-    name: '',
-    age: '',
-    email: '',
-    address: '',
+    enpName: '',
+    enpNum: '',
+    department: '',
+    position: '',
+    job: '',
+    enpEmail: '',
     phone: '',
-    asset: '',
-    mbti: '',
-    token: '',
-    investment_propensity: '',
-    mod_date: '',
-    reg_date: ''
+    role : '',
+    mod_date : '',
+    reg_date : ''
 }

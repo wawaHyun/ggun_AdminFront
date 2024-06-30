@@ -6,7 +6,7 @@ import Chart from 'chart.js/auto';
 import { CategoryScale, LinearScale } from 'chart.js';
 Chart.register(CategoryScale, LinearScale);
 
-const Mychart = () => {
+const Demochart = () => {
 
 
   const data:any = {
@@ -179,7 +179,7 @@ const Mychart = () => {
   );
 };
 
-export default Mychart;
+export default Demochart;
 
 const Container = styled.div`
   width: 90vw;

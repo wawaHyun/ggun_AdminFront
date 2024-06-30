@@ -19,8 +19,16 @@ export const fetchDeleteAdmin: any = createAsyncThunk(
 
 export const fetchExistAdmin: any = createAsyncThunk(
     'admins/fetchExistAdmin',
-    async (username: string) => await existAdminAPI(username)
-)
+    async (username: string)=> {
+    try {
+        const response = await existAdminAPI(username);
+        console.log("fetchExistAdmin : ",response)
+        return response; // 순수한 자바스크립트 객체로 반환
+      } catch (error) {
+        return error;
+      }
+    }
+);
 
 export const fetchLoginAdmin: any = createAsyncThunk(
     'admins/fetchLoginAdmin',

@@ -1,7 +1,7 @@
 'use server'
 
-import { IBoard } from "../../redux/model/board.model";
-import client from "../../../../_lib/prisma/db";
+import { IBoard } from "../../../redux/model/board.model";
+import client from "../../../../../_lib/prisma/db";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export async function GET(req: NextApiRequest, res: NextApiResponse) {

@@ -1,94 +1,120 @@
 'use server'
 
-import { IAdmin } from "../../redux/model/admin.model";
-import client from "../../../../_lib/prisma/db";
+import { IAdmin } from "@/app/redux/model/admin.model"
 
-export async function allAdmins() {
-    const response = await client.admins.findMany({})
-    return response
-}
-
-export async function colsadmin() {
-    const response = await client.admins.findFirst({})
-    return response
-}
-
-export async function findAdminById(id: number) {
-    const response = await client.admins.findFirst({
-        where: { id: id },
-    })
-    return response
-}
-
-export async function deleteAdmin(id: number) {
-    const response = await client.admins.delete({
-        where: { id: id },
-    })
-    return response
-}
-
-export async function existAdmin(username: string) {
-    console.log("ExistAdminAPI : " + username);
+export const allAdmins = async () => {
     try {
-        const response = await client.users.findFirst({
-            where: { username: username },
-        })
-        .then((res:any)=>{
-            const result = (res != true) ? 'SUCCESS' : 'FAIL'
-            console.log("ExistAdminAPI result : " + result);
-            return result
-        })
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admins/list`)
+        const data = await response.json();
+        // console.log("allAdmins!!!"+ JSON.stringify(data))
+        return data
     } catch (error) {
-        console.log("ExistAdmin err : " + error
+        console.log("allAdmins err : " + error
         )
     }
 }
 
-export async function loginAdmin(admin: IAdmin) {
-    console.log("LoginAdminAPI : " + admin.id);
-    const { id, username, password } = admin;
-    const response = await client.admins.update({
-        where: {
-            id: id,
-            username: username,
-            password: password,
-        },
-        data: {
-            token: "login token add"
-        }
-    });
-    console.log("LoginAdminAPI : " + response)
-    return response
+export const existAdmin = async (username: string) => {
+    try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/exists-username?username=${username}`)
+        const data = await response.json();
+        console.log("existAdmin!!!" + JSON.stringify(data))
+        return data
+    } catch (error: any) {
+        console.log("existAdmin EERR!!!", error)
+        return error
+    }
 }
 
-export async function logoutAdmin(id: number) {
-    const response = await client.admins.update({
-        where: {
-            id: id,
-        },
-        data: {
-            token: ""
-        }
-    });
-    console.log("LoginAdminAPI : " + response)
-    return response
+export const loginAdmin = async (admin: IAdmin) => {
+    try {
+        const response = await await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login?username=ggunAdmin0001&password=pO2(eO73)%@`)
+        const data = await response.json();
+        console.log("loginAdmin : " + JSON.stringify(data))
+        return data
+    } catch (error) {
+        console.log("loginAdmin EERR!!! " + error)
+        return error
+    }
 }
 
-export async function joinAdmin(admin: IAdmin) {
-    const { username, password, phone, name, age, email, address, asset, mbti, investment_propensity } = admin;
-    // const response = await client.admins.create({
-    //     data: {
-    //         username: username,
-    //         password: password,
-    //         name: name,
-    //         phone: phone,
-    //         age: age,
-    //         email: email,
-    //         address: address,
-    //         asset: asset,
-    //         mbti: mbti,
-    //         investment_propensity: investment_propensity,
-    //     },
-    // });
-    // return NextResponse.json({ message: "success", data: response })
+export const logoutAdmin = async () => {
+    try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`)
+        const data = await response.json();
+        console.log("logoutAdmin : " + JSON.stringify(data))
+        return data
+    } catch (error) {
+        console.log(error, "logoutAdmin EERR!!!")
+        return error
+    }
 }
+
+
+export const findAdminById = async (id: string) => {
+    const idd = parseInt(id)
+    try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admins/detail?id=${idd}`)
+        const data = await response.json();
+        console.log("findAdminById : " + JSON.stringify(data))
+        return data
+    } catch (error) {
+        console.log("findAdminById EERR!!!" + error)
+        return error
+    }
+}
+
+export const deleteAdmin = async (id: string) => {
+    const idd = parseInt(id)
+    try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admins/delete?id=${idd}`)
+        const data = await response.json();
+        console.log("deleteAdmin : " + JSON.stringify(data))
+    } catch (error) {
+        console.log("deleteAdmin EERR!!!" + error)
+        return error
+    }
+}
+
+
+export const updateAdmin = async (admin: IAdmin) => {
+    // console.log("saveArticle : " + JSON.stringify(article))
+    const { id, password, enpName, enpNum, department, position, job, enpEmail, phone } = admin || {}
+    try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admins/modify`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: id,
+                password: password,
+                enpName: enpName,
+                enpNum:enpNum,
+                department:department,
+                position: position,
+                job: job,
+                enpEmail: enpEmail,
+                phone: phone
+            })
+        })
+        const data = await response.json();
+        console.log("saveArticle : " + JSON.stringify(data))
+        return data
+    } catch (error) {
+        console.log("deleteAdmin EERR!!!" + error)
+        return error
+    }
+}
+
+
+// export const joinAdminAPI = async (admin: IAdmin) => {
+//     try {
+//         const response = await instance().post('/admins/save', admin)
+//         console.log("JoinAdminAPI : " + response)
+//         return response
+//     } catch (error) {
+//         console.log("JoinAdminAPI EERR!!!" + error)
+//         return error
+//     }
+// }

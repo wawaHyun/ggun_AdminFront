@@ -1,6 +1,6 @@
 interface IButton {
     text: string,
-    path: any,
+    click?: any,
     color?:string,
     select? : any,
 }

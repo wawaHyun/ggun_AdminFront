@@ -37,7 +37,7 @@ function ChatRoom() {
             </button>
 
             {isOpen == true ?
-                <div className="absolute bottom-[5%] right-[70px] w-full h-auto border-gray-300 border overflow-auto bg-white shadow-lg rounded-lg p-3">
+                <div className="absolute bottom-[5%] right-[70px] w-[20%] min-w-[300px] h-auto border-gray-300 border overflow-auto bg-white shadow-lg rounded-lg p-3">
                         {roomlist.map((i: any) =>
                         <button key={i.id} className="flex-col py-1 w-full text-left" onClick={()=>router.push(`/chatting/${i.senderId}`)}>
                             <WhiteBox color="white hover:bg-pebble-400 flex-col" content={
