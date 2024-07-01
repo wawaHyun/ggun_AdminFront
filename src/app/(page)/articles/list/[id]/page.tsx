@@ -27,7 +27,7 @@ export default async function ArticlesList({params}:any ) {
 
                 <div className="w-[70%] grid grid-cols-5 gap-3 m-auto   ">
                     <Search text="Search.." color="col-span-3" /> <MoveButton text="검색" />
-                    <Link href={`/articles/save2`}><MoveButton text="게시글 작성하기" /></Link>
+                    <Link href={`/articles/save`}><MoveButton text="게시글 작성하기" /></Link>
                 </div>
             </div>
         </div>

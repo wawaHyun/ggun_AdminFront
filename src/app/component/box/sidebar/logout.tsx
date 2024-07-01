@@ -1,10 +1,7 @@
 import { logoutAdmin } from "@/app/api/admin/route";
 import { destroyCookie, parseCookies } from "nookies";
-import { useDispatch } from "react-redux";
 
 const LogoutBox = () => {
-
-    const dispatch = useDispatch();
 
     // const logoutRedux = (id: number) => {
     //     console.log('logout 적용 전' + parseCookies().accessToken);

@@ -1,17 +1,9 @@
 
 import { myArticleList } from "@/app/api/article/route";
+import { articleDummy } from "@/app/common/dummy/article.dummy";
 import Link from "next/link";
 
 export default async function Articles({ id }: any) {
-
-    //prisma
-    // findArticleListById('1')
-    //     .then((res: any) => {
-    //         setAllArticles(res);
-    //     })
-    //     .catch((error: any) => {
-    //         console.log("articles err!!! : " + error);
-    //     });
 
     const allArticles = await myArticleList(id)
 
