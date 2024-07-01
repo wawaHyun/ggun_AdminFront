@@ -2,23 +2,13 @@
 'use client'
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { WhiteBox } from "@/app/common/box/whiteBox";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllChats } from "@/app/redux/silce/chat.slice";
-import { fetchAllChats } from "@/app/redux/service/chat.service";
-
+import { useRouter } from "next/router";
 
 function ChatRoom() {
     const [isOpen, setIsOpen] = useState(false);
-    const router = useRouter()
-    const dispatch = useDispatch();
-    const allchatlist = useSelector(getAllChats);
-    
-    useEffect(() => {
-        dispatch(fetchAllChats())
-    }, [dispatch])
+    const router = useRouter();
 
     const roomlist = [
         {id:1, senderId: 2222, sender: "김대리", content: "안녕하세요, 좋은아침입니다.", modDate: "24-06-20 09:19"},

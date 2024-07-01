@@ -4,9 +4,9 @@ import "./globals.css";
 import dynamic from "next/dynamic";
 import Layout from "./common/layout/layout";
 
-const ReduxProvider = dynamic(() => import("./redux/redux-provider"), {
-  ssr: false
-});
+// const ReduxProvider = dynamic(() => import("./redux/redux-provider"), {
+//   ssr: false
+// });
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,11 +24,9 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <div className="">
-          <ReduxProvider> 
             <div>
               <Layout>{children}</Layout>
             </div>
-            </ReduxProvider>
         </div>
       </body>
     </html>

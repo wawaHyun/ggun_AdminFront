@@ -1,10 +1,11 @@
  "use client"
+
 import { deleteAdmin } from "@/app/api/admin/route";
 import { MoveButton } from "@/app/common/button/MoveButton";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default async function AdminsDetailReadonly({ props }: any) {
+export default function AdminsDetailReadonly({ props }: any) {
 
     const router = useRouter();
 

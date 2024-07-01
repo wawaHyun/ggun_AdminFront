@@ -1,6 +1,7 @@
 'use server'
 
-import { IAdmin } from "@/app/redux/model/admin.model"
+import { IAdmin } from "../model/admin.model";
+
 
 export const allAdmins = async () => {
     try {

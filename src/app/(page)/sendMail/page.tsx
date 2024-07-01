@@ -1,10 +1,7 @@
 'use client'
 
-import { usePathname, useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { getSingleArticle } from '@/app/redux/silce/article.slice';
-import { AttachFile, FmdGood, ThumbUpAlt } from '@mui/icons-material';
+import { AttachFile, FmdGood } from '@mui/icons-material';
 import { GrayButton, MoveButton } from '@/app/common/button/MoveButton';
 import { useState } from 'react';
 import Link from 'next/link';
@@ -12,11 +9,7 @@ import { XIcon } from '@/app/common/icons/icons';
 
 export default function SendMail() {
 
-  const pathName = usePathname();
-
   let [isOpen, setIsOpen] = useState(false);
-
-
   const { register, handleSubmit, formState: { errors }, } = useForm<any>({
     // defaultValues: {
     //   enpId: '',
@@ -35,39 +28,7 @@ export default function SendMail() {
     content: ''
   });
 
-  // const onSubmit = (data: any) => {
-  //   console.log(JSON.stringify(data))
-  //   alert(JSON.stringify(data) + " Save! ")
-  //   //prisma
-  //   saveArticle(data)
-  //      .then((res: any) => {
-  //       console.log("res : " + JSON.stringify(res) + ", data: " + JSON.stringify(data) + ", data.board: " + data.board)
-  //       alert("SaveArticle: " + JSON.stringify(SaveArticle))
-  //     })
-  //     .catch((error: any) => {
-  //       console.log('article page onSubmit error : {}', error)
-  //     })
-  //   }
-
-  const onSubmit = (data: any) => {
-  //   console.log("input Info : " + JSON.stringify(data))
-  //   setEmail(data)
-  //   seveOne()
-  //     .then((res) =>
-  //       console.log("save Info : " + JSON.stringify(res))
-  //     )
-
-  }
-
-  // const seveOne = async () => {
-  //   try {
-  //     // const response = await instance().post(`/email/send`,{data})
-  //     const response = await findArticleById(1)
-  //     console.log("findArticleById response : " + JSON.stringify(response))
-  //   } catch (error) {
-  //     console.log("findArticleById error : " + error)
-  //   }
-  // }
+  const onSubmit = () => {}
 
   return (
 

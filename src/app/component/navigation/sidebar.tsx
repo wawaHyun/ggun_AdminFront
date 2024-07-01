@@ -5,7 +5,7 @@ import { } from "@/app/common/icons/icons";
 import Image from "next/image";
 import TimeNow from "../util/timeNow";
 import Link from "next/link";
-import { BoardSub, JusikSub, Menus, WipSub } from "@/app/common/enums/menus";
+import { BoardSub, JusikSub, Menus } from "@/app/common/enums/menus";
 import LogoutBox from "../box/sidebar/logout";
 import { TallbarIcon } from "@/app/common/icons/sideberIcon";
 import { useState } from "react";
@@ -89,14 +89,6 @@ function Sidebar() {
 
                                         {pathName == v.href && v.title == "게시판" ?
                                             <li>{BoardSub.map((vv: Imenu, i: any) =>
-                                                <div key={vv.id} className="p-1 ">
-                                                    <Link href={vv.href} className="w-[100%] text-left hover:text-amber-200 hover:border-amber-200">ㄴ{vv.title}</Link>
-                                                </div>)}
-                                            </li>
-                                            : <li></li>
-                                        }
-                                        {pathName == v.href && v.title == "Working In Process" ?
-                                            <li>{WipSub.map((vv: Imenu, i: any) =>
                                                 <div key={vv.id} className="p-1 ">
                                                     <Link href={vv.href} className="w-[100%] text-left hover:text-amber-200 hover:border-amber-200">ㄴ{vv.title}</Link>
                                                 </div>)}

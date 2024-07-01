@@ -5,7 +5,7 @@ import { MoveButton } from '@/app/common/button/MoveButton';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-export default async function AdminsDetailEdit({ props }: any) {
+export default function AdminsDetailEdit({ props }: any) {
 
 
     const router = useRouter();

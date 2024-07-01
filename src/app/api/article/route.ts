@@ -1,8 +1,6 @@
 'use server'
 
-import { instance } from "@/app/common/config/axios-config";
-import { IArticle } from "@/app/redux/model/article.model";
-import { Content } from "next/font/google";
+import { IArticle } from "../model/article.mode";
 
 export async function allArticleList() {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admins/articles/list`)
