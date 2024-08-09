@@ -46,7 +46,10 @@ function DoughnutChart() {
             title: {
                 display: true,
                 text: 'Custom Chart Title'
-            }
+            },
+            legend: {
+                display:false,
+              },
         }
     }
 

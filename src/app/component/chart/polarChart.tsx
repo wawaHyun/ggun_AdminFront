@@ -46,7 +46,13 @@ const color =[
     const options: any = {
         scales: {
   
-        }
+        },
+        plugins: {
+            legend: {
+                display:false,
+              },
+
+            }
     }
 
 

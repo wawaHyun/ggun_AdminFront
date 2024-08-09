@@ -6,6 +6,9 @@ import PolarChart from "@/app/component/chart/polarChart";
 import TableDemo from "@/app/component/chart/tableDemo";
 import { WhiteBox } from "@/app/common/box/whiteBox";
 import HalfDoughnutChart from "@/app/component/chart/halfDoughuntChart";
+import { RadarChart } from "recharts";
+import DoubelBarChart from "@/app/component/chart/doubelBarChart";
+import Demo1 from "@/app/component/chart/demo1";
 
 export default function Dashboard() {
     return (
@@ -39,9 +42,9 @@ export default function Dashboard() {
                         </div>
                     <div className=""><WhiteBox><HalfDoughnutChart /></WhiteBox></div>
                     <div className=""><WhiteBox><DoughnutChart /></WhiteBox></div>
-                    <div className=""><WhiteBox><PolarChart /></WhiteBox></div>
+                    <div className=""><WhiteBox><DoubelBarChart /></WhiteBox></div>
 
-                    <div className="grid col-span-2"><WhiteBox><PolarChart /></WhiteBox></div>
+                    <div className="grid col-span-2"><WhiteBox><HalfDoughnutChart /></WhiteBox></div>
                     <div className="grid col-span-2"><WhiteBox><PolarChart /></WhiteBox></div>
                 </div>
             </div>
